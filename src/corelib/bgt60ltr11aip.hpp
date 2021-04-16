@@ -12,9 +12,9 @@
 #ifndef BGT60LRT11AIP_HPP_
 #define BGT60LRT11AIP_HPP_
 
-#include "../pal/bgt60ltr11aip-conf.hpp"
-#include "../pal/bgt60ltr11aip-pal-gpio.hpp"
-#include "../pal/bgt60ltr11aip-pal-timer.hpp"
+#include "bgt60ltr11aip-conf.hpp"
+#include "bgt60ltr11aip-pal-gpio.hpp"
+#include "bgt60ltr11aip-pal-timer.hpp"
 
 
 class Bgt60ltr11aip
@@ -38,12 +38,19 @@ class Bgt60ltr11aip
             PRESENCE = 2        /**< Presence */
         };
 
+        enum Direction_t
+        {
+            NOT_AVAILABLE = 0,
+            APPROACHING = 1,
+            DEPARTING = 2
+        };
+
         Bgt60ltr11aip(GPIO *pDet, GPIO *tDet, MeasMode_t mode);
         ~Bgt60ltr11aip();
         Error_t init();
-        Errot_t deinit();
-        Error_t getPresence();
-        Errot_t getDirection();
+        Errort_t deinit();
+        Error_t getPresence(Presence_t &presence);
+        Errort_t getDirection(Direction_t &direction);
 
     private:
 
@@ -57,8 +64,6 @@ class Bgt60ltr11aip
 
         volatile bool tDetRisingEdgeEvent;
         volatile bool tDetFallingEdgeEvent;
-
-        void poll();
 
         typedef void (* cback_t)(void *);
 
