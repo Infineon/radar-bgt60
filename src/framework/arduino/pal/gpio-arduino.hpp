@@ -39,6 +39,9 @@ public:
 	Error_t     write(VLevel_t level);
 	Error_t     enable();
 	Error_t     disable();
+	Error_t     enableInt(void (*cback) (void *), IntEvent_t mode);
+	Error_t   	disableInt();
+	IntEvent_t  intEvent();
 };
 
 /** @} */

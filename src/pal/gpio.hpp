@@ -29,6 +29,8 @@ class GPIO
 		{
 			INT_FALLING_EDGE   = 0,     /**< Interrupt on falling edge */
 			INT_RISING_EDGE    = 1,     /**< Interrupt on rising edge */
+			INT_HIGH = 2,					/**< Interrupt when pin is HIGH */
+			INT_LOW = 3						/**< Interrupt when pin is LOW */
 		};
 		/** @} */
 
@@ -107,11 +109,30 @@ class GPIO
 		 */
 		virtual Error_t        disable     () = 0;
 
-		Error_t checkErrorStatus();
+		/**
+         * @brief       Enables the GPIO hardware interrupt
+         * @param[in]   *cback Function pointer of the interrupt callback
+         * @return      GPIO error code
+         * @retval      OK if success
+         * @retval      INTF_ERROR if error
+         */
+        virtual Error_t     enableInt   (void (*cback) (void *), IntEvent_t mode) = 0;
 
-	private:
-		Error_t errorStatus;
+		 /**
+         * @brief       Disables the GPIO hardware interrupt
+         * @return      GPIO error code
+         * @retval      OK if success
+         * @retval      INTF_ERROR if disable error
+         */
+        virtual Error_t     disableInt  () = 0;
 
+		/**
+         * @brief       Gets the latest interrupt event 
+         * @return      GPIO interrupt event
+         * @retval      INT_FALLING_EDGE if falling edge event
+         * @retval      INT_RISING_EDGE if rising edge event
+         */
+        virtual IntEvent_t  intEvent    () = 0;
 };
 }
 /** @} */

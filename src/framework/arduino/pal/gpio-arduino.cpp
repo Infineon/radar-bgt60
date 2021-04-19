@@ -112,4 +112,74 @@ Error_t GPIOIno::disable()
 	}
 	return OK;
 }
+
+/**
+ * @brief       Enables the Arduino GPIO interrupt
+ * This function enables the interrupt on chosen pin. Depending on the mode,
+ * it triggers the interrupt.
+ * @param[in]   *cback Function pointer of the interrupt callback
+ * @return      GPIOIno::Error_t
+ * @retval      OK
+ */
+Error_t GPIOIno::enableInt(void (*cback) (void *), IntEvent_t mode)
+{
+	switch(mode)
+	{
+		case INT_FALLING_EDGE:
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_FALLING_EDGE);
+			break;
+
+		case INT_RISING_EDGE:
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_RISING_EDGE);
+			break;
+
+		case INT_HIGH:
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_HIGH);
+			break;
+
+		case INT_LOW:
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_LOW);
+			break;
+
+		default:
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_LOW);
+	}
+    
+    return OK;
+}
+
+/**
+ * @brief       Disables the Arduino GPIO interrupt
+ * This function disables the interrupt on chosen pin.
+ * @return      GPIOIno::Error_t
+ * @retval      OK
+ */
+Error_t GPIOIno::disableInt()
+{
+	detachInterrupt(digitalPinToInterrupt(this->pin));
+    return OK;
+}
+
+/**
+ * @brief   Gets the latest Arduino interrupt event 
+ * @return  GPIO interrupt event
+ * @retval  INT_FALLING_EDGE if falling edge event
+ * @retval  INT_RISING_EDGE if rising edge event
+ */
+inline GPIOIno::IntEvent_t GPIOIno::intEvent()
+{
+    IntEvent_t edge = INT_FALLING_EDGE;
+    
+    int val = digitalRead(this->pin);
+    if(val == LOW)
+    {
+        edge = INT_FALLING_EDGE;
+    }
+    else if(val == HIGH) 
+    {
+        edge = INT_RISING_EDGE;
+    }
+    return edge;
+}
+
 #endif /** RADAR_BGT60_FRAMEWORK **/
