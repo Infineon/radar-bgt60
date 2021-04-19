@@ -10,7 +10,7 @@
 #ifndef GPIO_HPP_
 #define GPIO_HPP_
 
-#include "../corelib/bgt-types.hpp"
+#include "../corelib/bgt60-types.hpp"
 /**
  * @addtogroup pal
  * @{
@@ -112,7 +112,7 @@ class GPIO
 		/**
          * @brief       Enables the GPIO hardware interrupt
          * @param[in]   *cback Function pointer of the interrupt callback
-         * @return      GPIO error code
+         * @return      PAS CO2 error code
          * @retval      OK if success
          * @retval      INTF_ERROR if error
          */
@@ -120,7 +120,7 @@ class GPIO
 
 		 /**
          * @brief       Disables the GPIO hardware interrupt
-         * @return      GPIO error code
+         * @return      PAS CO2 error code
          * @retval      OK if success
          * @retval      INTF_ERROR if disable error
          */
