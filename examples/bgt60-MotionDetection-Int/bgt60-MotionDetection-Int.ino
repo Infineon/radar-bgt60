@@ -83,11 +83,11 @@ void loop()
     // Check if API execution is successful
     if(err == OK)
     {
-        // Active low indicates the occurrence of moving object detection event 
+        // tDetFallingEdgeEvent (i.e high to low) set to true indicates that a moving object is detected
         if (tDetFallingEdgeEvent == true){
             Serial.println("Target in motion Detected!");
         }
-        // Active high indicates the absence of moving object 
+        // tDetRisingEdgeEvent (i.e low to high) set to true indicates that no object is detected
         else if(tDetRisingEdgeEvent == true){
             Serial.println("No one's there!");
         }
