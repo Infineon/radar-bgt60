@@ -19,7 +19,7 @@
  * 
  * ▶ Polling mode of acquiring Radar data:
  * - MODE_POLLING   : In this mode, the GPIO pins are continuously monitored to detect the 
- *                    moving target and its direction
+ *                    moving target.
  * 
  * ▶ Decoding on-board Green LED output
  * - Green LED indicates the output of target in motion detection (TD)

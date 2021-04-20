@@ -18,9 +18,9 @@
  * --------------------------------------------------
  * 
  * ▶ Interrupt mode of acquiring Radar data:
- * - MODE_INTERRUPT : In this mode, an interrupt is generated in case a moving target and 
- *                    its motion is detected. Once the ISR in library is served, the callback 
- *                    function will be executed that sets variables to identify motion detection.
+ * - MODE_INTERRUPT : In this mode, an interrupt is generated in case a moving target is detected.
+ *                    Once the ISR in library is served, the callback function will be executed that
+ *                    sets variables to identify motion detection.
  * 
  * ▶ Decoding Green LED outputs
  * - Green LED indicates the output of target in motion detection

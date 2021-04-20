@@ -18,9 +18,9 @@
  * --------------------------------------------------
  * 
  * ▶ Interrupt mode of acquiring Radar data:
- * - MODE_INTERRUPT : In this mode, an interrupt is generated in case a moving target and 
- *                    its motion is detected. Once the ISR in library is served, the callback 
- *                    function will be executed that sets variables to identify motion direction.
+ * - MODE_INTERRUPT : In this mode, an interrupt is generated in case the direction of moving target
+ *                    is detected. Once the ISR in library is served, the callback function will be 
+ *                    executed that sets variables to identify motion direction.
  * 
  * ▶ Decoding on-board Red LED output
  * - Red LED indicates the output of direction of motion once target is detected
