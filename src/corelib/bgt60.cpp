@@ -1,5 +1,5 @@
 /**
- * @file        bgt60ltr11aip.cpp
+ * @file        bgt60.cpp
  * @author      Infineon Technologies AG
  * @brief       BGT60LTRAIP API
  * @version     0.0.1
@@ -9,13 +9,13 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "bgt60ltr11aip.hpp"
+#include "bgt60.hpp"
 
 /**
  * @brief 
  * 
  */
-Bgt60ltr11aip::Bgt60ltr11aip(GPIO *pDet, GPIO *tDet, MeasMode_t mode) : pDet(pDet), tDet(tDet), mode(mode)
+BGT60::BGT60(GPIO *pDet, GPIO *tDet, MeasMode_t mode) : pDet(pDet), tDet(tDet), mode(mode)
 {
 
 }
@@ -24,7 +24,7 @@ Bgt60ltr11aip::Bgt60ltr11aip(GPIO *pDet, GPIO *tDet, MeasMode_t mode) : pDet(pDe
  * @brief 
  * 
  */
-Bgt60ltr11aip::~Bgt60ltr11aip()
+BGT60::~BGT60()
 {
     // TODO: How to properly destroy the instances
 }
@@ -33,7 +33,7 @@ Bgt60ltr11aip::~Bgt60ltr11aip()
  * @brief 
  * 
  */
-Error_t Bgt60ltr11aip::init()
+Error_t BGT60::init()
 {
     Error_t err = OK;
 
@@ -55,7 +55,7 @@ Error_t Bgt60ltr11aip::init()
  * @brief 
  * 
  */
-Error_t Bgt60ltr11aip::deinit()
+Error_t BGT60::deinit()
 {
     Error_t err = OK;
 
@@ -79,7 +79,7 @@ Error_t Bgt60ltr11aip::deinit()
  * @return true 
  * @return false 
  */
-Error_t Bgt60ltr11aip::getPresence(Presence_t &presence)
+Error_t BGT60::getMotion(Motion_t &motion)
 {
     Error_t err = OK;
 
@@ -97,14 +97,14 @@ Error_t Bgt60ltr11aip::getPresence(Presence_t &presence)
             
             if(GPIO::VLevel_t::GPIO_LOW == level)
             {
-                presence = PRESENCE;
+                motion = MOTION;
             }
             else if(GPIO::VLevel_t::GPIO_HIGH == level)
             {
-                presence = NO_PRESENCE;
+                motion = NO_MOTION;
             }
         }
-    }
+    } while (0);
     return err;
 }
 
@@ -114,7 +114,7 @@ Error_t Bgt60ltr11aip::getPresence(Presence_t &presence)
  * @return true 
  * @return false 
  */
-Error_t Bgt60ltr11aip::getDirection(Direction_t &direction)
+Error_t BGT60::getDirection(Direction_t &direction)
 {
     Error_t err = OK;
 
@@ -139,7 +139,7 @@ Error_t Bgt60ltr11aip::getDirection(Direction_t &direction)
                 direction = APPROACHING;
             }
         }
-    }
+    } while (0);
     return err;
 }
 
@@ -147,7 +147,7 @@ Error_t Bgt60ltr11aip::getDirection(Direction_t &direction)
  * @brief 
  * 
  */
-void Bgt60ltr11aip::callbackPresence()
+void BGT60::callbackPresence()
 {
     GPIO::Intevent_t event = tDet->intEvent();
 
@@ -165,7 +165,7 @@ void Bgt60ltr11aip::callbackPresence()
  * @brief 
  * 
  */
-void Bgt60ltr11aip::callbackDirection()
+void BGT60::callbackDirection()
 {
     GPIO::Intevent_t event = pDet->intEvent();
 
@@ -179,72 +179,72 @@ void Bgt60ltr11aip::callbackDirection()
     }
 }
 
-Bgt60ltr11aip * Bgt60ltr11aip::objPtrVector[maxGPIOObjs] = {nullptr};
-uint8_t         Bgt60ltr11aip::idNext  = 0;
+BGT60 * BGT60::objPtrVector[maxGPIOObjs] = {nullptr};
+uint8_t BGT60::idNext  = 0;
 
-void Bgt60ltr11aip::int0Handler()
+void BGT60::int0Handler()
 {
     objPtrVector[0]->callback();
 }
 
-void Bgt60ltr11aip::int1Handler()
+void BGT60::int1Handler()
 {
     objPtrVector[1]->callback();
 }
 
-void Bgt60ltr11aip::int2Handler()
+void BGT60::int2Handler()
 {
     objPtrVector[2]->callback();
 }
 
-void Bgt60ltr11aip::int3Handler()
+void BGT60::int3Handler()
 {
     objPtrVector[3]->callback();
 }
 
-void Bgt60ltr11aip::int4Handler()
+void BGT60::int4Handler()
 {
     objPtrVector[4]->callback();
 }
 
-void Bgt60ltr11aip::int5Handler()
+void BGT60::int5Handler()
 {
     objPtrVector[5]->callback();
 }
 
-void Bgt60ltr11aip::int6Handler()
+void BGT60::int6Handler()
 {
     objPtrVector[6]->callback();
 }
 
-void Bgt60ltr11aip::int7Handler()
+void BGT60::int7Handler()
 {
     objPtrVector[7]->callback();
 }
 
-void Bgt60ltr11aip::int8Handler()
+void BGT60::int8Handler()
 {
     objPtrVector[8]->callback();
 }
 
-void Bgt60ltr11aip::int9Handler()
+void BGT60::int9Handler()
 {
     objPtrVector[9]->callback();
 }
 
-void * Bgt60ltr11aip::fnPtrVector[maxGPIOObjs] = {(void *)int0Handler,
-                                                  (void *)int1Handler,
-                                                  (void *)int2Handler,
-                                                  (void *)int3Handler,
-                                                  (void *)int4Handler,
-                                                  (void *)int5Handler,
-                                                  (void *)int6Handler,
-                                                  (void *)int7Handler,
-                                                  (void *)int8Handler,
-                                                  (void *)int9Handler};
+void * BGT60::fnPtrVector[maxGPIOObjs] =   {(void *)int0Handler,
+                                            (void *)int1Handler,
+                                            (void *)int2Handler,
+                                            (void *)int3Handler,
+                                            (void *)int4Handler,
+                                            (void *)int5Handler,
+                                            (void *)int6Handler,
+                                            (void *)int7Handler,
+                                            (void *)int8Handler,
+                                            (void *)int9Handler};
 
 
-void * Bgt60ltr11aip::isrRegister(Bgt60ltr11aip *objPtr)
+void * BGT60::isrRegister(BGT60 *objPtr)
 {
     void *fPtr = nullptr;
 

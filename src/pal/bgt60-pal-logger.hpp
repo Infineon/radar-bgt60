@@ -1,5 +1,5 @@
 /**
- * @file bgt60ltr11aip-logger.hpp
+ * @file bgt60-logger.hpp
  * @author your name (you@domain.com)
  * @brief 
  * @version 0.1
@@ -9,15 +9,15 @@
  * 
  */
 
-#ifndef BGT60LTR11AIP_PAL_LOGGER_HPP_
-#define BGT60LTR11AIP_PAL_LOGGER_HPP_
+#ifndef BGT60_PAL_LOGGER_HPP_
+#define BGT60_PAL_LOGGER_HPP_
 
-#include "bgt60ltr11aip-conf.hpp"
+#include "bgt60-conf.hpp"
 
-#if (BGT60LTR11AIP_LOGGER_ENABLED == 1)
+#if (BGT60_LOGGER_ENABLED == 1)
 
 #include <stdint.h>
-#include "bgt60ltr11aip-types.hpp"
+#include "bgt60-types.hpp"
 
 namespace bgt60
 {
@@ -55,5 +55,5 @@ class LoggerPAL
 
 }
 
-#endif /** BGT60LTR11AIP_LOGGER_ENABLED */
-#endif /** BGT60LTR11AIP_PAL_LOGGER_HPP_ */
+#endif /** BGT60_LOGGER_ENABLED */
+#endif /** BGT60_PAL_LOGGER_HPP_ */

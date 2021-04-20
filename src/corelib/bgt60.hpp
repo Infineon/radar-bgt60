@@ -1,5 +1,5 @@
 /**
- * @file        bgt60ltr11aip.hpp
+ * @file        bgt60.hpp
  * @author      Infineon Technologies AG
  * @brief       BGT60LTRAIP
  * @version     0.0.1
@@ -9,15 +9,15 @@
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef BGT60LRT11AIP_HPP_
-#define BGT60LRT11AIP_HPP_
+#ifndef BGT60_HPP_
+#define BGT60_HPP_
 
-#include "bgt60ltr11aip-conf.hpp"
-#include "bgt60ltr11aip-pal-gpio.hpp"
-#include "bgt60ltr11aip-pal-timer.hpp"
+#include "bgt60-conf.hpp"
+#include "bgt60-pal-gpio.hpp"
+#include "bgt60-pal-timer.hpp"
 
 
-class Bgt60ltr11aip
+class BGT60
 {
     public:
 
@@ -31,11 +31,11 @@ class Bgt60ltr11aip
             MODE_INTERRUPT      /**< Interrupt Mode */
         };
 
-        enum Presence_t
+        enum Motion_t
         {
             NOT_AVAILABLE = 0,  /**< No information available */
-            NO_PRESENCE = 1,    /**< No presence */
-            PRESENCE = 2        /**< Presence */
+            NO_MOTION = 1,    /**< No presence */
+            MOTION = 2        /**< Presence */
         };
 
         enum Direction_t
@@ -45,12 +45,12 @@ class Bgt60ltr11aip
             DEPARTING = 2
         };
 
-        Bgt60ltr11aip(GPIO *pDet, GPIO *tDet, MeasMode_t mode);
-        ~Bgt60ltr11aip();
-        Error_t init();
-        Errort_t deinit();
-        Error_t getPresence(Presence_t &presence);
-        Errort_t getDirection(Direction_t &direction);
+                    BGT60(GPIO *pDet, GPIO *tDet, MeasMode_t mode);
+                    ~BGT60();
+        Error_t     init();
+        Error_t     deinit();
+        Error_t     getMotion(Motion_t &motion);
+        Error_t     getDirection(Direction_t &direction);
 
     private:
 
@@ -67,10 +67,10 @@ class Bgt60ltr11aip
 
         typedef void (* cback_t)(void *);
 
-        static constexpr uint8_t         maxGPIOObjs = 10;              /**< Maximum number of isntances which can register hardware interrupt */
-        static           uint8_t         idNext;                        /**< Interrupt array allocation index */
-        static           Bgt60ltr11aip * objPtrVector[maxGPIOObjs];     /**< Bgt60ltr11aip object pointer vector */
-        static void                    * fnPtrVector[maxGPIOObjs];      /**< Bgt60ltr11aip interrupt function handlers vector */
+        static constexpr uint8_t    maxGPIOObjs = 10;                /**< Maximum number of isntances which can register hardware interrupt */
+        static           uint8_t    idNext;                          /**< Interrupt array allocation index */
+        static           BGT60    * objPtrVector[maxGPIOObjs];       /**< BGT60 object pointer vector */
+        static void               * fnPtrVector[maxGPIOObjs];        /**< BGT60 interrupt function handlers vector */
 
     protected:
 
@@ -87,8 +87,7 @@ class Bgt60ltr11aip
         static void     int8Handler();
         static void     int9Handler();
 
-        static void   * isrRegister(Bgt60ltr11aip *objPtr);
-
+        static void   * isrRegister(BGT60 *objPtr);
 };
 
-#endif /** BGT60LRT11AIP_HPP_ **/
+#endif /** BGT60_HPP_ **/
