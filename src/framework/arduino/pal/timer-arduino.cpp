@@ -96,7 +96,6 @@ inline Error_t TimerIno::elapsedMicro(uint32_t & elapsed)
  */
 inline Error_t TimerIno::stop()
 {
-    //Nothing
     curTime = 0;
     return OK;
 }
