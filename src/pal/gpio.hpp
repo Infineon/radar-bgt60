@@ -7,8 +7,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef GPIO_HPP_
-#define GPIO_HPP_
+#ifndef RADAR_BGT60_GPIO_HPP
+#define RADAR_BGT60_GPIO_HPP
 
 #include "../corelib/bgt60-types.hpp"
 /**
@@ -58,17 +58,15 @@ class GPIO
 
 		/**
 		 * @brief       Initializes the GPIO
-		 * @return      GPIO error code
+		 * @return      BGT60 error code
 		 * @retval      OK if success
-		 * @retval      INIT_ERROR if initialization error
 		 */
 		virtual Error_t        init        () = 0;
 
 		/**
-			 * @brief       Deinitializes the GPIO
-			 * @return      GPIO error code
-			 * @retval      OK if success
-			 * @retval      INIT_ERROR if deinitialization error
+		* @brief       Deinitializes the GPIO
+		* @return      BGT60 error code
+		* @retval      OK if success
 		 */
 		virtual Error_t       deinit      () = 0;
 
@@ -83,7 +81,7 @@ class GPIO
 		/**
 		 * @brief       Writes the GPIO output voltage level
 		 * @param[in]   level  Voltage level
-		 * @return      GPIO error code
+		 * @return      BGT60 error code
 		 * @retval      OK if success
 		 * @retval      WRITE_ERROR if write error
 		 */
@@ -103,7 +101,7 @@ class GPIO
 		 * @brief       Disables the GPIO output according to the GPIO logic
 		 *              - Low if positive
 		 *              - High if negative
-		 * @return      GPIO error code
+		 * @return      BGT60 error code
 		 * @retval      OK if success
 		 * @retval      WRITE_ERROR if write error
 		 */
@@ -112,7 +110,7 @@ class GPIO
 		/**
          * @brief       Enables the GPIO hardware interrupt
          * @param[in]   *cback Function pointer of the interrupt callback
-         * @return      PAS CO2 error code
+         * @return      BGT60 error code
          * @retval      OK if success
          * @retval      INTF_ERROR if error
          */
@@ -120,7 +118,7 @@ class GPIO
 
 		 /**
          * @brief       Disables the GPIO hardware interrupt
-         * @return      PAS CO2 error code
+         * @return      BGT60 error code
          * @retval      OK if success
          * @retval      INTF_ERROR if disable error
          */
@@ -136,4 +134,4 @@ class GPIO
 };
 }
 /** @} */
-#endif /** GPIO_HPP_ **/
+#endif /** RADAR_BGT60_GPIO_HPP **/
