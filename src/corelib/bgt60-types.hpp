@@ -3,7 +3,7 @@
  * @file        bgt-types.hpp
  * @brief       Radar BGT60 Types
  * @date        April 2021
- * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT
  */

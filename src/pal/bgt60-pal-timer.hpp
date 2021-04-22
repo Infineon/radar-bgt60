@@ -1,5 +1,5 @@
 /** 
- * @file        timer.hpp
+ * @file        bgt60-pal-timer.hpp
  * @brief       RADAR BGT60 Timer Platform Abstraction Layer
  * @date        April 2021
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
@@ -7,11 +7,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef RADAR_BGT60_PAL_TIMER_HPP
-#define RADAR_BGT60_PAL_TIMER_HPP
+#ifndef BGT60_PAL_TIMER_HPP_
+#define BGT60_PAL_TIMER_HPP_
 
 #include <stdint.h>
-#include "../corelib/bgt60-types.hpp"
+#include "bgt60-types.hpp"
 
 namespace bgt60
 {
@@ -77,9 +77,6 @@ class Timer
          */
         virtual  Error_t         delay   (const uint32_t timeout) = 0;
 };
-
 /** @} */
-
 }
-
-#endif /** RADAR_BGT60_PAL_TIMER_HPP **/
+#endif /** BGT60_PAL_TIMER_HPP_ **/

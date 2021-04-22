@@ -1,5 +1,5 @@
 /** 
- * @file        timer-arduino.cpp
+ * @file        bgt60-pal-timer-ino.cpp
  * @brief       RADAR BGT60 Timer Arduino PAL 
  * @date        April 2021
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
@@ -7,12 +7,12 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "timer-arduino.hpp"
+#include "bgt60-pal-timer-ino.hpp"
 
-#if (RADAR_BGT60_FRAMEWORK == RADAR_BGT60_FRMWK_ARDUINO)
+#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 
 #include <Arduino.h>
-#include "../../../pal/timer.hpp"
+#include "bgt60-pal-timer.hpp"
 
 using namespace bgt60;
 
@@ -35,7 +35,7 @@ TimerIno::~TimerIno()
 /**
  * @brief   Initialiazes the Arduino timer
  * @return  BGT60 error code
- * @retval  OK  
+ * @retval  OK 
  */
 inline  Error_t TimerIno::init()
 {
@@ -96,6 +96,7 @@ inline Error_t TimerIno::elapsedMicro(uint32_t & elapsed)
  */
 inline Error_t TimerIno::stop()
 {
+    //Nothing
     curTime = 0;
     return OK;
 }
@@ -123,4 +124,4 @@ inline Error_t TimerIno::delay(const uint32_t timeout)
     return OK;
 }
 
-#endif /** RADAR_BGT60_FRAMEWORK **/
+#endif /** BGT60_FRAMEWORK **/

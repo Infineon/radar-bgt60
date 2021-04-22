@@ -1,5 +1,5 @@
 /*!
- * \name        bgt60-MotionDetection
+ * \name        bgt60-MotionDetection-Int
  * \author      Infineon Technologies AG
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the motion of an object using interrupt mode
@@ -35,11 +35,11 @@
  */
 
 // Include library main header
-#include "../../../corelib/bgt60ltr11aip.hpp"
+#include "bgt60.hpp"
 
 /* This library works with multiple frameworks and hence these guards are 
 *  necessary to avoid compiling this example for other frameworks. */
-#if (RADAR_BGT60_FRAMEWORK == RADAR_BGT60_FRMWK_ARDUINO)
+#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 
 #include <Arduino.h>
 //  Define GPIO pins that will be connected to shield
@@ -48,7 +48,7 @@
 
 /* Create radar object and specify GPIO pins as first two parameters followed
 *  by mode of acquiring sensor data as MODE_INTERRUPT */
-Bgt60ltr11aip radarBgt60(Pin_1, Pin_2, MODE_INTERRUPT);
+BGT60 bgt60(Pin_1, Pin_2, MODE_INTERRUPT);
 
 // Begin setup function - takes care of initialization and executes only once post reset
 void setup()
@@ -56,7 +56,7 @@ void setup()
     // Set baud rate for sending messages to serial monitor
     Serial.begin(115200);
     // Configures the GPIO pins to specified mode
-    Error_t init_status = radarBgt60.init();
+    Error_t init_status = bgt60.init();
     // Check if init was successful
     if (OK != init_status)
         Serial.println("Init failed");
@@ -74,7 +74,7 @@ void setup()
         2. Sets recent event in "detect_presence" variable. Events can be: PRESENCE, NO_PRESENCE or NOT_AVAILABLE 
         In case of interrupt method, the value set in detect_presence can be overlooked since these values will also be set
         in variables in ISR */
-    Error_t err = radarBgt60.getPresence(detect_presence);
+    Error_t err = bgt60.getPresence(detect_presence);
 }
 
 // Begin loop function - this part of code is executed continuously until external termination
@@ -100,3 +100,4 @@ void loop()
     else
         Serial.println("Error occured!");
 }
+#endif /** BGT60_FRAMEWORK **/

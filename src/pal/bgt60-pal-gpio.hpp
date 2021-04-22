@@ -1,16 +1,16 @@
 /**
- * @file        gpio.hpp
- * @brief       PAL of the GPIO
+ * @file        bgt60-pal-gpio.hpp
+ * @brief       RADAR BGT60 GPIO Platform Abstraction Layer
  * @date        April 2021
- * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef RADAR_BGT60_GPIO_HPP
-#define RADAR_BGT60_GPIO_HPP
+#ifndef BGT60_PAL_GPIO_HPP_
+#define BGT60_PAL_GPIO_HPP_
 
-#include "../corelib/bgt60-types.hpp"
+#include "bgt60-types.hpp"
 /**
  * @addtogroup pal
  * @{
@@ -134,4 +134,4 @@ class GPIO
 };
 }
 /** @} */
-#endif /** RADAR_BGT60_GPIO_HPP **/
+#endif /** BGT60_PAL_GPIO_HPP_ **/

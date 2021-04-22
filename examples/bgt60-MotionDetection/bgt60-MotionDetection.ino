@@ -33,11 +33,11 @@
  */
 
 // Include library main header
-#include "../../../corelib/bgt60ltr11aip.hpp"
+#include "bgt60.hpp"
 
 /* This library works with multiple frameworks and hence these guards are 
-*  necessary to avoid compiling this example for other frameworks. */
-#if (RADAR_BGT60_FRAMEWORK == RADAR_BGT60_FRMWK_ARDUINO)
+ *  necessary to avoid compiling this example for other frameworks. */
+#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 
 #include <Arduino.h>
 //  Define GPIO pins that will be connected to shield
@@ -45,16 +45,16 @@
 #define Pin_2  2
 
 /* Create radar object and specify GPIO pins as first two parameters followed
-*  by mode of acquiring sensor data as MODE_POLLING */
-Bgt60ltr11aip radarBgt60(Pin_1, Pin_2, MODE_POLLING);
+ *  by mode of acquiring sensor data as MODE_POLLING */
+BGT60 bgt60(Pin_1, Pin_2, MODE_POLLING);
 
-// Begin setup function - takes care of initialization and executes only once post reset
+// Begin setup function - takes care of initializations and executes only once post reset
 void setup()
 {
     // Set the baud rate for sending messages to serial monitor
     Serial.begin(115200);
     // Configures the GPIO pins to specified mode
-    Error_t init_status = radarBgt60.init();
+    Error_t init_status = bgt60.init();
     // Check if init was successful
     if (OK != init_status)
         Serial.println("Init failed");
@@ -72,7 +72,7 @@ void loop()
         1. Returns the success or failure to detect moving object as a message of type Error_t.
            Any value other than OK indicates failure
         2. Sets recent event in "detect_presence" variable. Events can be: PRESENCE, NO_PRESENCE or NOT_AVAILABLE */
-    Error_t err = radarBgt60.getPresence(detect_presence);
+    Error_t err = bgt60.getPresence(detect_presence);
     // Check if API execution is successful
     if(err == OK)
     {
@@ -100,3 +100,4 @@ void loop()
     else
         Serial.println("Error occured!");
 }
+#endif /** BGT60_FRAMEWORK **/
