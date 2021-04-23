@@ -1,5 +1,5 @@
 /**
- * @file        gpio.hpp
+ * @file      	btg60-pal-gpio.hpp
  * @brief       PAL of the GPIO
  * @date        April 2021
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
@@ -7,16 +7,17 @@
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef GPIO_HPP_
-#define GPIO_HPP_
+#ifndef BGT60_PAL_GPIO_HPP_
+#define BGT60_PAL_GPIO_HPP_
 
-#include "../corelib/bgt60-types.hpp"
+#include "bgt60-types.hpp"
 /**
  * @addtogroup pal
  * @{
  */
 namespace bgt60
 {
+
 class GPIO
 {
 	public:
@@ -27,10 +28,11 @@ class GPIO
 		 */
 		enum IntEvent_t
 		{
-			INT_FALLING_EDGE   = 0,     /**< Interrupt on falling edge */
-			INT_RISING_EDGE    = 1,     /**< Interrupt on rising edge */
+			INT_FALLING_EDGE   = 0,     	/**< Interrupt on falling edge */
+			INT_RISING_EDGE    = 1,     	/**< Interrupt on rising edge */
 			INT_HIGH = 2,					/**< Interrupt when pin is HIGH */
-			INT_LOW = 3						/**< Interrupt when pin is LOW */
+			INT_LOW = 3,					/**< Interrupt when pin is LOW */
+			INT_CHANGE = 4					/**< Interrupt when pin changes its level */
 		};
 		/** @} */
 
@@ -134,6 +136,7 @@ class GPIO
          */
         virtual IntEvent_t  intEvent    () = 0;
 };
+
 }
 /** @} */
-#endif /** GPIO_HPP_ **/
+#endif /** BGT60_PAL_GPIO_HPP_ **/

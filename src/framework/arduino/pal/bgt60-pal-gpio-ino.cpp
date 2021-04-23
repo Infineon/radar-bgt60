@@ -1,5 +1,5 @@
 /** 
- * @file        gpio-arduino.cpp
+ * @file        bgt60-pal-gpio-ino.cpp
  * @brief       Radar BGT60 Arduino PAL  
  * @date        April 2021
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
@@ -7,11 +7,12 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "gpio-arduino.hpp"
-#if (RADAR_BGT60_FRAMEWORK == RADAR_BGT60_FRMWK_ARDUINO)
-#include <Arduino.h>
+#include "bgt60-pal-gpio-ino.hpp"
 
-#include "../../../pal/gpio.hpp"
+#if (RADAR_BGT60_FRAMEWORK == RADAR_BGT60_FRMWK_ARDUINO)
+
+#include <Arduino.h>
+#include "bgt60-pal-gpio.hpp"
 /**
  * @brief Constructor of the Arduino GPIO class
  * This function is setting the basics for a GPIO.
@@ -126,25 +127,28 @@ Error_t GPIOIno::enableInt(void (*cback) (void *), IntEvent_t mode)
 	switch(mode)
 	{
 		case INT_FALLING_EDGE:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_FALLING_EDGE);
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, FALLING);
 			break;
 
 		case INT_RISING_EDGE:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_RISING_EDGE);
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, RISING);
 			break;
 
 		case INT_HIGH:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_HIGH);
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, HIGH); //TODO: Only for the Due, Zero and MRK1000
 			break;
 
 		case INT_LOW:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_LOW);
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, LOW);
+			break;
+
+		case INT_CHANGE:
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, CHANGE);
 			break;
 
 		default:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_LOW);
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, LOW);
 	}
-    
     return OK;
 }
 

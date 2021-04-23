@@ -11,7 +11,7 @@
 
 #include "bgt60-logger.hpp"
 
-if(BGT60_LOGGER_ENABLED == 1)
+#if(BGT60_LOGGER_ENABLED == 1)
 
 #include <stdio.h>
 #include <stdarg.h>

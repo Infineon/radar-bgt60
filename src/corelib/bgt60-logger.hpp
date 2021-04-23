@@ -19,20 +19,23 @@
 #include <stdint.h>
 #include "bgt60-pal-logger.hpp"
 
+namespace bgt60
+{
+
 class Logger
 {
     public:
             Logger();
-            Logger(LoggerPAL *logPal);
+            Logger(LoggerPAL *logpal);
             ~Logger();
             void init();
             void deinit();
-            void print();
-            void printfModule();
-            void printModuleHex();
+            void print(const char * format, ...);
+            void printfModule(const char * format, const char *module, const char * color, ...);
+            void printModuleHex(const uint8_t * array, uint32_t length, const char * module, const char * color);
 
     private:
-        LoggerPAL *logPal;
+        LoggerPAL *logpal;
 
 };
 
@@ -45,20 +48,20 @@ extern Logger bgt60_log;
 /**
  * Logger colors options
  */
-#define BGT60_COLOR_RED                  "\x1b[31m"
-#define BGT60_COLOR_GREEN                "\x1b[32m"
-#define BGT60_COLOR_YELLOW               "\x1b[33m"
-#define BGT60_COLOR_BLUE                 "\x1b[34m"
-#define BGT60_COLOR_MAGENTA              "\x1b[35m"
-#define BGT60_COLOR_CYAN                 "\x1b[36m"
-#define BGT60_COLOR_LIGHT_GREY           "\x1b[90m"
-#define BGT60_COLOR_LIGHT_RED            "\x1b[91m"
-#define BGT60_COLOR_LIGHT_GREEN          "\x1b[92m"
-#define BGT60_COLOR_LIGHT_YELLOW         "\x1b[93m"
-#define BGT60_COLOR_LIGHT_BLUE           "\x1b[94m"
-#define BGT60_COLOR_LIGHT_MAGENTA        "\x1b[95m"
-#define BGT60_COLOR_LIGHT_CYAN           "\x1b[96m"
-#define BGT60_COLOR_DEFAULT              "\x1b[0m"
+#define BGT60_LOGGER_COLOR_RED                  "\x1b[31m"
+#define BGT60_LOGGER_COLOR_GREEN                "\x1b[32m"
+#define BGT60_LOGGER_COLOR_YELLOW               "\x1b[33m"
+#define BGT60_LOGGER_COLOR_BLUE                 "\x1b[34m"
+#define BGT60_LOGGER_COLOR_MAGENTA              "\x1b[35m"
+#define BGT60_LOGGER_COLOR_CYAN                 "\x1b[36m"
+#define BGT60_LOGGER_COLOR_LIGHT_GREY           "\x1b[90m"
+#define BGT60_LOGGER_COLOR_LIGHT_RED            "\x1b[91m"
+#define BGT60_LOGGER_COLOR_LIGHT_GREEN          "\x1b[92m"
+#define BGT60_LOGGER_COLOR_LIGHT_YELLOW         "\x1b[93m"
+#define BGT60_LOGGER_COLOR_LIGHT_BLUE           "\x1b[94m"
+#define BGT60_LOGGER_COLOR_LIGHT_MAGENTA        "\x1b[95m"
+#define BGT60_LOGGER_COLOR_LIGHT_CYAN           "\x1b[96m"
+#define BGT60_LOGGER_COLOR_DEFAULT              "\x1b[0m"
 
 /**
  * @brief BGT60 logger module
@@ -67,8 +70,8 @@ extern Logger bgt60_log;
 /**
  * Logger color for different error types
  */
-#define BGT60_LOGGER_ERROR_COLOR        BGT60_COLOR_RED
-#define BGT60_LOGGER_WARNING_COLOR      BGT60_COLOR_YELLOW
+#define BGT60_LOGGER_ERROR_COLOR        BGT60_LOGGER_COLOR_RED
+#define BGT60_LOGGER_WARNING_COLOR      BGT60_LOGGER_COLOR_YELLOW
 
 #define BGT60_LOG_INIT()\
 {\
@@ -86,7 +89,7 @@ extern Logger bgt60_log;
 #if (BGT60_CORE_LOGGER_ENABLED == 1)
 
 #define BGT60_LOGGER_SERVICE        "[bgt60]        : "
-#define BGT60_LOGGER_COLOR          BGT60_COLOR_GREEN
+#define BGT60_LOGGER_COLOR          BGT60_LOGGER_COLOR_GREEN
 
 #define BGT60_LOG_MSG(str)\
 {\
@@ -120,11 +123,11 @@ bgt60_log.printfModule(str, BGT60_LOGGER_SERVICE, BGT60_LOGGER_COLOR);\
 /**
  * Logger color for different error types
  */
-#define BGT60_APP_LOGGER_ERROR_COLOR            BGT60_COLOR_RED
-#define BGT60_APP_LOGGER_WARNING_COLOR          BGT60_COLOR_LIGHT_YELLOW
+#define BGT60_APP_LOGGER_ERROR_COLOR            BGT60_LOGGER_COLOR_RED
+#define BGT60_APP_LOGGER_WARNING_COLOR          BGT60_LOGGER_COLOR_LIGHT_YELLOW
 
 #define BGT60_APP_LOGGER_SERVICE                "[bgt60 app]    : "
-#define BGT60_APP_LOGGER_COLOR                  BGT60_COLOR_MAGENTA
+#define BGT60_APP_LOGGER_COLOR                  BGT60_LOGGER_COLOR_MAGENTA
 
 #define BGT60_APP_LOG_MSG(str)\
 {\
@@ -155,6 +158,8 @@ bgt60_log.printfModule(str, BGT60_LOGGER_SERVICE, BGT60_LOGGER_COLOR);\
 #define BGT60_APP_LOG_RETURN(ret)       {   }
 
 #endif /* BGT60_APP_LOGGER_ENABLED */
+
+}
 
 #else
 
