@@ -7,11 +7,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "gpio-arduino.hpp"
-#if (RADAR_BGT60_FRAMEWORK == RADAR_BGT60_FRMWK_ARDUINO)
+#include "bgt60-pal-gpio-ino.hpp"
+#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 #include <Arduino.h>
 
-#include "../../../pal/gpio.hpp"
+#include "bgt60-pal-gpio.hpp"
 /**
  * @brief Constructor of the Arduino GPIO class
  * This function is setting the basics for a GPIO.
@@ -36,7 +36,8 @@ GPIOIno::GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic): pin(pin), mode(mode
 /**
  * @brief Initialize the GPIO
  * This function is initializing the chosen pin.
- * @return      GPIOIno::Error_t
+ * @return      BGT60 error code
+ * @retval		OK
  */
 Error_t GPIOIno::init()
 {
@@ -47,7 +48,8 @@ Error_t GPIOIno::init()
 /**
  * @brief Deinitialize the GPIO
  * This function is deinitializing the chosen pin.
- * @return      GPIOIno::Error_t
+ * @return      BGT60 error code
+ * @retval      OK
  */
 Error_t GPIOIno::deinit()
 {
@@ -71,7 +73,8 @@ GPIOIno::VLevel_t GPIOIno::read()
  * @brief Set GPIO logic level
  * This functions sets the logic level of the chosen pin.
  * @param[in]   level   Desired logic level of the pin
- * @return      GPIOIno::Error_t
+ * @return      BGT60 error code
+ * @retval      OK
  */
 Error_t GPIOIno::write(VLevel_t level)
 {
@@ -83,7 +86,8 @@ Error_t GPIOIno::write(VLevel_t level)
  * @brief Enable the GPIO
  * This functions enable the chosen pin. Depending on the chosen logic of the pin
  * it sets the right logic level of the pin.
- * @return      GPIOIno::Error_t
+ * @return      BGT60 error code
+ * @retval      OK
  */
 Error_t GPIOIno::enable()
 {
@@ -100,7 +104,8 @@ Error_t GPIOIno::enable()
  * @brief Disable the GPIO
  * This functions disables the chosen pin. Depending on the chosen logic of the pin
  * it sets the right logic level of the pin.
- * @return      GPIOIno::Error_t
+ * @return      BGT60 error code
+ * @retval      OK
  */
 Error_t GPIOIno::disable()
 {
@@ -118,7 +123,7 @@ Error_t GPIOIno::disable()
  * This function enables the interrupt on chosen pin. Depending on the mode,
  * it triggers the interrupt.
  * @param[in]   *cback Function pointer of the interrupt callback
- * @return      GPIOIno::Error_t
+ * @return      BGT60 error code
  * @retval      OK
  */
 Error_t GPIOIno::enableInt(void (*cback) (void *), IntEvent_t mode)
@@ -151,7 +156,7 @@ Error_t GPIOIno::enableInt(void (*cback) (void *), IntEvent_t mode)
 /**
  * @brief       Disables the Arduino GPIO interrupt
  * This function disables the interrupt on chosen pin.
- * @return      GPIOIno::Error_t
+ * @return      BGT60 error code
  * @retval      OK
  */
 Error_t GPIOIno::disableInt()
@@ -182,4 +187,4 @@ inline GPIOIno::IntEvent_t GPIOIno::intEvent()
     return edge;
 }
 
-#endif /** RADAR_BGT60_FRAMEWORK **/
+#endif /** BGT60_FRAMEWORK **/
