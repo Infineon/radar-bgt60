@@ -1,9 +1,9 @@
-/** 
+/**
  * @file        bgt60-pal-timer.hpp
+ * @author      Infineon Technologies AG
  * @brief       RADAR BGT60 Timer Platform Abstraction Layer
- * @date        April 2021
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -23,7 +23,7 @@ namespace bgt60
 
 class Timer
 {
-    public: 
+    public:
 
         /**
          * @brief       Initialiazes the timer
@@ -48,7 +48,7 @@ class Timer
 
         /**
          * @brief       Elapsed time since the timer was started in milliseconds
-         * @param[out]  elapsed Time in milliseconds 
+         * @param[out]  elapsed Time in milliseconds
          * @return      BGT60 error code
          * @retval      OK if success
          */
@@ -61,17 +61,17 @@ class Timer
          * @retval      OK if success
          */
         virtual  Error_t         elapsedMicro   (uint32_t & elapsed) = 0;
-        
+
         /**
          * @brief       Stops the timer
          * @return      BGT60 error code
          * @retval      OK if success
          */
          virtual  Error_t         stop          () = 0;
-        
+
         /**
-         * @brief       Introduces a delay during the specified time    
-         * @param[in]   timeout    Delay time in milliseconds   
+         * @brief       Introduces a delay during the specified time
+         * @param[in]   timeout    Delay time in milliseconds
          * @return      BGT60 error code
          * @retval      OK if success
          */

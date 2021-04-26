@@ -1,9 +1,9 @@
-/** 
+/**
  * @file        bgt60-conf.hpp
- * @brief       Radar BGT-60GHz Library Configuration
- * @date        April 2021
+ * @author      Infineon Technologies AG
+ * @brief       Radar BGT60 Library Configuration
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *              
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -12,7 +12,7 @@
 
 #include "bgt60-conf-opts.hpp"
 
-#ifndef BGT60_FRAMEWORK 
+#ifndef BGT60_FRAMEWORK
 #define BGT60_FRAMEWORK         BGT60_FRMWK_ARDUINO
 #endif
 

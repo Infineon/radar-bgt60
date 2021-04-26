@@ -1,20 +1,15 @@
-/** 
+/**
  * @file        bgt60-pal-timer-ino.cpp
- * @brief       RADAR BGT60 Timer Arduino PAL 
- * @date        April 2021
+ * @author      Infineon Technologies AG
+ * @brief       Radar BGT60 Timer Arduino PAL Implementation
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
 #include "bgt60-pal-timer-ino.hpp"
 
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
-
-#include <Arduino.h>
-#include "bgt60-pal-timer.hpp"
-
-using namespace bgt60;
 
 /**
  * @brief Timer Ino constructor
@@ -35,7 +30,7 @@ TimerIno::~TimerIno()
 /**
  * @brief   Initialiazes the Arduino timer
  * @return  BGT60 error code
- * @retval  OK 
+ * @retval  OK
  */
 inline  Error_t TimerIno::init()
 {
@@ -46,7 +41,7 @@ inline  Error_t TimerIno::init()
 /**
  * @brief   Deinitialiazes the Arduino timer
  * @return  BGT60 error code
- * @retval  OK 
+ * @retval  OK
  */
 inline  Error_t TimerIno::deinit()
 {
@@ -57,7 +52,7 @@ inline  Error_t TimerIno::deinit()
 /**
  * @brief   Starts the Arduino timer
  * @return  BGT60 error code
- * @retval  OK 
+ * @retval  OK
  */
 inline Error_t TimerIno::start()
 {
@@ -66,8 +61,8 @@ inline Error_t TimerIno::start()
 }
 
 /**
- * @brief       Elapsed time since the timer was started 
- * @param[out]  elapsed Time in milliseconds 
+ * @brief       Elapsed time since the timer was started
+ * @param[out]  elapsed Time in milliseconds
  * @return      BGT60 error code
  * @retval      OK
  */
@@ -81,7 +76,7 @@ inline Error_t TimerIno::elapsed(uint32_t & elapsed)
  * @brief       Elapsed time since the timer was started in microseconds
  * @param[out]  elapsed Time in microseconds
  * @return      BGT60 error code
- * @retval      OK    
+ * @retval      OK
  */
 inline Error_t TimerIno::elapsedMicro(uint32_t & elapsed)
 {
@@ -92,7 +87,7 @@ inline Error_t TimerIno::elapsedMicro(uint32_t & elapsed)
 /**
  * @brief   Stops the Arduino timer
  * @return  BGT60 error code
- * @retval  OK  
+ * @retval  OK
  */
 inline Error_t TimerIno::stop()
 {
@@ -102,13 +97,13 @@ inline Error_t TimerIno::stop()
 }
 
 /**
- * @brief       Introduces a delay during the specified time  
- * @note        No delay() implementation since it cause troubles out of sketches 
+ * @brief       Introduces a delay during the specified time
+ * @note        No delay() implementation since it cause troubles out of sketches
                 https://www.arduino.cc/reference/en/language/functions/time/delay/
-                 
- * @param[in]   timeout    Delay time in milliseconds   
+
+ * @param[in]   timeout    Delay time in milliseconds
  * @return      BGT60 error code
- * @retval      OK  
+ * @retval      OK
  */
 inline Error_t TimerIno::delay(const uint32_t timeout)
 {

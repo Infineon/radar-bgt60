@@ -1,9 +1,9 @@
-/** 
+/**
  * @file        bgt60-pal-gpio-ino.cpp
- * @brief       Radar BGT60 Arduino PAL  
- * @date        April 2021
+ * @author 		Infineon Technologies AG
+ * @brief       Radar BGT60 GPIO Arduino PAL Implementation
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -11,8 +11,6 @@
 
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 
-#include <Arduino.h>
-#include "bgt60-pal-gpio.hpp"
 /**
  * @brief Constructor of the Arduino GPIO class
  * This function is setting the basics for a GPIO.
@@ -170,7 +168,7 @@ Error_t GPIOIno::disableInt()
 }
 
 /**
- * @brief   Gets the latest Arduino interrupt event 
+ * @brief   Gets the latest Arduino interrupt event
  * @return  GPIO interrupt event
  * @retval  INT_FALLING_EDGE if falling edge event
  * @retval  INT_RISING_EDGE if rising edge event
@@ -178,13 +176,13 @@ Error_t GPIOIno::disableInt()
 inline GPIOIno::IntEvent_t GPIOIno::intEvent()
 {
     IntEvent_t edge = INT_FALLING_EDGE;
-    
+
     int val = digitalRead(this->pin);
     if(val == LOW)
     {
         edge = INT_FALLING_EDGE;
     }
-    else if(val == HIGH) 
+    else if(val == HIGH)
     {
         edge = INT_RISING_EDGE;
     }

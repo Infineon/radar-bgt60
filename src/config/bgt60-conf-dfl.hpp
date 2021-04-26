@@ -1,12 +1,9 @@
 /**
- * @file bgt60-conf-dfl.hpp
- * @author your name (you@domain.com)
- * @brief 
- * @version 0.1
- * @date 2021-04-21
- * 
- * @copyright Copyright (c) 2021
- * 
+ * @file        bgt60-conf-dfl.hpp
+ * @author      Infineon Technologies AG
+ * @brief       Radar BGT60 default configuration
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
  */
 
 #ifndef BGT60_CONF_DFL_HPP_

@@ -1,21 +1,15 @@
 /**
- * @file bgt60-logger.cpp
- * @author your name (you@domain.com)
- * @brief 
- * @version 0.1
- * @date 2021-04-19
- * 
- * @copyright Copyright (c) 2021
- * 
+ * @file        bgt60-logger.cpp
+ * @author      Infineon Technologies AG
+ * @brief       Radar BGT60 Logger
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #include "bgt60-logger.hpp"
 
 #if(BGT60_LOGGER_ENABLED == 1)
-
-#include <stdio.h>
-#include <stdarg.h>
-#include <string.h>
 
 using namespace bgt60;
 
@@ -86,11 +80,11 @@ void Logger::printfModule(const char * format,
 
     vsprintf(temp_buffer, format, args);
 
-    sprintf(color_buffer, 
-            "%s%s%s%s", 
-            color, 
-            module, 
-            temp_buffer, 
+    sprintf(color_buffer,
+            "%s%s%s%s",
+            color,
+            module,
+            temp_buffer,
             BGT60_LOGGER_COLOR_DEFAULT);
     logpal->write((const uint8_t *)color_buffer, strlen(color_buffer));
     logpal->write(new_line_characters, 2);
@@ -108,13 +102,13 @@ void Logger::printModuleHex(const uint8_t  * vector,
 
     if(NULL == vector || length < 1)
     {
-        return; 
+        return;
     }
 
     for(i = 0; i < length; i++)
     {
         sprintf(&temp_buffer[3*i],"%02x ", vector[i]);
-    }   
+    }
 
     temp_buffer[3*i] = '\0';
 

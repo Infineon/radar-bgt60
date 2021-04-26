@@ -1,11 +1,9 @@
 /**
  * @file        bgt60.hpp
  * @author      Infineon Technologies AG
- * @brief       BGT60LTRAIP
- * @version     0.0.1
- * @date        April 2021
+ * @brief       Radar BGT60 API
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -14,10 +12,11 @@
 
 #include "bgt60-conf.hpp"
 #include "bgt60-pal-gpio.hpp"
+#include <stdint.h>
 
 using namespace bgt60;
 
-class BGT60
+class Bgt60
 {
     public:
 
@@ -60,8 +59,8 @@ class BGT60
             MOTION_DEPARTING    = 2     /**< Motion detected, target departing */
         };
 
-                    BGT60(GPIO *tDet, GPIO *pDet, MeasMode_t mode);
-                    ~BGT60();
+                    Bgt60(GPIO *tDet, GPIO *pDet, MeasMode_t mode);
+                    ~Bgt60();
         Error_t     init();
         Error_t     deinit();
         Error_t     getMotion(Motion_t &motion);
@@ -76,7 +75,7 @@ class BGT60
         MeasMode_t   mode;
 
         volatile bool motionDetected;
-        
+
         volatile bool tDetRisingEdgeEvent;      /**< Target detect pin rising edge event flag */
         volatile bool tDetFallingEdgeEvent;     /**< Target detect pin falling edge event flag */
 
@@ -87,13 +86,13 @@ class BGT60
 
         static constexpr uint8_t    maxGPIOObjsTarget = 5;                              /**< Maximum number of isntances which can register hardware interrupt */
         static           uint8_t    idNextTarget;                                       /**< Interrupt array allocation index */
-        static           BGT60    * objPtrVectorTarget[maxGPIOObjsTarget];              /**< BGT60 object pointer vector */
-        static void               * fnPtrVectorTarget[maxGPIOObjsTarget];               /**< BGT60 interrupt function handlers vector */
+        static           Bgt60    * objPtrVectorTarget[maxGPIOObjsTarget];              /**< Bgt60 object pointer vector */
+        static void               * fnPtrVectorTarget[maxGPIOObjsTarget];               /**< Bgt60 interrupt function handlers vector */
 
         static constexpr uint8_t    maxGPIOObjsDirection = 5;                           /**< Maximum number of isntances which can register hardware interrupt */
         static           uint8_t    idNextDirection;                                    /**< Interrupt array allocation index */
-        static           BGT60    * objPtrVectorDirection[maxGPIOObjsDirection];        /**< BGT60 object pointer vector */
-        static void               * fnPtrVectorDirection[maxGPIOObjsDirection];         /**< BGT60 interrupt function handlers vector */
+        static           Bgt60    * objPtrVectorDirection[maxGPIOObjsDirection];        /**< Bgt60 object pointer vector */
+        static void               * fnPtrVectorDirection[maxGPIOObjsDirection];         /**< Bgt60 interrupt function handlers vector */
 
     protected:
 
@@ -110,8 +109,8 @@ class BGT60
         static void     int8Handler();
         static void     int9Handler();
 
-        static void   * isrRegister(BGT60 *objPtr);
-        static void   * isr2Register(BGT60 *objPtr);
+        static void   * isrRegister(Bgt60 *objPtr);
+        static void   * isr2Register(Bgt60 *objPtr);
 };
 
 #endif /** BGT60_HPP_ **/

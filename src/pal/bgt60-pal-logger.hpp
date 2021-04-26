@@ -1,12 +1,10 @@
 /**
- * @file bgt60-logger.hpp
- * @author your name (you@domain.com)
- * @brief 
- * @version 0.1
- * @date 2021-04-16
- * 
- * @copyright Copyright (c) 2021
- * 
+ * @file        bgt60-pal-logger.hpp
+ * @author      Infineon Technologies AG
+ * @brief       Radar BGT60 Logger Platform Abstraction Layer
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef BGT60_PAL_LOGGER_HPP_
@@ -38,7 +36,7 @@ class LoggerPAL
          * @brief       De-Initialize the logger interface
          * @return      Error_t
          * @retval      OK if success
-         * @retval      INTF_ERROR if error 
+         * @retval      INTF_ERROR if error
          */
         virtual Error_t deinit() = 0;
 

@@ -1,2 +1,3 @@
-./src/framework/examples
-./workflow
+/workflow/
+.vscode/
+/src/framework/arduino/examples/

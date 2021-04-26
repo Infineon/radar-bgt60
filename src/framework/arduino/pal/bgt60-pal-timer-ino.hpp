@@ -1,9 +1,9 @@
-/** 
+/**
  * @file        bgt60-pal-timer-ino.hpp
- * @brief       RADAR BGT60 Timer Arduino PAL Implementation 
- * @date        April 2021
+ * @author      Infineon Technologies AG
+ * @brief       Radar BGT60 Timer Arduino PAL Implementation
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -14,6 +14,7 @@
 
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 
+#include <Arduino.h>
 #include "bgt60-pal-timer.hpp"
 
 using namespace bgt60;

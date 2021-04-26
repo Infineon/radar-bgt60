@@ -1,12 +1,10 @@
 /**
- * @file bgt60-logger.hpp
- * @author your name (you@domain.com)
- * @brief 
- * @version 0.1
- * @date 2021-04-16
- * 
- * @copyright Copyright (c) 2021
- * 
+ * @file        bgt60-logger.hpp
+ * @author      Infineon Technologies AG
+ * @brief       Radar BGT60 Logger
+ * @copyright   Copyright (c) 2021 Infineon Technologies AG
+ *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef BGT60_LOGGER_HPP_
@@ -17,6 +15,9 @@
 #if (BGT60_LOGGER_ENABLED == 1)
 
 #include <stdint.h>
+#include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
 #include "bgt60-pal-logger.hpp"
 
 namespace bgt60
