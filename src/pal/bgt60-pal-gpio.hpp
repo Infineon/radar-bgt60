@@ -1,7 +1,7 @@
 /**
  * @file        bgt60-pal-gpio.hpp
+ * @author		Infineon Technologies AG
  * @brief       RADAR BGT60 GPIO Platform Abstraction Layer
- * @date        April 2021
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
@@ -11,12 +11,14 @@
 #define BGT60_PAL_GPIO_HPP_
 
 #include "bgt60-types.hpp"
+
+namespace bgt60
+{
+
 /**
  * @addtogroup pal
  * @{
  */
-namespace bgt60
-{
 class GPIO
 {
 	public:
@@ -27,10 +29,11 @@ class GPIO
 		 */
 		enum IntEvent_t
 		{
-			INT_FALLING_EDGE   = 0,     /**< Interrupt on falling edge */
-			INT_RISING_EDGE    = 1,     /**< Interrupt on rising edge */
+			INT_FALLING_EDGE   = 0,     	/**< Interrupt on falling edge */
+			INT_RISING_EDGE    = 1,     	/**< Interrupt on rising edge */
 			INT_HIGH = 2,					/**< Interrupt when pin is HIGH */
-			INT_LOW = 3						/**< Interrupt when pin is LOW */
+			INT_LOW = 3,					/**< Interrupt when pin is LOW */
+			INT_CHANGE = 4					/**< Interrupt when pin changes its level */
 		};
 		/** @} */
 
@@ -125,13 +128,14 @@ class GPIO
         virtual Error_t     disableInt  () = 0;
 
 		/**
-         * @brief       Gets the latest interrupt event 
+         * @brief       Gets the latest interrupt event
          * @return      GPIO interrupt event
          * @retval      INT_FALLING_EDGE if falling edge event
          * @retval      INT_RISING_EDGE if rising edge event
          */
         virtual IntEvent_t  intEvent    () = 0;
 };
+
 }
 /** @} */
 #endif /** BGT60_PAL_GPIO_HPP_ **/
