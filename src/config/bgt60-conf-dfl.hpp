@@ -4,6 +4,7 @@
  * @brief       Radar BGT60 default configuration
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
+ * SPDX-License-Identifier: MIT
  */
 
 #ifndef BGT60_CONF_DFL_HPP_
