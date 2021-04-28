@@ -1,7 +1,6 @@
 /** 
  * @file        bgt60-pal-gpio.hpp
  * @brief       Radar BGT 60GHz GPIO RaspberryPi PAL
- * @date        April 2021
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT

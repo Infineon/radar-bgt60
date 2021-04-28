@@ -1,7 +1,6 @@
 /** 
  * @file        gpio-arduino.cpp
  * @brief       Radar BGT60 Arduino PAL Implementation 
- * @date        April 2021
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT
@@ -132,23 +131,23 @@ Error_t GPIOIno::enableInt(void (*cback) (void *), IntEvent_t mode)
 	switch(mode)
 	{
 		case INT_FALLING_EDGE:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_FALLING_EDGE);
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, FALLING);
 			break;
 
 		case INT_RISING_EDGE:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_RISING_EDGE);
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, RISING);
 			break;
 
 		case INT_HIGH:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_HIGH);
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, HIGH);
 			break;
 
-		case INT_LOW:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_LOW);
+		case INT_CHANGE:
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, CHANGE);
 			break;
 
 		default:
-			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, INT_LOW);
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, LOW);
 	}
     
     return OK;
