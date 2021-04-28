@@ -141,6 +141,10 @@ Error_t GPIOIno::enableInt(void (*cback) (void *), IntEvent_t mode)
 		case INT_HIGH:
 			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, HIGH);
 			break;
+		
+		case INT_LOW:
+			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, LOW);
+			break;
 
 		case INT_CHANGE:
 			attachInterrupt(digitalPinToInterrupt(this->pin), (void (*)())cback, CHANGE);
