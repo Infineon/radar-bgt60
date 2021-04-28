@@ -10,11 +10,11 @@
 #ifndef BGT60_PAL_GPIO_RPI_HPP_ 
 #define BGT60_PAL_GPIO_RPI_HPP_
 
-#include "../../../config/bgt60-conf.hpp""
+#include "../../../config/bgt60-conf.hpp"
 
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 
-#include "../../../pal/bgt60-pal-gpio.hpp""
+#include "../../../pal/bgt60-pal-gpio.hpp"
 #include <wiringPi.h>
 
 using namespace bgt60;
@@ -34,7 +34,7 @@ class GPIORpi : virtual public GPIO
 
     public:
 
-        			GPIOIRpi    ();
+        			GPIORpi    ();
 				    GPIORpi     (uint8_t pin, uint8_t mode, VLogic_t logic);
 				    ~GPIORpi    ();
 	    Error_t     init        ();
