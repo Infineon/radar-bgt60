@@ -13,7 +13,7 @@
 
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 
-#include "../../../pal/bgt60-pal-gpio.hpp"
+#include "bgt60-pal-gpio.hpp"
 #include <wiringPi.h>
 
 using namespace bgt60;
