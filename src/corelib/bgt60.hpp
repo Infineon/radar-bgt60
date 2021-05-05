@@ -25,8 +25,8 @@ class Bgt60
          */
         enum MeasMode_t
         {
-            MODE_POLLING,               /**< Polling mode */
-            MODE_INTERRUPT              /**< Interrupt mode */
+            MODE_POLLING = 0,               /**< Polling mode */
+            MODE_INTERRUPT = 1              /**< Interrupt mode */
         };
 
         /**
@@ -50,14 +50,21 @@ class Bgt60
         };
 
         /**
-         * @brief Resulting states of the the interrupt flags
+         * @brief Resulting states of the interrupt flags
          */
         enum InterruptStatus_t
         {
             NOTHING_OCCURRED    = 0,    /**< No valid status or no flag set */
             MOTION_APPROACHING  = 1,    /**< Motion detected, target approaching */
-            MOTION_DEPARTING    = 2     /**< Motion detected, target departing */
-        };
+            MOTION_DEPARTING    = 2,    /**< Motion detected, target departing */
+            MOTION_OCCURRED     = 3,    /**< Motion detected */
+            NO_MOTION_OCCURRED  = 4     /**< No motion detected> */
+        } motion,direction;
+
+        /**
+         * @brief Data availability indicator flag for interrupt
+         */
+        bool available;
 
                     Bgt60(GPIO *tDet, GPIO *pDet, MeasMode_t mode);
                     ~Bgt60();
@@ -66,6 +73,7 @@ class Bgt60
         Error_t     getMotion(Motion_t &motion);
         Error_t     getDirection(Direction_t &direction);
         void        getInterruptStatus(InterruptStatus_t &intStatus);
+        
 
     private:
 
