@@ -13,11 +13,11 @@
 #include "bgt60-conf-opts.hpp"
 
 #ifndef BGT60_FRAMEWORK
-#define BGT60_FRAMEWORK         BGT60_FRMWK_ARDUINO
+#define BGT60_FRAMEWORK         BGT60_FRMWK_RPI//BGT60_FRMWK_ARDUINO
 #endif
 
 #ifndef BGT60_LOGGER_ENABLED
-#define BGT60_LOGGER_ENABLED    1   /**< (1) Enabled, (0) Disabled */
+#define BGT60_LOGGER_ENABLED    0   /**< (1) Enabled, (0) Disabled */
 #endif
 
 /**

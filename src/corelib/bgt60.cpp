@@ -27,6 +27,8 @@ Bgt60::Bgt60(GPIO *tDet, GPIO *pDet) : tDet(tDet), pDet(pDet)
 
 }
 
+Bgt60::Bgt60(){}
+
 /**
  * @brief           Radar Bgt60 destructor
  */

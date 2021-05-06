@@ -22,9 +22,9 @@ using namespace bgt60;
  * @param[in]   phaseDet    Pin number of the phase detect pin
  * @param[in]   pinMode     Desired mode of the board, polling or interrupt driven
  */
-Bgt60Rpi::Bgt60Rpi(uint8_t targetDet, uint8_t phaseDet, MeasMode_t pinMode)
+Bgt60Rpi::Bgt60Rpi(uint8_t targetDet, uint8_t phaseDet)
 :
-Bgt60((tDetPin = new GPIORpi(targetDet, INPUT, GPIO::VLogic_t::NEGATIVE)), (pDetPin = new GPIORpi(phaseDet, INPUT, GPIO::VLogic_t::NEGATIVE)), pinMode)
+Bgt60((tDetPin = new GPIORpi(targetDet, INPUT, GPIO::VLogic_t::NEGATIVE)), (pDetPin = new GPIORpi(phaseDet, INPUT, GPIO::VLogic_t::NEGATIVE)))
 {
 
 }
