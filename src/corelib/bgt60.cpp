@@ -8,6 +8,7 @@
  */
 
 #include "bgt60.hpp"
+#include "bgt60-logger.hpp"
 
 using namespace bgt60;
 
@@ -16,15 +17,12 @@ using namespace bgt60;
  *
  * @details         This is the constructor of the Radar BGT60 board. The user has to pass the two
  *                  desired pins for reading out the radar data, as well as the mode in which the board
- *                  should acquire the data. The two available modes are polling and interrupt mode.
- *                  In the interrupt mode the board is constantly changing internal variables, which can
- *                  then be used to determine the status of board.
+ *                  should acquire the data.
  *
  * @param[in]       *tDet           Instance of a GPIO to read the target-detect-pin
  * @param[in]       *pDet           Instance of a GPIO to read the phase-detect-pin
- * @param[in]        mode           Mode to acquire the data of the radar sensor
  */
-Bgt60::Bgt60(GPIO *tDet, GPIO *pDet, MeasMode_t mode) : tDet(tDet), pDet(pDet), mode(mode)
+Bgt60::Bgt60(GPIO *tDet, GPIO *pDet) : tDet(tDet), pDet(pDet)
 {
 
 }
@@ -42,11 +40,14 @@ Bgt60::~Bgt60()
  * @return          Bgt60 error code
  * @retval          OK if success
  * @retval          INTF_ERROR if error
+ * @pre             None
  */
 Error_t Bgt60::init()
 {
     Error_t err = OK;
 
+    BGT60_LOG_INIT();
+    BGT60_LOG_MSG(__FUNCTION__);
     do
     {
         err = pDet->init();
@@ -57,6 +58,7 @@ Error_t Bgt60::init()
         if(err != OK)
             break;
     } while (0);
+    BGT60_LOG_RETURN(err);
 
     return err;
 }
@@ -66,11 +68,13 @@ Error_t Bgt60::init()
  * @return          Bgt60 error code
  * @retval          OK if success
  * @retval          INTF_ERROR if error
+ * @pre             init()
  */
 Error_t Bgt60::deinit()
 {
     Error_t err = OK;
 
+   BGT60_LOG_MSG(__FUNCTION__);
     do
     {
         err = pDet->deinit();
@@ -81,6 +85,8 @@ Error_t Bgt60::deinit()
         if(err != OK)
             break;
     } while (0);
+    BGT60_LOG_RETURN(err);
+    BGT60_LOG_DEINIT();
 
     return err;
 }
@@ -98,42 +104,35 @@ Error_t Bgt60::deinit()
  *
  * @param[in,out]   motion This variable stores the actual state of the target-detect-pin
  *                  Possible Values:
- *                      - NOT_AVAILABLE
  *                      - NO_MOTION
  *                      - MOTION
  *
  * @return          Bgt60 error code
  * @retval          OK if success
  * @retval          INTF_ERROR if error
+ * @pre             init()
  */
 Error_t Bgt60::getMotion(Motion_t &motion)
 {
     Error_t err = OK;
 
+    BGT60_LOG_MSG(__FUNCTION__);
     do
     {
-        if(MODE_INTERRUPT == mode)
+        GPIO::VLevel_t level = tDet->read();
+
+        if(GPIO::VLevel_t::GPIO_LOW == level)
         {
-            err = tDet->enableInt((cback_t)isrRegister(this), GPIO::INT_CHANGE);
-            if(OK != err)
-                break;
+            motion = MOTION;
         }
-        else
+        else if(GPIO::VLevel_t::GPIO_HIGH == level)
         {
-            GPIO::VLevel_t level = tDet->read();
-            
-            if(GPIO::VLevel_t::GPIO_LOW == level)
-            {
-                motion = MOTION;
-                motionDetected = true;
-            }
-            else if(GPIO::VLevel_t::GPIO_HIGH == level)
-            {
-                motion = NO_MOTION;
-                motionDetected = false;
-            }
+            motion = NO_MOTION;
         }
+
     } while (0);
+    BGT60_LOG_RETURN(err);
+
     return err;
 }
 
@@ -150,254 +149,112 @@ Error_t Bgt60::getMotion(Motion_t &motion)
  *
  * @param[in,out]   direction This variable stores the actual state of the phase-detect-pin
  *                  Possible Values:
- *                      - NO_INFORMATION
+ *                      - NO_DIR
  *                      - APPROACHING
  *                      - DEPARTING
- *
  * @return          Bgt60 error code
  * @retval          OK if success
  * @retval          INTF_ERROR if error
+ * @pre             init()
  */
 Error_t Bgt60::getDirection(Direction_t &direction)
 {
     Error_t err = OK;
+    Motion_t motion = NO_MOTION;
 
+    BGT60_LOG_MSG(__FUNCTION__);
     do
     {
-        if(MODE_INTERRUPT == mode)
-        {
-            err = pDet->enableInt((cback_t)isr2Register(this), GPIO::INT_CHANGE);          //TODO: Create a mechanism to avoid calling the ISR regestration more than once
-            if(OK != err)
-                break;
-        }
-        else
-        {
-            if(true == motionDetected)
-            {
-                GPIO::VLevel_t level = pDet->read();                                    //TODO: Why no error handling here?
+        err = getMotion(motion);
+        if(OK != err)
+            break;
 
-                if(GPIO::VLevel_t::GPIO_LOW == level)
-                {
-                    direction = DEPARTING;
-                }
-                else if(GPIO::VLevel_t::GPIO_HIGH == level)
-                {
-                    direction = APPROACHING;
-                }
-            }
-            else
+        if(MOTION == motion)
+        {
+            GPIO::VLevel_t level = pDet->read();                                  
+
+            if(GPIO::VLevel_t::GPIO_LOW == level)
             {
-                direction = NO_INFORMATION;
+                direction = DEPARTING;
+            }
+            else if(GPIO::VLevel_t::GPIO_HIGH == level)
+            {
+                direction = APPROACHING;
             }
         }
+        else 
+        {
+            direction = NO_DIR;
+        }
+
     } while (0);
+    BGT60_LOG_RETURN(err);
+
     return err;
 }
 
 /**
- * @brief           Check internal interrupt flags
- *
- * @details         This function is checking the four internal interrupt variables.
- *                  Depending on them it determines the status of the board and is
- *                  telling the user if a target is there and if so, if it is approaching
- *                  or departing.
- *
- * @pre             The mode has to be INTERRUPT_MODE, otherwise the status of the variable
- *                  will always be NOTING_OCCURRED.
- *
- * @param[in, out]  intStatus Shows the resulting status of the internal interrupt flags
+ * @brief       Enables the hardware interrupt
+ * 
+ * @param[in]   *cback  Pointer to the interrupt callback function 
+ * @return      Bgt60 error code
+ * @retval      OK if success
+ * @retval      INTF_ERROR if interface error
+ * @pre         init()
  */
-void Bgt60::getInterruptStatus(InterruptStatus_t &intStatus)
+Error_t Bgt60::enableInterrupt(void (*cback) (void *))
 {
-    if(true == tDetFallingEdgeEvent && true == pDetFallingEdgeEvent)
+    Error_t err = OK;
+
+    BGT60_LOG_MSG(__FUNCTION__);
+    do
     {
-        intStatus = MOTION_DEPARTING;
-    }
-    else if(true == tDetFallingEdgeEvent && true == pDetRisingEdgeEvent)
+        if(nullptr == cback)
+        {
+            err = CONF_ERROR;
+            break;
+        }
+        
+        err = tDet->enableInt(cback, GPIO::INT_CHANGE);
+        if(OK != err)
+            break;
+
+        err = pDet->enableInt(cback, GPIO::INT_CHANGE);  
+        if(OK != err)
+            break;
+        
+    } while (0);
+    BGT60_LOG_RETURN(err);
+
+    return err;
+}
+
+/**
+ * @brief       Disables the hardware interrupt
+ * 
+ * @return      Bgt60 error code
+ * @retval      OK if success
+ * @retval      INTF_ERROR if interface error
+ * @pre         init()
+ */
+Error_t Bgt60::disableInterrupt(void)
+{
+   Error_t err = OK;
+
+    BGT60_LOG_MSG(__FUNCTION__);
+    do
     {
-        intStatus = MOTION_APPROACHING;
-    }
-    else
-    {
-        intStatus = NOTHING_OCCURRED;
-    }
+        err = tDet->disableInt();
+        if(OK != err)
+            break;
+
+        err = pDet->disableInt();  
+        if(OK != err)
+            break;
+
+    } while (0);
+    BGT60_LOG_RETURN(err);
+
+    return err;
 }
 
-/**
- * @brief           Callack of the target-detect-pin
- */
-void Bgt60::callbackMotion()
-{
-    GPIO::IntEvent_t event = tDet->intEvent();
-
-    if(GPIO::IntEvent_t::INT_FALLING_EDGE == event)
-    {
-        tDetFallingEdgeEvent = true;
-        tDetRisingEdgeEvent = false;
-        motion = MOTION_OCCURRED;
-    }
-    else if(GPIO::IntEvent_t::INT_RISING_EDGE == event)
-    {
-        tDetRisingEdgeEvent = true;
-        tDetFallingEdgeEvent = false;
-        motion = NO_MOTION_OCCURRED;
-    }
-    available = true;
-}
-
-/**
- * @brief           Callback of the phase-detect-pin
- */
-void Bgt60::callbackDirection()
-{
-    GPIO::IntEvent_t event = pDet->intEvent();
-
-    if(GPIO::IntEvent_t::INT_FALLING_EDGE == event)
-    {
-        pDetFallingEdgeEvent = true;
-        pDetRisingEdgeEvent = false;
-        direction = MOTION_APPROACHING;
-    }
-    else if(GPIO::IntEvent_t::INT_RISING_EDGE == event)
-    {
-        pDetRisingEdgeEvent = true;
-        pDetFallingEdgeEvent = false;
-        direction = MOTION_DEPARTING;
-    }
-}
-
-Bgt60 * Bgt60::objPtrVectorTarget[maxGPIOObjsTarget] = {nullptr};
-uint8_t Bgt60::idNextTarget  = 0;
-
-Bgt60 * Bgt60::objPtrVectorDirection[maxGPIOObjsDirection] = {nullptr};
-uint8_t Bgt60::idNextDirection  = 0;
-
-/**
- * @brief           Interrupt 0 Handler
- */
-void Bgt60::int0Handler()
-{
-    objPtrVectorTarget[0]->callbackMotion();
-}
-
-/**
- * @brief           Interrupt 1 Handler
- */
-void Bgt60::int1Handler()
-{
-    objPtrVectorTarget[1]->callbackMotion();
-}
-
-/**
- * @brief           Interrupt 2 Handler
- */
-void Bgt60::int2Handler()
-{
-    objPtrVectorTarget[2]->callbackMotion();
-}
-
-/**
- * @brief           Interrupt 3 Handler
- */
-void Bgt60::int3Handler()
-{
-    objPtrVectorTarget[3]->callbackMotion();
-}
-
-/**
- * @brief           Interrupt 4 Handler
- */
-void Bgt60::int4Handler()
-{
-    objPtrVectorTarget[4]->callbackMotion();
-}
-
-/**
- * @brief           Interrupt 5 Handler
- */
-void Bgt60::int5Handler()
-{
-    objPtrVectorDirection[0]->callbackDirection();
-}
-
-/**
- * @brief           Interrupt 6 Handler
- */
-void Bgt60::int6Handler()
-{
-    objPtrVectorDirection[1]->callbackDirection();
-}
-
-/**
- * @brief           Interrupt 7 Handler
- */
-void Bgt60::int7Handler()
-{
-    objPtrVectorDirection[2]->callbackDirection();
-}
-
-/**
- * @brief           Interrupt 8 Handler
- */
-void Bgt60::int8Handler()
-{
-    objPtrVectorDirection[3]->callbackDirection();
-}
-
-/**
- * @brief           Interrupt 9 Handler
- */
-void Bgt60::int9Handler()
-{
-    objPtrVectorDirection[4]->callbackDirection();
-}
-
-void * Bgt60::fnPtrVectorTarget[maxGPIOObjsTarget] =        {(void *)int0Handler,
-                                                             (void *)int1Handler,
-                                                             (void *)int2Handler,
-                                                             (void *)int3Handler,
-                                                             (void *)int4Handler};
-
-void * Bgt60::fnPtrVectorDirection[maxGPIOObjsDirection] =  {(void *)int5Handler,
-                                                             (void *)int6Handler,
-                                                             (void *)int7Handler,
-                                                             (void *)int8Handler,
-                                                             (void *)int9Handler};
-
-/**
- * @brief           Register a hardware interrupt for the Bgt60 object passed by
- *                  argument
- * @param[in]       *objPtr Bgt60 object pointer
- * @return          Pointer to allocate the interrupt function handler
- */
-void * Bgt60::isrRegister(Bgt60 *objPtr)
-{
-    void *fPtr = nullptr;
-
-    if(idNextTarget < 5)
-    {
-        objPtrVectorTarget[idNextTarget] = objPtr;
-        fPtr = fnPtrVectorTarget[idNextTarget++];
-    }
-
-    return fPtr;
-}
-
-/**
- * @brief           Register a second hardware interrupt for the Bgt60 object passed by
- *                  argument
- * @param[in]       *objPtr Bgt60 object pointer
- * @return          Pointer to allocate the interrupt function handler
- */
-void * Bgt60::isr2Register(Bgt60 *objPtr)
-{
-    void *fPtr = nullptr;
-
-    if(idNextDirection < 5)
-    {
-        objPtrVectorDirection[idNextDirection] = objPtr;
-        fPtr = fnPtrVectorDirection[idNextDirection++];
-    }
-
-    return fPtr;
-}
