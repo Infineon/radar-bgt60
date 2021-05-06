@@ -15,7 +15,7 @@
 
 #include "bgt60-pal-gpio.hpp"
 #include <wiringPi.h>
-
+#include <stdint.h>
 using namespace bgt60;
 
 /**

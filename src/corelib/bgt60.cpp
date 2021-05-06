@@ -121,7 +121,7 @@ Error_t Bgt60::getMotion(Motion_t &motion)
         else
         {
             GPIO::VLevel_t level = tDet->read();
-
+            
             if(GPIO::VLevel_t::GPIO_LOW == level)
             {
                 motion = MOTION;
@@ -234,12 +234,15 @@ void Bgt60::callbackMotion()
     {
         tDetFallingEdgeEvent = true;
         tDetRisingEdgeEvent = false;
+        motion = MOTION_OCCURRED;
     }
     else if(GPIO::IntEvent_t::INT_RISING_EDGE == event)
     {
         tDetRisingEdgeEvent = true;
         tDetFallingEdgeEvent = false;
+        motion = NO_MOTION_OCCURRED;
     }
+    available = true;
 }
 
 /**
@@ -253,11 +256,13 @@ void Bgt60::callbackDirection()
     {
         pDetFallingEdgeEvent = true;
         pDetRisingEdgeEvent = false;
+        direction = MOTION_APPROACHING;
     }
     else if(GPIO::IntEvent_t::INT_RISING_EDGE == event)
     {
         pDetRisingEdgeEvent = true;
         pDetFallingEdgeEvent = false;
+        direction = MOTION_DEPARTING;
     }
 }
 
