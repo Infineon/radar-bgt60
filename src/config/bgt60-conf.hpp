@@ -17,7 +17,7 @@
 #endif
 
 #ifndef BGT60_LOGGER_ENABLED
-#define BGT60_LOGGER_ENABLED    1   /**< (1) Enabled, (0) Disabled */
+#define BGT60_LOGGER_ENABLED    0   /**< (1) Enabled, (0) Disabled */
 #endif
 
 /**
