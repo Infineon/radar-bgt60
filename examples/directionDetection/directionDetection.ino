@@ -35,10 +35,8 @@
 #include <Arduino.h>
 /* Include library main header */
 #include <bgt60-ino.hpp>
-
-/* Define GPIO pins that will be connected to the shield */
-#define TD  16
-#define PD  17
+/* Include Arduino platform header */
+#include <bgt60-platf-ino.hpp>
 
 /* Create radar object and specify GPIO pins as the two parameters */
 Bgt60Ino radarShield(TD, PD);
@@ -76,11 +74,11 @@ void loop()
         switch (direction)
         {
             /* Variable "direction" is set to APPROACHING when target is moving closer to sensor */
-            case Bgt60::APPROACHING :
+            case Bgt60::APPROACHING:
                 Serial.println("Target is approaching!");
                 break;
             /* Variable "direction" is set to DEPARTING when target is moving away from sensor */
-            case Bgt60::DEPARTING :
+            case Bgt60::DEPARTING:
                 Serial.println("Target is departing!");
                 break;
             /* Variable "direction" is set to NO_DIR when no motion was detected*/

@@ -35,10 +35,8 @@
 #include <Arduino.h>
 /* Include library main header */
 #include <bgt60-ino.hpp>
-
-/* Define GPIO pins that will be connected to the shield */
-#define TD  16
-#define PD  17
+/* Include Arduino platform header */
+#include <bgt60-platf-ino.hpp>
 
 /* Definition of a delay to reduce the measurement frequency */
 #define MEASDELAY 500

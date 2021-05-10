@@ -44,10 +44,8 @@
 #include <Arduino.h>
 /* Include library main header */
 #include <bgt60-ino.hpp>
-
-/* Define the GPIO pins that will be connected to the shield */
-#define TD 16
-#define PD 17
+/* Include Arduino platform header */
+#include <bgt60-platf-ino.hpp>
 
 /* Create radar object and specify GPIO pins as the two parameters */
 Bgt60Ino radarShield(TD, PD);
