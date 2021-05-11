@@ -23,11 +23,10 @@
 class Bgt60Ino : public Bgt60
 {
     public:
-                    Bgt60Ino(uint8_t targetDet, uint8_t phaseDet, MeasMode_t pinMode);
+                    Bgt60Ino(uint8_t targetDet, uint8_t phaseDet);
                     ~Bgt60Ino();
         Error_t     begin();
         Error_t     end();
-        void        checkIntFlags();
 
     private:
 
