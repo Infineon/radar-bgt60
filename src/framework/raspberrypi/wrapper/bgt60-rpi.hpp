@@ -16,12 +16,12 @@
 #include <stdint.h>
 
 #include "bgt60.hpp"
-#include "bgt60-pal-gpio-rpi.hpp"
+#include "../pal/bgt60-pal-gpio-rpi.hpp"
 
 class Bgt60Rpi : public Bgt60
 {
     public:
-            Bgt60Rpi(uint8_t targetDet, uint8_t phaseDet, MeasMode_t pinMode);
+            Bgt60Rpi(uint8_t targetDet, uint8_t phaseDet);
             ~Bgt60Rpi();
 
     private:
