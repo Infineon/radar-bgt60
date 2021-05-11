@@ -30,7 +30,7 @@
 #define TD  16
 #define PD  17
 
-#elif defined(ARDUINO_SAMD_MKRWIFI1010)     /**< Arduino MRK1010 */
+#elif defined(ARDUINO_SAMD_MKRWIFI1010)     /**< Arduino MRK WIFI 1010 */
 
 #define TD  16
 #define PD  17
@@ -52,7 +52,7 @@
 
 #else
 #warning "You did not define a supported platform! \
-Please make sure you're using a platfrom that is officially \
+Please make sure you're using a platform that is officially \
 supported by the library. Have a look in the Wiki for more information."
 
 #endif
