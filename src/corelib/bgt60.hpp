@@ -40,7 +40,6 @@ class Bgt60
         };
 
                     Bgt60(GPIO *tDet, GPIO *pDet);
-                    Bgt60();
                     ~Bgt60();
         Error_t     init();
         Error_t     deinit();
