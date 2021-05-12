@@ -18,7 +18,7 @@ namespace py = pybind11;
 PYBIND11_MODULE(bgt60_py, m) {
     //Wrapper for Bgt60 Class 
     py::class_<Bgt60> bgt60(m, "Bgt60");
-    bgt60.def(py::init<>())
+    bgt60
         .def("init", &Bgt60::init, "Initialization function")
         .def("deinit", &Bgt60::deinit, "De-initialize function")
         .def("getMotion", &Bgt60::getMotion, "Function to detect moving target")
