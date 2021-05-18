@@ -24,6 +24,7 @@
 bool int_flag = 0;
 
 void cBackF(void *){
+	
     // Set flag to access python cback
     int_flag = 1;
 }
