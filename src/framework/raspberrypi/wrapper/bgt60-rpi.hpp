@@ -28,5 +28,6 @@ class Bgt60Rpi : public Bgt60
             GPIORpi * tDetPin;
             GPIORpi * pDetPin;
 };
+
 #endif /**BGT60_FRAMEWORK*/
 #endif /**BGT60_RPI_HPP_*/
