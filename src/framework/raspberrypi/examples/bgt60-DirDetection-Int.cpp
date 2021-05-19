@@ -5,11 +5,11 @@
  * \brief       This example detects the direction of motion of an object using interrupt method
  * \details
  * This example demonstrates how to detect the direction of a moving object while the 
- * shield is connected to Arduino form-factored boards using interrupts.
+ * Shield is connected a Raspberry Pi board using interrupts.
  * 
  * ▶ Connection details:
  * ----------------------------------------------------
- *  Pin on shield   Connected to pin on RaspberryPi 4B  
+ *  Pin on shield   Connected to pin on Raspberry Pi
  * ----------------------------------------------------
  *      TD                      15                          
  *      PD                      16
@@ -22,27 +22,20 @@
  *                    is detected. Once the ISR in library is served, the callback function will be 
  *                    executed that sets variables to identify motion direction.
  * 
- * ▶ Decoding on-board Red LED output
- * - Red LED indicates the output of direction of motion once target is detected
- * ---------------------------------------------
- *    LED    State    Output explanation
- * ---------------------------------------------   
- *    Red     ON       Departing target
- *            OFF      Approaching target 
- * ---------------------------------------------
- * 
  * SPDX-License-Identifier: MIT
  */
+
+/* This library works with multiple frameworks and hence these guards are 
+ *  necessary to avoid compiling this example for other frameworks. */
+#include "bgt60-conf.hpp"
+#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 
 // Include library header
 #include "bgt60-rpi.hpp"
 #include <stdio.h>
 #include <stdint.h>
-/* This library works with multiple frameworks and hence these guards are 
- *  necessary to avoid compiling this example for other frameworks. */
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 
-//  Define GPIO pins that will be connected to shield
+//  Define GPIO pins that will be connected to Shield
 #define Pin_1  15
 #define Pin_2  16
 
