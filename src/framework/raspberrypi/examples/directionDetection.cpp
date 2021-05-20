@@ -57,9 +57,8 @@
 
 /* Create radar object with following arguments:
  *  TD : Target Detect Pin
- *  PD : Phase Detect Pin
- *  Mode  : Set mode of acquiring sensor data as MODE_POLLING */
-Bgt60Rpi radarShield(TD, PD, Bgt60Rpi::MODE_POLLING);
+ *  PD : Phase Detect Pin */
+Bgt60Rpi radarShield(TD, PD);
 
 int main(int argc, char const *argv[])
 {
