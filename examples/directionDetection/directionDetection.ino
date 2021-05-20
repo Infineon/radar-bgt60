@@ -17,10 +17,13 @@
  *              --------------------------------------------------
  *
  *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield
- *              - Red LED indicates the output of direction of motion once target is detected
+ *              - Green LED indicates the output of target in motion detection (TD)
+ *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------
  *              LED    State    Output explanation
  *              ---------------------------------------------
+ *              Green   ON       Moving target detected
+ *                      OFF      No target detected
  *              Red     ON       Departing target
  *                      OFF      Approaching target
  *              ---------------------------------------------
@@ -38,7 +41,9 @@
 /* Include Arduino platform header */
 #include <bgt60-platf-ino.hpp>
 
-/* Create radar object and specify GPIO pins as the two parameters */
+/* Create radar object with following arguments:
+ *  TD : Target Detect Pin
+ *  PD : Phase Detect Pin */
 Bgt60Ino radarShield(TD, PD);
 
 /* Begin setup function - takes care of initialization and executes only once post reset */
@@ -46,13 +51,15 @@ void setup()
 {
     /* Set the baud rate for sending messages to the serial monitor */
     Serial.begin(9600);
-    /* Configures the GPIO pins */
+    // Configures the GPIO pins to input mode
     Error_t init_status = radarShield.init();
     /* Check if the initialization was successful */
-    if (OK != init_status)
-        Serial.println("Init failed");
-    else
-        Serial.println("Init successful");
+    if (OK != init_status) {
+        Serial.println("Init failed.");
+    }
+    else {
+        Serial.println("Init successful.");
+    }
 }
 
 /* Begin loop function - this part of code is executed continuously until external termination */
@@ -68,7 +75,7 @@ void loop()
     Error_t err = radarShield.getDirection(direction);
 
     /* Check if API execution is successful */
-    if(err == OK)
+    if (err == OK)
     {
         /* Cases based on value set in direction variable */
         switch (direction)
