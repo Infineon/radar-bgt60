@@ -84,7 +84,7 @@ int main(int argc, char const *argv[])
             1. Returns the success or failure to detect direction of object as a message of type Error_t.
             Any value other than OK indicates failure
             2. Sets recent event in "direction" variable. Events can be: APPROACHING, DEPARTING or NO_DIR */
-        Error_t err = bgt60rpi.getDirection(direction);
+        Error_t err = radarShield.getDirection(direction);
         
         // Check if API execution is successful
         if (err == OK)

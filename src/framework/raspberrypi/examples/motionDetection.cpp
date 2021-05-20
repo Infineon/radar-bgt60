@@ -62,16 +62,15 @@ Bgt60Rpi radarShield(TD, PD);
 
 int main(int argc, char const *argv[])
 {
-    printf(" ***** Begin Motion Detection example ***** \n");
     // Configures the GPIO pins to input mode
     Error_t init_status = radarShield.init();
     /* Check if the initialization was successful */
     if (OK != init_status) {
-        Serial.println("Init failed.");
+        printf("Init failed.\n");
         return 1;
     }
     else {
-        Serial.println("Init successful.");
+        printf("Init successful.\n");
     }
 
     while(1) {
