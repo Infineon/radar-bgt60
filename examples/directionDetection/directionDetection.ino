@@ -16,16 +16,22 @@
  *              Vin                 VCC
  *              --------------------------------------------------
  *
- *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield
- *              - Green LED indicates the output of target in motion detection (TD)
+ *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield:
+ * 
  *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------
  *              LED    State    Output explanation
  *              ---------------------------------------------
- *              Green   ON       Moving target detected
- *                      OFF      No target detected
  *              Red     ON       Departing target
  *                      OFF      Approaching target
+ *              ---------------------------------------------
+ *
+ *              - Green LED indicates the output of target in motion detection (TD)
+ *              ---------------------------------------------
+ *              LED    State    Output explanation
+ *              ---------------------------------------------
+ *              Green    ON       Moving target detected
+ *                       OFF      No target detected
  *              ---------------------------------------------
  *
  * SPDX-License-Identifier: MIT

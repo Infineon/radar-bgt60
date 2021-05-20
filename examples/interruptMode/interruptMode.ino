@@ -17,8 +17,9 @@
  *              Vin                 VCC
  *              --------------------------------------------------
  *
- *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield
- *              - Red LED indicates the output of direction of motion once target is detected
+ *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield:
+ * 
+ *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------
  *              LED    State    Output explanation
  *              ---------------------------------------------
