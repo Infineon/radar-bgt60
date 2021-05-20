@@ -19,7 +19,7 @@
 #ifndef BGT60_PLATF_INO_HPP_
 #define BGT60_PLATF_INO_HPP_
 
-#include "bgt60-conf.hpp"
+#include "./config/bgt60-conf.hpp"
 
 #if(BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 

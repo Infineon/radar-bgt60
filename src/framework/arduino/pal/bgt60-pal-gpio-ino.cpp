@@ -10,7 +10,6 @@
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 #include <Arduino.h>
 
-#include "bgt60-pal-gpio.hpp"
 /**
  * @brief 		Constructor of the Arduino GPIO class
  * @details		This function is setting the basics for a GPIO.

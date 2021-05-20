@@ -44,7 +44,13 @@
 /* Include Arduino platform header */
 #include <bgt60-platf-ino.hpp>
 
-/* Create radar object and specify GPIO pins as the two parameters */
+//  Define GPIO pins that will be connected to shield
+#define TD  16
+#define PD  17
+
+/* Create radar object with following arguments:
+ *  TD : Target Detect Pin
+ *  PD : Phase Detect Pin */
 Bgt60Ino radarShield(TD, PD);
 
 /* Definition and initialization of the interrupt flag */
@@ -133,5 +139,3 @@ void loop()
         }
     }
 }
-
-#endif /** BGT60_FRAMEWORK **/
