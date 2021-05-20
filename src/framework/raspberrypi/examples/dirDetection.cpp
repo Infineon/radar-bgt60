@@ -1,39 +1,43 @@
 /*!
- * \name        bgt60-DirDetection
+ * \name        directionDetection
  * \author      Infineon Technologies AG
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the direction of motion of an object using polling method
  * \details     This example demonstrates how to detect the direction of a moving object while the
- *              shield is connected to RaspberryPi using polling method. The code is programmed to first detect
- *              a moving object followed by its direction of motion.
- *
- * \note        You can always control the execution loop by setting StartMotionSensing and
- *              StartDirectionSensing flag value correctly as described in the code section.
+ *              BGT60LTR11AIP shield is connected to a Raspberry Pi using polling method.
+ *              The code is programmed to first detect a moving object followed by its direction of motion.
  *
  *              ▶ Connection details:
  *              -----------------------------------------------------
- *              Pin on shield   Connected to pin on RaspberryPi 4B
+ *              Pin on shield   Connected to pin on Raspberry Pi 4B
  *              -----------------------------------------------------
- *              TD                       15
- *              PD                       16
- *              GND                      GND
- *              Vin                      VCC
+ *              TD                       GPIO 22    (board 15)
+ *              PD                       GPIO 23    (board 16)
+ *              GND                      GND        (e.g. board 6)
+ *              Vin                      3.3V       (board 1)
  *              -----------------------------------------------------
  *
- *              ▶ Decoding on-board Green LED output:
+ *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield
  *              - Green LED indicates the output of target in motion detection (TD)
+ *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------
  *              LED    State    Output explanation
  *              ---------------------------------------------
- *              Green    ON       Moving target detected
- *              OFF      No target detected
+ *              Green   ON       Moving target detected
+ *                      OFF      No target detected
+ *              Red     ON       Departing target
+ *                      OFF      Approaching target
  *              ---------------------------------------------
  *
  * SPDX-License-Identifier: MIT
  */
 
-/* This library works with multiple frameworks and hence these guards are
- *  necessary to avoid compiling this example for other frameworks. */
+/*
+ * As this library works with multiple frameworks,
+ * this part is needed to avoid trying to compile
+ * this example from other frameworks.
+ */
+#include "../../../config/bgt60-conf.hpp"
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 
 // Include library header
@@ -42,147 +46,69 @@
 #include <stdint.h>
 
 //  Define GPIO pins that will be connected to shield
-#define Pin_1  15
-#define Pin_2  16
-
-// Function declaration for direction detection
-void Detect_direction();
-
-// Flag to control the motion and direction sensing
-bool StartDirectionSensing = 1;
-bool StartMotionSensing = 1;
+#define TD  15
+#define PD  16
 
 /* Create radar object with following arguments:
- *  Pin_1 : Target Detect Pin (TD)
- *  Pin_2 : Phase Detect Pin  (PD) */
-Bgt60Rpi bgt60rpi(Pin_1, Pin_2);
+ *  TD : Target Detect Pin
+ *  PD : Phase Detect Pin
+ *  Mode  : Set mode of acquiring sensor data as MODE_POLLING */
+Bgt60Rpi radarShield(TD, PD, Bgt60Rpi::MODE_POLLING);
 
-// Begin main
 int main(int argc, char const *argv[])
 {
-    printf(" ***** Begin Direction Detection example ***** \n");
     // Configures the GPIO pins as input mode
-    Error_t init_status = bgt60rpi.init();
-    // Check if init was successful
+    Error_t init_status = radarShield.init();
+    // Check if the initialization was successful
     if (OK != init_status)
     {
-        printf(" Initialization failed! \n");
-        return 0;
+        printf("Init failed.\n");
+        return 1;
     }
     else
     {
-        printf(" Initialization successful! \n");
-        // Function call to start sensing
-        while(StartMotionSensing)
-            Detect_direction();
-        printf("***** Example execution completed \n*****");
+        printf("Init successful.\n");
     }
-}
-/**
- * @brief           Direction Detection Function
- * @details         This function handles the logic to detect the direction of a moving target.
- *                  It first waits for a moving object to be identified and then checks for its
- *                  direction. Following permutations of events are possible :
- *                  -----------------------------------------------------------------------------
- *                  Motion Detected     Detected Direction             Expected behavior
- *                  -----------------------------------------------------------------------------
- *                      Yes                 Approaching               Prints approaching
- *                                           Departing                 Prints departing
- *                                            No data           Direction detection config failed
- *                  -----------------------------------------------------------------------------
- *                      No                      x               Waits infinitely to detect motion
- *                  -----------------------------------------------------------------------------
- *                    No data                   x               Motion detection config failed
- *                  -----------------------------------------------------------------------------
- */
-void Detect_direction()
-{
-    // Initialize the variable to NO_INFORMATION to record new events
-    Bgt60Rpi::Direction_t DirectionDetectStatus = Bgt60Rpi::NO_INFORMATION;
-    // Initialize the variable to NOT_AVAILABLE to record new events
-    Bgt60Rpi::Motion_t MotionDetectStatus = Bgt60Rpi::NOT_AVAILABLE;
-    /* The getMotion() API does two things:
-        1. Returns  success or failure to detect moving object as a message of type Error_t.
-           Any value other than OK indicates failure
-        2. Sets recent event in "MotionDetectStatus" variable. Events can be: MOTION, NO_MOTION or NOT_AVAILABLE */
-    Error_t err_motion = bgt60rpi.getMotion(MotionDetectStatus);
-    // Check if API execution is successful
-    if(err_motion == OK)
-    {
-        // Cases based on value set in MotionDetectStatus variable
-        switch (MotionDetectStatus)
+
+    while(1) {
+
+        // Initialize the variable to NO_INFORMATION to record new events
+        Bgt60Rpi::Direction_t direction = Bgt60Rpi::NO_DIR;
+
+        /* The getDirection() API does two things:
+            1. Returns the success or failure to detect direction of object as a message of type Error_t.
+            Any value other than OK indicates failure
+            2. Sets recent event in "direction" variable. Events can be: APPROACHING, DEPARTING or NO_DIR */
+        Error_t err = bgt60rpi.getDirection(direction);
+        
+        // Check if API execution is successful
+        if (err == OK)
         {
-            //  Variable "MotionDetectStatus" is set to MOTION when moving target is detected
-            case Bgt60Rpi::MOTION:
-                printf(" Moving target detected... \n");
-                while(StartDirectionSensing)
-                {
-                    /* The getDirection() API does two things:
-                    1. Returns  success or failure to detect direction of object as a message of type Error_t.
-                       Any value other than OK indicates failure
-                    2. Sets recent event in "DirectionDetectStatus" variable. Events can be: APPROACHING or DEPARTING */
-                    Error_t err_dir = bgt60rpi.getDirection(DirectionDetectStatus);
-                    if(err_dir == OK)
-                    {
-                        if(Bgt60Rpi::APPROACHING == DirectionDetectStatus)
-                        {
-                            printf(" Target is approaching! \n");
-                            // Continuous sensing. If you want to stop direction sensing once target
-                            // is found to be approaching, set this value to 0.
-                            StartDirectionSensing = 1;
-                            StartMotionSensing = 1;
-                        }
-                        else if(Bgt60Rpi::DEPARTING == DirectionDetectStatus)
-                        {
-                            printf(" Target is departing! \n");
-                            // Continuous direction sensing. If you want to stop direction sensing once target
-                            // is found to be departing, set this value to 0.
-                            StartDirectionSensing = 1;
-                            // Continuous motion sensing. If you want to stop sensing once motion is detected,
-                            // set this value to 0.
-                            StartMotionSensing = 1;
-                        }
-                        // API execution returned error
-                        else
-                        {
-                            printf(" Sorry! Data unavailable. Check configuration! \n");
-                            StartDirectionSensing = 0;
-                            StartMotionSensing = 0;
-                        }
-                    }
-                    // API execution returned error
-                    else
-                    {
-                        printf(" Direction detection failed! Check configuration again! ");
-                        StartDirectionSensing = 0;
-                        StartMotionSensing = 0;
-                    }
-                }
-                break;
-            //  Variable "MotionDetectStatus" is set to NO_MOTION when moving target is not detected
-            case Bgt60Rpi::NO_MOTION:
-                printf(" No one's there!\n");
-                // Check until moving target is detected
-                StartMotionSensing = 1;
-                StartDirectionSensing = 1;
-                break;
-            //  Variable "MotionDetectStatus" is set to NOT_AVAILABLE when no data is available
-            case Bgt60Rpi::NOT_AVAILABLE:
-                printf(" Sorry! Data unavailable. Check configuration \n");
-                // Cannot detect further without fixing the config issue
-                StartMotionSensing = 0;
-                StartDirectionSensing = 0;
-                break;
-            default:
-                printf(" Waiting for sensor to detect target movement...\n");
+            /* Cases based on value set in direction variable */
+            switch (direction)
+            {
+                /* Variable "direction" is set to APPROACHING when target is moving closer to sensor */
+                case Bgt60::APPROACHING:
+                    printf("Target is approaching!\n");
+                    break;
+                /* Variable "direction" is set to DEPARTING when target is moving away from sensor */
+                case Bgt60::DEPARTING:
+                    printf("Target is departing!\n");
+                    break;
+                /* Variable "direction" is set to NO_DIR when no motion was detected */
+                case Bgt60::NO_DIR:
+                    printf("Direction cannot be determined since no motion was detected.\n");
+                    break;
+            }
         }
-    }
-    // API execution returned error
-    else
-    {
-        printf(" Error occured!");
-        StartMotionSensing = 0;
-        return;
+        /* API execution returned error */
+        else{
+            printf("Error occurred!\n");
+        }
+
+        /* Reducing the frequency of the measurements */
+        delay(500);
+
     }
 }
 

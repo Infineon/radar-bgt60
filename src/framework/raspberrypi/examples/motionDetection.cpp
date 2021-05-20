@@ -1,43 +1,43 @@
 /*!
- * \name        bgt60-MotionDetection
+ * \name        motionDetection
  * \author      Infineon Technologies AG
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the motion of an object using polling mode
- * \details
- * This example demonstrates how to detect a moving object while the shield is connected to
- * RaspberryPi using polling method. As soon as a moving target is detected, the code execution ends.
+ * \details     This example demonstrates how to detect a moving object while the shield is
+ *              connected to RaspberryPi using polling method. As soon as a moving target is
+ *              detected, the code execution ends.
  * 
- * \note: You can always control the execution by setting StartMotionSensing flag value correctly
- *        as described in the code section.
+ *              ▶ Connection details:
+ *              -----------------------------------------------------
+ *              Pin on shield   Connected to pin on Raspberry Pi 4B
+ *              -----------------------------------------------------
+ *              TD                       GPIO 22    (board 15)
+ *              PD                       GPIO 23    (board 16)
+ *              GND                      GND        (e.g. board 6)
+ *              Vin                      3.3V       (board 1)
+ *              -----------------------------------------------------
+ *
+ *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield
+ *              - Green LED indicates the output of target in motion detection (TD)
+ *              - Red LED indicates the output of direction of motion once target is detected (PD)
+ *              ---------------------------------------------
+ *              LED    State    Output explanation
+ *              ---------------------------------------------
+ *              Green   ON       Moving target detected
+ *                      OFF      No target detected
+ *              Red     ON       Departing target
+ *                      OFF      Approaching target
+ *              ---------------------------------------------
  * 
- * ▶ Connection details:
- * -----------------------------------------------------
- *  Pin on shield   Connected to pin on RaspberryPi 4B  
- * -----------------------------------------------------
- *      TD                       15                          
- *      PD                       16
- *      GND                      GND
- *      Vin                      3V3               
- * -----------------------------------------------------
- * 
- * ▶ Polling mode of acquiring Radar data:
- * - MODE_POLLING   : In this mode, the GPIO pins are continuously monitored to detect the 
- *                    moving target.
- * 
- * ▶ Decoding on-board Green LED output
- * - Green LED indicates the output of target in motion detection (TD)
- * ---------------------------------------------
- *    LED    State    Output explanation
- * ---------------------------------------------
- *   Green    ON       Moving target detected
- *            OFF      No target detected 
- * ---------------------------------------------
  * SPDX-License-Identifier: MIT
  */
 
-/* This library works with multiple frameworks and hence these guards are 
- *  necessary to avoid compiling this example for other frameworks. */
-#include "bgt60-conf.hpp"
+/*
+ * As this library works with multiple frameworks,
+ * this part is needed to avoid trying to compile
+ * this example from other frameworks.
+ */
+#include "../../../config/bgt60-conf.hpp"
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 
 // Include library header
@@ -46,94 +46,62 @@
 #include <stdint.h>
 
 //  Define GPIO pins that will be connected to shield
-#define Pin_1  15
-#define Pin_2  16
+#define TD  15
+#define PD  16
 
-// Function declaration for motion detection
-void Detect_motion();
+/* Create radar object with following arguments:
+ *  TD : Target Detect Pin
+ *  PD : Phase Detect Pin */
+Bgt60Rpi radarShield(TD, PD);
 
-// Flag to control the motion sensing
-bool StartMotionSensing = 1;
-
-/* Create radar object with following arguements:
- *  Pin_1 : Target Detect Pin (TD)
- *  Pin_2 : Phase Detect Pin  (PD) 
- *  Mode  : Set mode of acquiring sensor data as MODE_POLLING */
-Bgt60Rpi bgt60rpi(Pin_1, Pin_2, Bgt60Rpi::MODE_POLLING);
-
-// Begin main
 int main(int argc, char const *argv[])
 {
     printf(" ***** Begin Motion Detection example ***** \n");
     // Configures the GPIO pins to input mode
-    Error_t init_status = bgt60rpi.init();
-    // Check if init was successful
-    if (OK != init_status)
-    {
-        printf(" Initialization failed! \n");
-        return 0;
+    Error_t init_status = radarShield.init();
+    /* Check if the initialization was successful */
+    if (OK != init_status) {
+        Serial.println("Init failed.");
+        return 1;
     }
-    else
-    {
-        printf(" Initialization successful! \n");
-        // If all initializations have been successful, then start motion sensing
-        while(StartMotionSensing)
-            Detect_motion();
-        printf(" ***** Example execution completed ***** \n");
+    else {
+        Serial.println("Init successful.");
     }
-}
 
-/**
- * @brief           Motion Detection Function
- * @details         This function handles the logic to detect a moving target. 
- *                  It can display results in case of three types of event:
- *                      1. When it detects a moving target
- *                      2. When there is no moving target 
- *                      3. When there is a configuration error
- */
-void Detect_motion()
-{
-    // Initialize the variable to NOT_AVAILABLE to record new events
-    Bgt60::Motion_t MotionDetectStatus = Bgt60Rpi::NOT_AVAILABLE;
-    /* The getMotion() API does two things: 
-        1. Returns  success or failure to detect moving object as a message of type Error_t.
-           Any value other than OK indicates failure
-        2. Sets recent event in "MotionDetectStatus" variable. Events can be: MOTION, NO_MOTION or NOT_AVAILABLE */
-    Error_t err = bgt60rpi.getMotion(MotionDetectStatus);
-    // Check if API execution is successful
-    if(err == OK)
-    {
-        // Cases based on value set in MotionDetectStatus variable
-        switch (MotionDetectStatus)
+    while(1) {
+
+        /* Initialize the variable to NO_MOTION to be able to record new events */
+        Bgt60::Motion_t motion = Bgt60::NO_MOTION;
+
+        /* The getMotion() API does two things:
+            1. Returns the success or failure to detect moving object as a message of type Error_t.
+            Any value other than OK indicates failure
+            2. Sets recent event in "motion" variable. Events can be: NO_MOTION or MOTION */
+        Error_t err = radarShield.getMotion(motion);
+
+        /* Check if API execution is successful */
+        if(err == OK)
         {
-            //  Variable "MotionDetectStatus" is set to MOTION when moving target is detected
-            case Bgt60Rpi::MOTION:
-                printf(" Target in motion Detected! \n");
-                // Stop sensing. If you want to continuously track the moving target set this value to 1
-                StartMotionSensing = 0;
-                break;
-            //  Variable "MotionDetectStatus" is set to NO_MOTION when moving target is not sensed
-            case Bgt60Rpi::NO_MOTION:
-                printf(" No one's there!\n");
-                // Check until moving target is detected
-                StartMotionSensing = 1;
-                break;
-            //  Variable "MotionDetectStatus" is set to NOT_AVAILABLE when no data is available
-            case Bgt60Rpi::NOT_AVAILABLE:
-                printf(" Sorry! Data unavailable. Check configuration \n");
-                // Cannot detect further without fixing the config issue
-                StartMotionSensing = 0;
-                break;
-            default:
-                printf(" Waiting for sensor to detect target movement...\n");
+            /* Cases based on value set in motion variable */
+            switch (motion)
+            {
+                /* Variable "motion" is set to MOTION when moving target is detected */
+                case Bgt60::MOTION:
+                    printf("Target in motion detected!\n");
+                    break;
+                /*  Variable "motion" is set to NO_MOTION when moving target is not present */
+                case Bgt60::NO_MOTION:
+                    printf("No target in motion detected.\n");
+                    break;
+            }
         }
-    }
-    // API execution returned error
-    else
-    {
-        printf(" Error occured!");
-        StartMotionSensing = 0;
-        return;
+        /*  API execution returned error */
+        else {
+            printf("Error occurred!\n");
+        }
+
+        /* Reducing the frequency of the measurements */
+        delay(500);
     }
 }
 
