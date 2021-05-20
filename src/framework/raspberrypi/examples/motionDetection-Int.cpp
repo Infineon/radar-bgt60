@@ -34,14 +34,14 @@
  * SPDX-License-Identifier: MIT
  */
 
+/* This library works with multiple frameworks and hence these guards are 
+ *  necessary to avoid compiling this example for other frameworks. */
+#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
+
 // Include library header
 #include "bgt60-rpi.hpp"
 #include <stdio.h>
 #include <stdint.h>
-
-/* This library works with multiple frameworks and hence these guards are 
- *  necessary to avoid compiling this example for other frameworks. */
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 
 //  Define GPIO pins that will be connected to shield
 #define Pin_1  15
