@@ -4,7 +4,7 @@
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the direction of motion of an object
  * \details     This example demonstrates how to detect the direction of a moving object while the
- *              shield is connected to Arduino form-factored boards.
+ *              BGT60LTR11AIP shield is connected to Arduino MKR form-factored boards.
  *
  *              ▶ Connection details:
  *              --------------------------------------------------
@@ -16,7 +16,7 @@
  *              Vin                 VCC
  *              --------------------------------------------------
  *
- *              ▶ Decoding on-board Red LED output
+ *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield
  *              - Red LED indicates the output of direction of motion once target is detected
  *              ---------------------------------------------
  *              LED    State    Output explanation
@@ -45,7 +45,7 @@ Bgt60Ino radarShield(TD, PD);
 void setup()
 {
     /* Set the baud rate for sending messages to the serial monitor */
-    Serial.begin(115200);
+    Serial.begin(9600);
     /* Configures the GPIO pins */
     Error_t init_status = radarShield.init();
     /* Check if the initialization was successful */
@@ -81,7 +81,7 @@ void loop()
             case Bgt60::DEPARTING:
                 Serial.println("Target is departing!");
                 break;
-            /* Variable "direction" is set to NO_DIR when no motion was detected*/
+            /* Variable "direction" is set to NO_DIR when no motion was detected */
             case Bgt60::NO_DIR:
                 Serial.println("Direction cannot be determined since no motion was detected!");
                 break;

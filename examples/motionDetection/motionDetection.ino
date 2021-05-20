@@ -3,12 +3,13 @@
  * \author      Infineon Technologies AG
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the motion of an object
- * \details     This example demonstrates how to detect a moving object while the shield is connected to
- *              Arduino form-factored boards using polling method.
+ * \details     This example demonstrates how to detect a moving object while the
+ *              BGT60LTR11AIP shield is connected to Arduino MKR form-factored
+ *              boards using polling method.
  *
  *              ▶ Connection details:
  *              --------------------------------------------------
- *              Pin on shield   Connected to pin on Arduino Makr
+ *              Pin on shield   Connected to pin on Arduino MKR1000
  *              --------------------------------------------------
  *              TD                  16 (A1)
  *              PD                  17 (A2)
@@ -16,7 +17,7 @@
  *              Vin                 VCC
  *              --------------------------------------------------
  *
- *              ▶ Decoding on-board Green LED output
+ *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield
  *              - Green LED indicates the output of target in motion detection (TD)
  *              ---------------------------------------------
  *              LED    State    Output explanation
@@ -38,9 +39,6 @@
 /* Include Arduino platform header */
 #include <bgt60-platf-ino.hpp>
 
-/* Definition of a delay to reduce the measurement frequency */
-#define MEASDELAY 500
-
 /* Create radar object and specify GPIO pins as the two parameters */
 Bgt60Ino radarShield(TD, PD);
 
@@ -48,7 +46,7 @@ Bgt60Ino radarShield(TD, PD);
 void setup()
 {
     /* Set the baud rate for sending messages to the serial monitor */
-    Serial.begin(115200);
+    Serial.begin(9600);
     /* Configures the GPIO pins */
     Error_t init_status = radarShield.init();
     /* Check if the initialization was successful */
@@ -91,6 +89,6 @@ void loop()
     }
 
     /* Reducing the frequency of the measurements */
-    delay(MEASDELAY);
+    delay(500);
 }
 #endif /** BGT60_FRAMEWORK **/

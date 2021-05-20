@@ -4,8 +4,8 @@
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example shows how to use the interrupt functionality
  * \details     This example demonstrates how to detect motion and the direction
- *              of a moving object with the help of interrupts while the shield is
- *              connected to Arduino form-factored boards.
+ *              of a moving object with the help of interrupts while the BGT60LTR11AIP
+ *              shield is connected to Arduino MKR form-factored boards.
  *
  *              ▶ Connection details:
  *              --------------------------------------------------
@@ -17,7 +17,7 @@
  *              Vin                 VCC
  *              --------------------------------------------------
  *
- *              ▶ Decoding on-board Red LED output
+ *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield
  *              - Red LED indicates the output of direction of motion once target is detected
  *              ---------------------------------------------
  *              LED    State    Output explanation
@@ -63,7 +63,7 @@ void cBackFunct(void *)
 void setup()
 {
     /* Set the baud rate for sending messages to the serial monitor */
-    Serial.begin(115200);
+    Serial.begin(9600);
     /* Configures the GPIO pins */
     Error_t init_status = radarShield.init();
     /* Enable the interrupts */
