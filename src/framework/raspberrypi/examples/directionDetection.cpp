@@ -1,12 +1,12 @@
 /*!
- * \name        motionDetection
+ * \name        directionDetection
  * \author      Infineon Technologies AG
  * \copyright   2021 Infineon Technologies AG
- * \brief       This example detects the motion of an object using polling mode
- * \details     This example demonstrates how to detect a moving object while the shield is
- *              connected to RaspberryPi using polling method. As soon as a moving target is
- *              detected, the code execution ends.
- * 
+ * \brief       This example detects the direction of motion of an object using polling method
+ * \details     This example demonstrates how to detect the direction of a moving object while the
+ *              BGT60LTR11AIP shield is connected to a Raspberry Pi using polling method.
+ *              The code is programmed to first detect a moving object followed by its direction of motion.
+ *
  *              ▶ Connection details:
  *              -----------------------------------------------------
  *              Pin on shield   Connected to pin on Raspberry Pi 4B
@@ -62,52 +62,58 @@ Bgt60Rpi radarShield(TD, PD);
 
 int main(int argc, char const *argv[])
 {
-    printf(" ***** Begin Motion Detection example ***** \n");
-    // Configures the GPIO pins to input mode
+    // Configures the GPIO pins as input mode
     Error_t init_status = radarShield.init();
-    /* Check if the initialization was successful */
-    if (OK != init_status) {
-        Serial.println("Init failed.");
+    // Check if the initialization was successful
+    if (OK != init_status)
+    {
+        printf("Init failed.\n");
         return 1;
     }
-    else {
-        Serial.println("Init successful.");
+    else
+    {
+        printf("Init successful.\n");
     }
 
     while(1) {
 
-        /* Initialize the variable to NO_MOTION to be able to record new events */
-        Bgt60::Motion_t motion = Bgt60::NO_MOTION;
+        // Initialize the variable to NO_INFORMATION to record new events
+        Bgt60Rpi::Direction_t direction = Bgt60Rpi::NO_DIR;
 
-        /* The getMotion() API does two things:
-            1. Returns the success or failure to detect moving object as a message of type Error_t.
+        /* The getDirection() API does two things:
+            1. Returns the success or failure to detect direction of object as a message of type Error_t.
             Any value other than OK indicates failure
-            2. Sets recent event in "motion" variable. Events can be: NO_MOTION or MOTION */
-        Error_t err = radarShield.getMotion(motion);
-
-        /* Check if API execution is successful */
-        if(err == OK)
+            2. Sets recent event in "direction" variable. Events can be: APPROACHING, DEPARTING or NO_DIR */
+        Error_t err = bgt60rpi.getDirection(direction);
+        
+        // Check if API execution is successful
+        if (err == OK)
         {
-            /* Cases based on value set in motion variable */
-            switch (motion)
+            /* Cases based on value set in direction variable */
+            switch (direction)
             {
-                /* Variable "motion" is set to MOTION when moving target is detected */
-                case Bgt60::MOTION:
-                    printf("Target in motion detected!\n");
+                /* Variable "direction" is set to APPROACHING when target is moving closer to sensor */
+                case Bgt60::APPROACHING:
+                    printf("Target is approaching!\n");
                     break;
-                /*  Variable "motion" is set to NO_MOTION when moving target is not present */
-                case Bgt60::NO_MOTION:
-                    printf("No target in motion detected.\n");
+                /* Variable "direction" is set to DEPARTING when target is moving away from sensor */
+                case Bgt60::DEPARTING:
+                    printf("Target is departing!\n");
+                    break;
+                /* Variable "direction" is set to NO_DIR when no motion was detected */
+                case Bgt60::NO_DIR:
+                    printf("Direction cannot be determined since no motion was detected.\n");
                     break;
             }
         }
-        /*  API execution returned error */
-        else {
+        /* API execution returned error */
+        else{
             printf("Error occurred!\n");
         }
 
         /* Reducing the frequency of the measurements */
         delay(500);
+
     }
 }
 
