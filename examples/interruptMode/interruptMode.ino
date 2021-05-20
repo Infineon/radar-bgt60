@@ -61,15 +61,23 @@ void setup()
 {
     /* Set the baud rate for sending messages to the serial monitor */
     Serial.begin(9600);
-    /* Configures the GPIO pins */
+    // Configures the GPIO pins to input mode
     Error_t init_status = radarShield.init();
+    /* Check if the initialization was successful */
+    if (OK != init_status) {
+        Serial.println("Init failed.");
+    }
+    else {
+        Serial.println("Init successful.");
+    }
+
     /* Enable the interrupts */
     init_status = radarShield.enableInterrupt(cBackFunct);
-    /* Check if the initialization was successful */
+    /* Check if the interrupt init was successful */
     if (OK != init_status)
-        Serial.println("Init failed");
+        Serial.println("Interrupt init failed.");
     else
-        Serial.println("Init successful");
+        Serial.println("Interrupt init successful.");
 }
 
 /* Beginn loop function - this part of code is executed continuously until external termination */
@@ -85,6 +93,7 @@ void loop()
         /* Now check what happend, first check if a motion was detected or is
            not detected anymore */
         Error_t err = radarShield.getMotion(motion);
+        
         /* Check if API execution is successful */
         if(OK == err)
         {
