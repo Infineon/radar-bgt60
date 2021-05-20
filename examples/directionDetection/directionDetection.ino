@@ -37,10 +37,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-/* This library works with multiple frameworks and hence these guards are
-   necessary to avoid compiling this example for other frameworks */
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
-
 #include <Arduino.h>
 /* Include library main header */
 #include <bgt60-ino.hpp>
