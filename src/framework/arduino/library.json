@@ -1,10 +1,10 @@
 {
-    "name":"60ghz-radar",
+    "name":"radar-bgt60",
     "keywords":"radar, sensor, shield2go, 60ghz, infineon",
     "description":"C++ library for the BGT60LTR11AIP - XENSIV™ 60 GHz Radar from Infineon",
     "repository":{
        "type":"git",
-       "url":"", // TODO: Final URL has to be added
+       "url":"https://github.com/Infineon/arduino-radar-bgt60.git",
        "branch":"master"
     },
     "version":"1.0.0",
