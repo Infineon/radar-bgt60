@@ -125,7 +125,7 @@ Error_t GPIOIno::disable()
  * @return      BGT60 error code
  * @retval      OK
  */
-Error_t GPIOIno::enableInt(void (*cback) (void *), IntEvent_t mode)
+Error_t GPIOIno::enableInt(void (*cback) (void), IntEvent_t mode)
 {
 	switch(mode)
 	{

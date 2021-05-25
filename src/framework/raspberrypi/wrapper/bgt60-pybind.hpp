@@ -21,13 +21,5 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-bool int_flag = 0;
-
-void cBackF(void *){
-	
-    // Set flag to access python cback
-    int_flag = 1;
-}
-
 #endif /** BGT60_FRAMEWORK **/
 #endif /** BGT60_PYBIND_HPP_ **/

@@ -57,7 +57,7 @@ Bgt60Ino radarShield(TD, PD);
 volatile static bool intFlag = false;
 
 /* User defined callback function */
-void cBackFunct(void *)
+void cBackFunct(void)
 {
     intFlag = true;
 }

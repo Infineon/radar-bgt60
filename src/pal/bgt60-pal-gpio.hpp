@@ -117,7 +117,7 @@ class GPIO
          * @retval      OK if success
          * @retval      INTF_ERROR if error
          */
-        virtual Error_t     enableInt   (void (*cback) (void *), IntEvent_t mode) = 0;
+        virtual Error_t     enableInt   (void (*cback) (void), IntEvent_t mode) = 0;
 
 		 /**
          * @brief       Disables the GPIO hardware interrupt

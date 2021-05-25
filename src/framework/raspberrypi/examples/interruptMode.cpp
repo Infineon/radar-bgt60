@@ -56,6 +56,11 @@
 #include <stdio.h>
 #include <stdint.h>
 
+
+/**
+ * TODO: This example needs rework to adapt to new API. Not compiling!!!!
+ */
+
 //  Define GPIO pins that will be connected to shield
 #define TD  15
 #define PD  16
@@ -64,7 +69,7 @@
  *  TD : Target Detect Pin
  *  PD : Phase Detect Pin
  *  Mode  : Set mode of acquiring sensor data as MODE_INTERRUPT */
-Bgt60Rpi radarShield(TD, PD, Bgt60Rpi::MODE_INTERRUPT);
+Bgt60Rpi radarShield(TD, PD);
 
 // Begin main
 int main(int argc, char const *argv[])

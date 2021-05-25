@@ -202,7 +202,7 @@ Error_t Bgt60::getDirection(Direction_t &direction)
  * @retval      INTF_ERROR if interface error
  * @pre         init()
  */
-Error_t Bgt60::enableInterrupt(void (*cback) (void *))
+Error_t Bgt60::enableInterrupt(void (*cback) (void))
 {
     Error_t err = OK;
 

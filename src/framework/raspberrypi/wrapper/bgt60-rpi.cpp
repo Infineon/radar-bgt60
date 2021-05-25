@@ -38,4 +38,16 @@ Bgt60Rpi::~Bgt60Rpi()
 
 }
 
+/**
+ * @brief       Enable interrupt
+ * @param[in]   cback   Pointer to the interrupt callback function 
+ * 
+ * @note        Convenience function to ease pybind11 wrapping of void pointer
+ *              argument functions
+ */
+Error_t Bgt60Rpi::enableInterrupt(std::function<void(void)> &cback)
+{
+    return Bgt60::enableInterrupt((void(*)(void))(&cback));
+}
+
 #endif /** BGT60_FRAMEWORK */

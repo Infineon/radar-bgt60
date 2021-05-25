@@ -45,7 +45,7 @@ class Bgt60
         Error_t     deinit();
         Error_t     getMotion(Motion_t &motion);
         Error_t     getDirection(Direction_t &direction); 
-        Error_t     enableInterrupt(void (*cback) (void *));
+        Error_t     enableInterrupt(void (*cback) (void));
         Error_t     disableInterrupt(void);
 
     private:

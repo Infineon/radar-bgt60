@@ -11,6 +11,7 @@
 #define BGT60_RPI_HPP_
 
 #include "../../../config/bgt60-conf.hpp"
+#include <functional>
 
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 #include <stdint.h>
@@ -23,6 +24,8 @@ class Bgt60Rpi : public Bgt60
     public:
             Bgt60Rpi(uint8_t targetDet, uint8_t phaseDet);
             ~Bgt60Rpi();
+
+            Error_t enableInterrupt(std::function<void(void)> &cback);
 
     private:
             GPIORpi * tDetPin;
