@@ -7,11 +7,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "bgt60-pybind.hpp"
-
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
-#define STRINGIFY(x) #x
-#define MACRO_STRINGIFY(x) STRINGIFY(x)
+#include "bgt60.hpp"
+#include "bgt60-rpi.hpp"
+#include <pybind11/functional.h>
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 namespace py = pybind11;
 
@@ -55,4 +55,3 @@ PYBIND11_MODULE(bgt60_py, m) {
 
 
 }
-#endif /** BGT60_FRAMEWORK **/

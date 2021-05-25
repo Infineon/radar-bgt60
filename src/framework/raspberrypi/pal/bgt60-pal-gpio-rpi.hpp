@@ -9,10 +9,6 @@
 #ifndef BGT60_PAL_GPIO_RPI_HPP_ 
 #define BGT60_PAL_GPIO_RPI_HPP_
 
-#include "../../../config/bgt60-conf.hpp"
-
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
-
 #include "bgt60-pal-gpio.hpp"
 #include <wiringPi.h>
 #include <stdint.h>
@@ -50,5 +46,4 @@ class GPIORpi : virtual public GPIO
 
 /** @} */
 
-#endif /** BGT60_FRAMEWORK **/
 #endif /** BGT60_PAL_GPIO_RPI_HPP_ **/

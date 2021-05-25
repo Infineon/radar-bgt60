@@ -11,7 +11,7 @@
 #define BGT60_PAL_TIMER_HPP_
 
 #include <stdint.h>
-#include "../corelib/bgt60-types.hpp"
+#include "bgt60-types.hpp"
 
 namespace bgt60
 {

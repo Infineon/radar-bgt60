@@ -14,9 +14,6 @@
 #ifndef BGT60_CONF_OPTS_HPP_
 #define BGT60_CONF_OPTS_HPP_
 
-#define BGT60_FRMWK_ARDUINO   0x01U
-#define BGT60_FRMWK_RPI       0x02U
-
 /** @} */
 
 #endif /** BGT60_CONF_OPTS_HPP_ **/

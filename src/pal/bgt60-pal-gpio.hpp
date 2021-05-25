@@ -10,7 +10,7 @@
 #ifndef BGT60_PAL_GPIO_HPP_
 #define BGT60_PAL_GPIO_HPP_
 
-#include "../corelib/bgt60-types.hpp"
+#include "bgt60-types.hpp"
 
 namespace bgt60
 {

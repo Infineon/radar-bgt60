@@ -9,8 +9,6 @@
 
 #include "bgt60-pal-timer-ino.hpp"
 
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
-
 /**
  * @brief Timer Ino constructor
  */
@@ -118,5 +116,3 @@ inline Error_t TimerIno::delay(const uint32_t timeout)
 
     return OK;
 }
-
-#endif /** BGT60_FRAMEWORK **/

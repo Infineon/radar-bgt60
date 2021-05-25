@@ -10,8 +10,8 @@
 #ifndef BGT60_HPP_
 #define BGT60_HPP_
 
-#include "../config/bgt60-conf.hpp"
-#include "../pal/bgt60-pal-gpio.hpp"
+#include "bgt60-conf.hpp"
+#include "bgt60-pal-gpio.hpp"
 #include <stdint.h>
 
 using namespace bgt60;

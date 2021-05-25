@@ -9,8 +9,6 @@
 
 #include "bgt60-ino.hpp"
 
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
-
 using namespace bgt60;
 
 /**
@@ -66,5 +64,3 @@ Error_t Bgt60Ino::end()
 
     return err;
 }
-
-#endif /** BGT60_FRAMEWORK */

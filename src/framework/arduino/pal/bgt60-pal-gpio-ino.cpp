@@ -7,7 +7,6 @@
  */
 
 #include "bgt60-pal-gpio-ino.hpp"
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 #include <Arduino.h>
 
 /**
@@ -192,4 +191,3 @@ inline GPIOIno::IntEvent_t GPIOIno::intEvent()
     return edge;
 }
 
-#endif /** BGT60_FRAMEWORK **/

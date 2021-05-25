@@ -43,19 +43,10 @@
  * SPDX-License-Identifier: MIT
  */
 
-/*
- * As this library works with multiple frameworks,
- * this part is needed to avoid trying to compile
- * this example from other frameworks.
- */
-#include "../../../config/bgt60-conf.hpp"
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
-
 // Include library header
 #include "bgt60-rpi.hpp"
 #include <stdio.h>
 #include <stdint.h>
-
 
 /**
  * TODO: This example needs rework to adapt to new API. Not compiling!!!!
@@ -131,5 +122,3 @@ int main(int argc, char const *argv[])
         }
     }
 }
-
-#endif /** BGT60_FRAMEWORK **/

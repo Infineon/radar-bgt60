@@ -7,7 +7,6 @@
  */
 
 #include "bgt60-pal-gpio-rpi.hpp"
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 
 /**
  * @brief       GPIO Rpi constructor
@@ -215,5 +214,3 @@ inline Error_t GPIORpi::disable()
     }
     return OK;
 }
-
-#endif /** BGT60_FRAMEWORK **/

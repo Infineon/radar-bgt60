@@ -10,15 +10,11 @@
 #ifndef BGT60_INO_HPP_
 #define BGT60_INO_HPP_
 
-#include "./config/bgt60-conf.hpp"
-
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
-
 #include <Arduino.h>
 #include <stdint.h>
 
-#include "corelib/bgt60.hpp"
-#include "framework/arduino/pal/bgt60-pal-gpio-ino.hpp"
+#include "bgt60.hpp"
+#include "bgt60-pal-gpio-ino.hpp"
 
 class Bgt60Ino : public Bgt60
 {
@@ -34,5 +30,4 @@ class Bgt60Ino : public Bgt60
         GPIOIno * pDetPin;
 };
 
-#endif /** BGT60_FRMWK_ARDUINO */
 #endif /** BGT60_INO_HPP_ */

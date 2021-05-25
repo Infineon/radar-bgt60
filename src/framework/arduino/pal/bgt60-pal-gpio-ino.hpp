@@ -9,11 +9,8 @@
 #ifndef BGT60_PAL_GPIO_INO_HPP_
 #define BGT60_PAL_GPIO_INO_HPP_
 
-#include "../../../config/bgt60-conf.hpp"
-
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 #include <stdint.h>
-#include "../../../pal/bgt60-pal-gpio.hpp"
+#include "bgt60-pal-gpio.hpp"
 /**
  * @addtogroup bgtinopal
  * @{
@@ -46,5 +43,4 @@ public:
 
 /** @} */
 
-#endif /** BGT60_FRAMEWORK **/
 #endif /** BGT60_PAL_GPIO_INO_HPP_ **/

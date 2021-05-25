@@ -9,8 +9,6 @@
 
 #include "bgt60-rpi.hpp"
 
-
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 using namespace bgt60;
 
 /**
@@ -49,5 +47,3 @@ Error_t Bgt60Rpi::enableInterrupt(std::function<void(void)> &cback)
 {
     return Bgt60::enableInterrupt((void(*)(void))(&cback));
 }
-
-#endif /** BGT60_FRAMEWORK */

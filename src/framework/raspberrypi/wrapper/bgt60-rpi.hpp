@@ -10,14 +10,12 @@
 #ifndef BGT60_RPI_HPP_
 #define BGT60_RPI_HPP_
 
-#include "../../../config/bgt60-conf.hpp"
 #include <functional>
 
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
 #include <stdint.h>
 
 #include "bgt60.hpp"
-#include "../pal/bgt60-pal-gpio-rpi.hpp"
+#include "bgt60-pal-gpio-rpi.hpp"
 
 class Bgt60Rpi : public Bgt60
 {
@@ -32,5 +30,4 @@ class Bgt60Rpi : public Bgt60
             GPIORpi * pDetPin;
 };
 
-#endif /**BGT60_FRAMEWORK*/
 #endif /**BGT60_RPI_HPP_*/

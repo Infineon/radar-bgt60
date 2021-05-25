@@ -12,10 +12,6 @@
 
 #include "bgt60-conf-opts.hpp"
 
-#ifndef BGT60_FRAMEWORK
-#error "BGT60 error: Framwork undefined"        /**< BGT60 framework must be define in conf.hpp or at compilation */
-#endif
-
 #ifndef BGT60_LOGGER_ENABLED
 #define BGT60_LOGGER_ENABLED    0
 #endif

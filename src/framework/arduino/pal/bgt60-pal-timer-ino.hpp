@@ -10,12 +10,8 @@
 #ifndef BGT60_PAL_TIMER_INO_HPP_
 #define BGT60_PAL_TIMER_INO_HPP_
 
-#include "../../../config/bgt60-conf.hpp"
-
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
-
 #include <Arduino.h>
-#include "../../../pal/bgt60-pal-timer.hpp"
+#include "bgt60-pal-timer.hpp"
 
 using namespace bgt60;
 
@@ -43,5 +39,4 @@ class TimerIno: virtual public Timer
 
 /** @} */
 
-#endif /** BGT60_FRAMEWORK **/
 #endif /** BGT60_PAL_TIMER_INO_HPP_ **/

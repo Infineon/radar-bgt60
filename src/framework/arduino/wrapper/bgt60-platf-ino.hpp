@@ -19,10 +19,6 @@
 #ifndef BGT60_PLATF_INO_HPP_
 #define BGT60_PLATF_INO_HPP_
 
-#include "./config/bgt60-conf.hpp"
-
-#if(BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
-
 #include <Arduino.h>
 
 #ifdef ARDUINO_SAMD_MKR1000                 /**< Arduino MKR1000 */
@@ -56,7 +52,5 @@ Please make sure you're using a platform that is officially \
 supported by the library. Have a look in the Wiki for more information."
 
 #endif
-
-#endif /** BGT60_FRAMEWORK */
 
 #endif /** BGT60_PLATF_INO_HPP_ */

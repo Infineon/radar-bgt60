@@ -4,6 +4,12 @@ project(bgt60_py)
 
 set(CMAKE_CXX_FLAGS "-DBGT60_FRAMEWORK=BGT60_FRMWK_RPI")
 
+# Search for include Files
+include_directories(
+    pal/
+    wrapper/
+)
+
 set(Headers
     pal/
     wrapper/
