@@ -44,9 +44,17 @@
 /* Include Arduino platform header */
 #include <bgt60-platf-ino.hpp>
 
-//  Define GPIO pins that will be connected to shield
-#define TD  16
-#define PD  17
+/*
+* In case no supported platform is defined, the
+* PD and TD pin will be set to the values below.
+*/
+#ifndef TD
+#define TD  15
+#endif
+
+#ifndef PD
+#define PD  16
+#endif
 
 /* Create radar object with following arguments:
  *  TD : Target Detect Pin

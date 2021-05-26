@@ -11,9 +11,9 @@
 #define BGT60_RPI_HPP_
 
 #include "../../../config/bgt60-conf.hpp"
-#include <functional>
 
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_RPI)
+#include <functional>
 #include <stdint.h>
 
 #include "bgt60.hpp"
