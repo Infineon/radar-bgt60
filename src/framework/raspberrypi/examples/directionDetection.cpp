@@ -7,7 +7,7 @@
  *              BGT60LTR11AIP shield is connected to a Raspberry Pi using polling method.
  *              The code is programmed to first detect a moving object followed by its direction of motion.
  *
- *              ▶ Connection details:
+ *              Connection details:
  *              -----------------------------------------------------
  *              Pin on shield   Connected to pin on Raspberry Pi 4B
  *              -----------------------------------------------------
@@ -17,7 +17,7 @@
  *              Vin                      3.3V       (board 1)
  *              -----------------------------------------------------
  *
- *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield:
+ *              Decoding on-board LED output of BGT60LTR11AIP shield:
  * 
  *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------

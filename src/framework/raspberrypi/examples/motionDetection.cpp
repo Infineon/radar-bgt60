@@ -4,10 +4,10 @@
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the motion of an object using polling mode
  * \details     This example demonstrates how to detect a moving object while the shield is
- *              connected to RaspberryPi using polling method. As soon as a moving target is
+ *              connected to Raspberry Pi using polling method. As soon as a moving target is
  *              detected, the code execution ends.
  * 
- *              ▶ Connection details:
+ *              Connection details:
  *              -----------------------------------------------------
  *              Pin on shield   Connected to pin on Raspberry Pi 4B
  *              -----------------------------------------------------
@@ -17,7 +17,7 @@
  *              Vin                      3.3V       (board 1)
  *              -----------------------------------------------------
  *
- *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield:
+ *              Decoding on-board LED output of BGT60LTR11AIP shield:
  * 
  *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------

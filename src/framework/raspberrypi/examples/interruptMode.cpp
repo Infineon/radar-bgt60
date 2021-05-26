@@ -7,7 +7,7 @@
  *              of a moving object with the help of interrupts while the BGT60LTR11AIP
  *              shield is connected to a Raspberry Pi board using interrupts.
  * 
- *              ▶ Connection details:
+ *              Connection details:
  *              ----------------------------------------------------
  *              Pin on shield   Connected to pin on Raspberry Pi
  *              ----------------------------------------------------
@@ -17,12 +17,12 @@
  *              Vin                     3V3               
  *              ----------------------------------------------------
  * 
- *              ▶ Interrupt mode of acquiring Radar data:
+ *              Interrupt mode of acquiring Radar data:
  *              - MODE_INTERRUPT : In this mode, an interrupt is generated in case the direction of
  *                  moving target is detected. Once the ISR in library is served, the callback function
  *                  will be executed that sets variables to identify motion direction.
  * 
- *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield:
+ *              Decoding on-board LED output of BGT60LTR11AIP shield:
  * 
  *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------

@@ -5,19 +5,19 @@
  * \brief       This example shows how to use the interrupt functionality
  * \details     This example demonstrates how to detect motion and the direction
  *              of a moving object with the help of interrupts while the BGT60LTR11AIP
- *              shield is connected to Arduino MKR form-factored boards.
+ *              shield is connected to Arduino compatible boards.
  *
- *              ▶ Connection details:
+ *              Connection details:
  *              --------------------------------------------------
- *              Pin on shield   Connected to pin on Arduino MKR1000
+ *              Pin on shield   Connected to pin on Arduino
  *              --------------------------------------------------
- *              TD                  16 (A1)
- *              PD                  17 (A2)
+ *              TD                  depends on Arduino board
+ *              PD                  depends on Arduino board
  *              GND                 GND
- *              Vin                 VCC
+ *              Vin                 VCC (3.3V or 5V - depends on Arduino board)
  *              --------------------------------------------------
  *
- *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield:
+ *              Decoding on-board LED output of BGT60LTR11AIP shield:
  * 
  *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------
