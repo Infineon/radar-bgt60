@@ -96,7 +96,7 @@ class CMakeBuild(build_ext):
             ["cmake", ext.sourcedir] + cmake_args, cwd=self.build_temp
         )
         subprocess.check_call(
-            ["cmake", "--build", "./../../../", "--target", "bgt60_py"] + build_args, cwd=self.build_temp
+            ["cmake", "--build", ".", "--target", "bgt60_py"] + build_args, cwd=self.build_temp
         )
 
 # The information here can also be placed in setup.cfg - better separation of
