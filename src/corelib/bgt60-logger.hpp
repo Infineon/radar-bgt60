@@ -10,7 +10,7 @@
 #ifndef BGT60_LOGGER_HPP_
 #define BGT60_LOGGER_HPP_
 
-#include "bgt60-conf.hpp"
+#include "../config/bgt60-conf.hpp"
 
 #if (BGT60_LOGGER_ENABLED == 1)
 
@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
-#include "bgt60-pal-logger.hpp"
+#include "../pal/bgt60-pal-logger.hpp"
 
 namespace bgt60
 {

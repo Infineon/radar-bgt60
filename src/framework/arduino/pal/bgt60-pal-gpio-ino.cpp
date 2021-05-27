@@ -10,7 +10,6 @@
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 #include <Arduino.h>
 
-#include "bgt60-pal-gpio.hpp"
 /**
  * @brief 		Constructor of the Arduino GPIO class
  * @details		This function is setting the basics for a GPIO.
@@ -126,7 +125,7 @@ Error_t GPIOIno::disable()
  * @return      BGT60 error code
  * @retval      OK
  */
-Error_t GPIOIno::enableInt(void (*cback) (void *), IntEvent_t mode)
+Error_t GPIOIno::enableInt(void (*cback) (void), IntEvent_t mode)
 {
 	switch(mode)
 	{

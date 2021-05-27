@@ -10,7 +10,7 @@
 #ifndef BGT60_PAL_GPIO_HPP_
 #define BGT60_PAL_GPIO_HPP_
 
-#include "bgt60-types.hpp"
+#include "../corelib/bgt60-types.hpp"
 
 namespace bgt60
 {
@@ -117,7 +117,7 @@ class GPIO
          * @retval      OK if success
          * @retval      INTF_ERROR if error
          */
-        virtual Error_t     enableInt   (void (*cback) (void *), IntEvent_t mode) = 0;
+        virtual Error_t     enableInt   (void (*cback) (void), IntEvent_t mode) = 0;
 
 		 /**
          * @brief       Disables the GPIO hardware interrupt

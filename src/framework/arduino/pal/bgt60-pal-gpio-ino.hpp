@@ -8,11 +8,12 @@
 
 #ifndef BGT60_PAL_GPIO_INO_HPP_
 #define BGT60_PAL_GPIO_INO_HPP_
-#include <stdint.h>
-#include "bgt60-conf.hpp"
+
+#include "../../../config/bgt60-conf.hpp"
 
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
-#include "bgt60-pal-gpio.hpp"
+#include <stdint.h>
+#include "../../../pal/bgt60-pal-gpio.hpp"
 /**
  * @addtogroup bgtinopal
  * @{
@@ -38,7 +39,7 @@ public:
 	Error_t     write(VLevel_t level);
 	Error_t     enable();
 	Error_t     disable();
-	Error_t     enableInt(void (*cback) (void *), IntEvent_t mode);
+	Error_t     enableInt(void (*cback) (void), IntEvent_t mode);
 	Error_t   	disableInt();
 	IntEvent_t  intEvent();
 };

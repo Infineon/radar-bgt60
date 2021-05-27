@@ -15,7 +15,7 @@
 #if (BGT60_LOGGER_ENABLED == 1)
 
 #include <stdint.h>
-#include "bgt60-types.hpp"
+#include "../corelib/bgt60-types.hpp"
 
 namespace bgt60
 {

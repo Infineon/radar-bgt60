@@ -10,8 +10,8 @@
 #ifndef BGT60_HPP_
 #define BGT60_HPP_
 
-#include "bgt60-conf.hpp"
-#include "bgt60-pal-gpio.hpp"
+#include "../config/bgt60-conf.hpp"
+#include "../pal/bgt60-pal-gpio.hpp"
 #include <stdint.h>
 
 using namespace bgt60;
@@ -45,7 +45,7 @@ class Bgt60
         Error_t     deinit();
         Error_t     getMotion(Motion_t &motion);
         Error_t     getDirection(Direction_t &direction); 
-        Error_t     enableInterrupt(void (*cback) (void *));
+        Error_t     enableInterrupt(void (*cback) (void));
         Error_t     disableInterrupt(void);
 
     private:

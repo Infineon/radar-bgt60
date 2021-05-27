@@ -4,20 +4,21 @@
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the direction of motion of an object
  * \details     This example demonstrates how to detect the direction of a moving object while the
- *              shield is connected to Arduino form-factored boards.
+ *              BGT60LTR11AIP shield is connected to Arduino compatible boards.
  *
- *              ▶ Connection details:
+ *              Connection details:
  *              --------------------------------------------------
- *              Pin on shield   Connected to pin on Arduino MKR1000
+ *              Pin on shield   Connected to pin on Arduino
  *              --------------------------------------------------
- *              TD                  16 (A1)
- *              PD                  17 (A2)
+ *              TD                  depends on Arduino board
+ *              PD                  depends on Arduino board
  *              GND                 GND
- *              Vin                 VCC
+ *              Vin                 VCC (3.3V or 5V - depends on Arduino board)
  *              --------------------------------------------------
  *
- *              ▶ Decoding on-board Red LED output
- *              - Red LED indicates the output of direction of motion once target is detected
+ *              Decoding on-board LED output of BGT60LTR11AIP shield:
+ * 
+ *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------
  *              LED    State    Output explanation
  *              ---------------------------------------------
@@ -25,12 +26,16 @@
  *                      OFF      Approaching target
  *              ---------------------------------------------
  *
+ *              - Green LED indicates the output of target in motion detection (TD)
+ *              ---------------------------------------------
+ *              LED    State    Output explanation
+ *              ---------------------------------------------
+ *              Green    ON       Moving target detected
+ *                       OFF      No target detected
+ *              ---------------------------------------------
+ *
  * SPDX-License-Identifier: MIT
  */
-
-/* This library works with multiple frameworks and hence these guards are
-   necessary to avoid compiling this example for other frameworks */
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 
 #include <Arduino.h>
 /* Include library main header */
@@ -38,21 +43,37 @@
 /* Include Arduino platform header */
 #include <bgt60-platf-ino.hpp>
 
-/* Create radar object and specify GPIO pins as the two parameters */
+/*
+* In case no supported platform is defined, the
+* PD and TD pin are set to the values below.
+*/
+#ifndef TD
+#define TD  15
+#endif
+
+#ifndef PD
+#define PD  16
+#endif
+
+/* Create radar object with following arguments:
+ *  TD : Target Detect Pin
+ *  PD : Phase Detect Pin */
 Bgt60Ino radarShield(TD, PD);
 
 /* Begin setup function - takes care of initialization and executes only once post reset */
 void setup()
 {
     /* Set the baud rate for sending messages to the serial monitor */
-    Serial.begin(115200);
-    /* Configures the GPIO pins */
+    Serial.begin(9600);
+    // Configures the GPIO pins to input mode
     Error_t init_status = radarShield.init();
     /* Check if the initialization was successful */
-    if (OK != init_status)
-        Serial.println("Init failed");
-    else
-        Serial.println("Init successful");
+    if (OK != init_status) {
+        Serial.println("Init failed.");
+    }
+    else {
+        Serial.println("Init successful.");
+    }
 }
 
 /* Begin loop function - this part of code is executed continuously until external termination */
@@ -68,7 +89,7 @@ void loop()
     Error_t err = radarShield.getDirection(direction);
 
     /* Check if API execution is successful */
-    if(err == OK)
+    if (err == OK)
     {
         /* Cases based on value set in direction variable */
         switch (direction)
@@ -81,7 +102,7 @@ void loop()
             case Bgt60::DEPARTING:
                 Serial.println("Target is departing!");
                 break;
-            /* Variable "direction" is set to NO_DIR when no motion was detected*/
+            /* Variable "direction" is set to NO_DIR when no motion was detected */
             case Bgt60::NO_DIR:
                 Serial.println("Direction cannot be determined since no motion was detected!");
                 break;
@@ -95,4 +116,3 @@ void loop()
     /* Reducing the frequency of the measurements */
     delay(500);
 }
-#endif /** BGT60_FRAMEWORK **/

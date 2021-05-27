@@ -3,20 +3,30 @@
  * \author      Infineon Technologies AG
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the motion of an object
- * \details     This example demonstrates how to detect a moving object while the shield is connected to
- *              Arduino form-factored boards using polling method.
+ * \details     This example demonstrates how to detect a moving object while the
+ *              BGT60LTR11AIP shield is connected to Arduino compatible
+ *              boards using polling method.
  *
- *              ▶ Connection details:
+ *              Connection details:
  *              --------------------------------------------------
- *              Pin on shield   Connected to pin on Arduino Makr
+ *              Pin on shield   Connected to pin on Arduino
  *              --------------------------------------------------
- *              TD                  16 (A1)
- *              PD                  17 (A2)
+ *              TD                  depends on Arduino board
+ *              PD                  depends on Arduino board
  *              GND                 GND
- *              Vin                 VCC
+ *              Vin                 VCC (3.3V or 5V - depends on Arduino board)
  *              --------------------------------------------------
  *
- *              ▶ Decoding on-board Green LED output
+ *              Decoding on-board LED output of BGT60LTR11AIP shield:
+ * 
+ *              - Red LED indicates the output of direction of motion once target is detected (PD)
+ *              ---------------------------------------------
+ *              LED    State    Output explanation
+ *              ---------------------------------------------
+ *              Red     ON       Departing target
+ *                      OFF      Approaching target
+ *              ---------------------------------------------
+ *
  *              - Green LED indicates the output of target in motion detection (TD)
  *              ---------------------------------------------
  *              LED    State    Output explanation
@@ -28,34 +38,43 @@
  * SPDX-License-Identifier: MIT
  */
 
-/* This library works with multiple frameworks and hence these guards are
-   necessary to avoid compiling this example for other frameworks */
-#if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
-
 #include <Arduino.h>
 /* Include library main header */
 #include <bgt60-ino.hpp>
 /* Include Arduino platform header */
 #include <bgt60-platf-ino.hpp>
 
-/* Definition of a delay to reduce the measurement frequency */
-#define MEASDELAY 500
+/*
+* In case no supported platform is defined, the
+* PD and TD pin will be set to the values below.
+*/
+#ifndef TD
+#define TD  15
+#endif
 
-/* Create radar object and specify GPIO pins as the two parameters */
+#ifndef PD
+#define PD  16
+#endif
+
+/* Create radar object with following arguments:
+ *  TD : Target Detect Pin
+ *  PD : Phase Detect Pin */
 Bgt60Ino radarShield(TD, PD);
 
 /* Begin setup function - takes care of initializations and executes only once post reset */
 void setup()
 {
     /* Set the baud rate for sending messages to the serial monitor */
-    Serial.begin(115200);
-    /* Configures the GPIO pins */
+    Serial.begin(9600);
+    // Configures the GPIO pins to input mode
     Error_t init_status = radarShield.init();
     /* Check if the initialization was successful */
-    if (OK != init_status)
-        Serial.println("Init failed");
-    else
-        Serial.println("Init successful");
+    if (OK != init_status) {
+        Serial.println("Init failed.");
+    }
+    else {
+        Serial.println("Init successful.");
+    }
 }
 
 /* Begin loop function - this part of code is executed continuously until external termination */
@@ -69,6 +88,7 @@ void loop()
            Any value other than OK indicates failure
         2. Sets recent event in "motion" variable. Events can be: NO_MOTION or MOTION */
     Error_t err = radarShield.getMotion(motion);
+
     /* Check if API execution is successful */
     if(err == OK)
     {
@@ -81,16 +101,15 @@ void loop()
                 break;
             /*  Variable "motion" is set to NO_MOTION when moving target is not present */
             case Bgt60::NO_MOTION:
-                Serial.println("No target in motion detected!");
+                Serial.println("No target in motion detected.");
                 break;
         }
     }
     /*  API execution returned error */
-    else{
+    else {
         Serial.println("Error occurred!");
     }
 
     /* Reducing the frequency of the measurements */
-    delay(MEASDELAY);
+    delay(500);
 }
-#endif /** BGT60_FRAMEWORK **/

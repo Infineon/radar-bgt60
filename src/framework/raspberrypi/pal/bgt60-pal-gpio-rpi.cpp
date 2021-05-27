@@ -84,7 +84,7 @@ Error_t GPIORpi::deinit()
  * @retval      OK if success
  * @retval      INTF_ERROR if error
  */
-Error_t GPIORpi::enableInt(void (*cback) (void *), IntEvent_t mode) 
+Error_t GPIORpi::enableInt(void (*cback) (void), IntEvent_t mode) 
 {
     Error_t err = OK;
     switch(mode)
