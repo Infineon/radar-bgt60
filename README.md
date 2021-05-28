@@ -2,7 +2,7 @@
 
 <!-- ![arduino build]() -->
 
-C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AiP.
+C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AIP.
 
 ## Supported Products
 
@@ -11,7 +11,7 @@ C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AiP.
         <td><img src="docs/img/bgt60-without-background.png" width=300></td>
     </tr>
     <tr>
-        <td style="text-align: center"><a href="">BGT60LTR11AiP Shield for Arduino</a></td> <!-- TODO: Add link to the wiki and maybe change the picture -->
+        <td style="text-align: center"><a href="">BGT60LTR11AIP Shield for Arduino</a></td> <!-- TODO: Add link to the wiki and maybe change the picture -->
     </tr>
 </table>
 
