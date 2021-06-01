@@ -94,7 +94,7 @@ int main(int argc, char const *argv[])
     }
 
     /* Enable the interrupts */
-    init_status = radarShield.enableInterrupt(&cBackFunct);
+    init_status = radarShield.enableInterrupt(cBackFunct);
 
     /* Check if the interrupt init was successful */
     if (OK != init_status) {

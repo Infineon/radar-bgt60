@@ -25,6 +25,7 @@ class Bgt60Rpi : public Bgt60
             Bgt60Rpi(uint8_t targetDet, uint8_t phaseDet);
             ~Bgt60Rpi();
 
+            using Bgt60::enableInterrupt;
             Error_t enableInterrupt(std::function<void(void)> &cback);
 
     private:
