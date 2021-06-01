@@ -66,52 +66,64 @@
  *  Mode  : Set mode of acquiring sensor data as MODE_INTERRUPT */
 Bgt60Rpi radarShield(TD, PD);
 
+/* Definition and initialization of the interrupt active flag */
+volatile static bool intActive = false;
+
 void cBackFunct(void)
 {
-    /* Create variables to store the state of the motion as well as the direction */
-    Bgt60::Motion_t motion = Bgt60::NO_MOTION;
-    Bgt60::Direction_t direction = Bgt60::NO_DIR;
+    if ( ! intActive ) {
 
-    /* Now check what happend, first check if a motion was detected or is
-    not detected anymore */
-    Error_t err = radarShield.getMotion(motion);
+        /* Set the interrupt active flag to avoid parallel execution of this function multiple times. */
+        intActive = true;
 
-    /* Check if API execution is successful */
-    if(OK == err)
-    {
-        /* In case motion is detected */
-        if(Bgt60::MOTION == motion){
-            printf("Target in motion was detected!\n");
+        /* Create variables to store the state of the motion as well as the direction */
+        Bgt60::Motion_t motion = Bgt60::NO_MOTION;
+        Bgt60::Direction_t direction = Bgt60::NO_DIR;
 
-            /* Check the direction of the detected motion */
-            err = radarShield.getDirection(direction);
-            if(OK == err)
-            {
-                /* In case the target is approaching */
-                if(Bgt60::APPROACHING == direction){
-                    printf("The target is approaching!\n");
+        /* Now check what happend, first check if a motion was detected or is
+        not detected anymore */
+        Error_t err = radarShield.getMotion(motion);
+
+        /* Check if API execution is successful */
+        if(OK == err)
+        {
+            /* In case motion is detected */
+            if(Bgt60::MOTION == motion){
+                printf("Target in motion was detected!\n");
+
+                /* Check the direction of the detected motion */
+                err = radarShield.getDirection(direction);
+                if(OK == err)
+                {
+                    /* In case the target is approaching */
+                    if(Bgt60::APPROACHING == direction){
+                        printf("The target is approaching!\n");
+                    }
+                    /* In case the target is departing */
+                    else{
+                        printf("The target is departing!\n");
+                    }
                 }
-                /* In case the target is departing */
+                /* API execution returned error */
                 else{
-                    printf("The target is departing!\n");
+                    printf("Error has occurred during the determination of the direction!\n");
                 }
             }
-            /* API execution returned error */
+            /* No motion is detected */
             else{
-                printf("Error has occurred during the determination of the direction!\n");
+                printf("No target in motion detected!\n");
             }
         }
-        /* No motion is detected */
+        /* API execution returned errord */
         else{
-            printf("No target in motion detected!\n");
+            printf("Error has occurred during the determination of the direction!\n");
         }
-    }
-    /* API execution returned errord */
-    else{
-        printf("Error has occurred during the determination of the direction!\n");
-    }
 
-    printf("\n--------------------------------------\n\n");
+        printf("\n--------------------------------------\n\n");
+
+        /* Release the interrupt active flag to allow a new call of this callback function. */
+        intActive = false;
+    }
 }
 
 int main(int argc, char const *argv[])

@@ -61,53 +61,65 @@
  *  PD : Phase Detect Pin */
 Bgt60Ino radarShield(TD, PD);
 
+/* Definition and initialization of the interrupt active flag */
+volatile static bool intActive = false;
+
 /* User defined callback function */
 void cBackFunct(void)
 {
-    /* Create variables to store the state of the motion as well as the direction */
-    Bgt60::Motion_t motion = Bgt60::NO_MOTION;
-    Bgt60::Direction_t direction = Bgt60::NO_DIR;
+    if ( ! intActive ) {
 
-    /* Now check what happend, first check if a motion was detected or is
-    not detected anymore */
-    Error_t err = radarShield.getMotion(motion);
-    
-    /* Check if API execution is successful */
-    if(OK == err)
-    {
-        /* In case motion is detected */
-        if(Bgt60::MOTION == motion){
-            Serial.println("Target in motion was detected!");
+        /* Set the interrupt active flag to avoid parallel execution of this function multiple times. */
+        intActive = true;
 
-            /* Check the direction of the detected motion */
-            err = radarShield.getDirection(direction);
-            if(OK == err)
-            {
-                /* In case the target is approaching */
-                if(Bgt60::APPROACHING == direction){
-                    Serial.println("The target is approaching!");
+        /* Create variables to store the state of the motion as well as the direction */
+        Bgt60::Motion_t motion = Bgt60::NO_MOTION;
+        Bgt60::Direction_t direction = Bgt60::NO_DIR;
+
+        /* Now check what happend, first check if a motion was detected or is
+        not detected anymore */
+        Error_t err = radarShield.getMotion(motion);
+
+        /* Check if API execution is successful */
+        if(OK == err)
+        {
+            /* In case motion is detected */
+            if(Bgt60::MOTION == motion){
+                Serial.println("Target in motion was detected!");
+
+                /* Check the direction of the detected motion */
+                err = radarShield.getDirection(direction);
+                if(OK == err)
+                {
+                    /* In case the target is approaching */
+                    if(Bgt60::APPROACHING == direction){
+                        Serial.println("The target is approaching!");
+                    }
+                    /* In case the target is departing */
+                    else{
+                        Serial.println("The target is departing!");
+                    }
                 }
-                /* In case the target is departing */
+                /* API execution returned error */
                 else{
-                    Serial.println("The target is departing!");
+                    Serial.println("Error has occurred during the determination of the direction!");
                 }
             }
-            /* API execution returned error */
+            /* No motion is detected */
             else{
-                Serial.println("Error has occurred during the determination of the direction!");
+                Serial.println("No target in motion detected!");
             }
         }
-        /* No motion is detected */
-        else{
-            Serial.println("No target in motion detected!");
+        /* API execution returned errord */
+        else {
+            Serial.println("Error has occurred during the determination of the direction!");
         }
+
+        Serial.println("\n--------------------------------------\n");
+
+        /* Release the interrupt active flag to allow a new call of this callback function. */
+        intActive = false;
     }
-    /* API execution returned errord */
-    else {
-        Serial.println("Error has occurred during the determination of the direction!");
-    }
-    
-    Serial.println("\n--------------------------------------\n");
 }
 
 /* Begin setup function - take care of initializations and executes only once post reset */
