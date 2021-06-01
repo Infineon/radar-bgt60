@@ -11,16 +11,11 @@
  *              ----------------------------------------------------
  *              Pin on shield   Connected to pin on Raspberry Pi
  *              ----------------------------------------------------
- *              TD                      15                          
- *              PD                      16
- *              GND                     GND
- *              Vin                     3V3               
+ *              TD                      WiringPi 15 (header 8)
+ *              PD                      WiringPi 16 (header 10)
+ *              GND                     GND         (e.g. header 6)
+ *              Vin                     3.3V        (e.g. header 1)
  *              ----------------------------------------------------
- * 
- *              Interrupt mode of acquiring Radar data:
- *              - MODE_INTERRUPT : In this mode, an interrupt is generated in case the direction of
- *                  moving target is detected. Once the ISR in library is served, the callback function
- *                  will be executed that sets variables to identify motion direction.
  * 
  *              Decoding on-board LED output of BGT60LTR11AIP shield:
  * 
@@ -71,19 +66,59 @@
  *  Mode  : Set mode of acquiring sensor data as MODE_INTERRUPT */
 Bgt60Rpi radarShield(TD, PD);
 
-/* Definition and initialization of the interrupt flag */
-volatile static bool intFlag = false;
-
 void cBackFunct(void)
 {
-    intFlag = true;
+    /* Create variables to store the state of the motion as well as the direction */
+    Bgt60::Motion_t motion = Bgt60::NO_MOTION;
+    Bgt60::Direction_t direction = Bgt60::NO_DIR;
+
+    /* Now check what happend, first check if a motion was detected or is
+    not detected anymore */
+    Error_t err = radarShield.getMotion(motion);
+
+    /* Check if API execution is successful */
+    if(OK == err)
+    {
+        /* In case motion is detected */
+        if(Bgt60::MOTION == motion){
+            printf("Target in motion was detected!\n");
+
+            /* Check the direction of the detected motion */
+            err = radarShield.getDirection(direction);
+            if(OK == err)
+            {
+                /* In case the target is approaching */
+                if(Bgt60::APPROACHING == direction){
+                    printf("The target is approaching!\n");
+                }
+                /* In case the target is departing */
+                else{
+                    printf("The target is departing!\n");
+                }
+            }
+            /* API execution returned error */
+            else{
+                printf("Error has occurred during the determination of the direction!\n");
+            }
+        }
+        /* No motion is detected */
+        else{
+            printf("No target in motion detected!\n");
+        }
+    }
+    /* API execution returned errord */
+    else{
+        printf("Error has occurred during the determination of the direction!\n");
+    }
+
+    printf("\n--------------------------------------\n\n");
 }
 
-// Begin main
 int main(int argc, char const *argv[])
 {
     // Configures the GPIO pins to input mode
     Error_t init_status = radarShield.init();
+    
     /* Check if the initialization was successful */
     if (OK != init_status) {
         printf("Init failed.\n");
@@ -107,53 +142,8 @@ int main(int argc, char const *argv[])
 
     while(true)
     {
-
-        /* Create variables to store the state of the motion as well as the direction */
-        Bgt60::Motion_t motion = Bgt60::NO_MOTION;
-        Bgt60::Direction_t direction = Bgt60::NO_DIR;
-
-        // Wait for motion detection isr to complete recording motion events
-        if(true == intFlag)
-        {
-            /* Now check what happend, first check if a motion was detected or is
-            not detected anymore */
-            Error_t err = radarShield.getMotion(motion);
-
-            /* Check if API execution is successful */
-            if(OK == err)
-            {
-                /* In case motion is detected */
-                if(Bgt60::MOTION == motion){
-                    printf("Target in motion was detected!\n");
-
-                    /* Check the direction of the detected motion */
-                    err = radarShield.getDirection(direction);
-                    if(OK == err)
-                    {
-                        /* In case the target is approaching */
-                        if(Bgt60::APPROACHING == direction){
-                            printf("The target is approaching!\n");
-                        }
-                        /* In case the target is departing */
-                        else{
-                            printf("The target is departing!\n");
-                        }
-                    }
-                    /* API execution returned error */
-                    else{
-                        printf("Error has occurred during the determination of the direction!\n");
-                    }
-                }
-                /* No motion is detected */
-                else{
-                    printf("No target in motion detected!\n");
-                }
-            }
-            /* API execution returned errord */
-            else{
-                printf("Error has occurred during the determination of the direction!\n");
-            }
-        }
+        // Here you can do something else in parallel while waiting for an interrupt.
+        delay(1000);
     }
 }
 
