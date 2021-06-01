@@ -61,9 +61,6 @@
  *  PD : Phase Detect Pin */
 Bgt60Ino radarShield(TD, PD);
 
-/* Definition and initialization of the interrupt flag */
-volatile static bool intFlag = false;
-
 /* User defined callback function */
 void cBackFunct(void)
 {
@@ -99,18 +96,15 @@ void cBackFunct(void)
             else{
                 Serial.println("Error has occurred during the determination of the direction!");
             }
-            intFlag = false;
         }
         /* No motion is detected */
         else{
             Serial.println("No target in motion detected!");
-            intFlag = false;
         }
     }
     /* API execution returned errord */
     else {
         Serial.println("Error has occurred during the determination of the direction!");
-        intFlag = false;
     }
     
     Serial.println("\n--------------------------------------\n");
