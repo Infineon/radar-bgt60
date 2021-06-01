@@ -71,6 +71,14 @@
  *  Mode  : Set mode of acquiring sensor data as MODE_INTERRUPT */
 Bgt60Rpi radarShield(TD, PD);
 
+/* Definition and initialization of the interrupt flag */
+volatile static bool intFlag = false;
+
+void cBackFunct(void)
+{
+    intFlag = true;
+}
+
 // Begin main
 int main(int argc, char const *argv[])
 {
@@ -84,49 +92,66 @@ int main(int argc, char const *argv[])
     else {
         printf("Init successful.\n");
     }
-        while(true)
+
+    /* Enable the interrupts */
+    init_status = radarShield.enableInterrupt(&cBackFunct);
+
+    /* Check if the interrupt init was successful */
+    if (OK != init_status) {
+        printf("Interrupt init failed.\n");
+        return 1;
+    }
+    else {
+        printf("Interrupt init successful.\n");
+    }
+
+    while(true)
+    {
+
+        /* Create variables to store the state of the motion as well as the direction */
+        Bgt60::Motion_t motion = Bgt60::NO_MOTION;
+        Bgt60::Direction_t direction = Bgt60::NO_DIR;
+
+        // Wait for motion detection isr to complete recording motion events
+        if(true == intFlag)
         {
-            // Wait for motion detection isr to complete recording motion events
-            if(radarShield.available)
+            /* Now check what happend, first check if a motion was detected or is
+            not detected anymore */
+            Error_t err = radarShield.getMotion(motion);
+
+            /* Check if API execution is successful */
+            if(OK == err)
             {
-                /* Now check what happend, first check if a motion was detected or is
-                not detected anymore */
-                Error_t err = radarShield.getMotion(motion);
+                /* In case motion is detected */
+                if(Bgt60::MOTION == motion){
+                    printf("Target in motion was detected!\n");
 
-                /* Check if API execution is successful */
-                if(OK == err)
-                {
-                    /* In case motion is detected */
-                    if(Bgt60::MOTION == motion){
-                        printf("Target in motion was detected!\n");
-
-                        /* Check the direction of the detected motion */
-                        err = radarShield.getDirection(direction);
-                        if(OK == err)
-                        {
-                            /* In case the target is approaching */
-                            if(Bgt60::APPROACHING == direction){
-                                printf("The target is approaching!\n");
-                            }
-                            /* In case the target is departing */
-                            else{
-                                printf("The target is departing!\n");
-                            }
+                    /* Check the direction of the detected motion */
+                    err = radarShield.getDirection(direction);
+                    if(OK == err)
+                    {
+                        /* In case the target is approaching */
+                        if(Bgt60::APPROACHING == direction){
+                            printf("The target is approaching!\n");
                         }
-                        /* API execution returned error */
+                        /* In case the target is departing */
                         else{
-                            printf("Error has occurred during the determination of the direction!\n");
+                            printf("The target is departing!\n");
                         }
                     }
-                    /* No motion is detected */
+                    /* API execution returned error */
                     else{
-                        printf("No target in motion detected!\n");
+                        printf("Error has occurred during the determination of the direction!\n");
                     }
                 }
-                /* API execution returned errord */
+                /* No motion is detected */
                 else{
-                    printf("Error has occurred during the determination of the direction!\n");
+                    printf("No target in motion detected!\n");
                 }
+            }
+            /* API execution returned errord */
+            else{
+                printf("Error has occurred during the determination of the direction!\n");
             }
         }
     }
