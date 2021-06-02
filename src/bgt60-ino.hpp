@@ -20,6 +20,11 @@
 #include "corelib/bgt60.hpp"
 #include "framework/arduino/pal/bgt60-pal-gpio-ino.hpp"
 
+/**
+ * \addtogroup inoApi
+ * @{
+ */
+
 class Bgt60Ino : public Bgt60
 {
     public:
@@ -33,6 +38,8 @@ class Bgt60Ino : public Bgt60
         GPIOIno * tDetPin;
         GPIOIno * pDetPin;
 };
+
+/** @} */
 
 #endif /** BGT60_FRMWK_ARDUINO */
 #endif /** BGT60_INO_HPP_ */

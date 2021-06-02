@@ -19,6 +19,11 @@
 #include "bgt60.hpp"
 #include "../pal/bgt60-pal-gpio-rpi.hpp"
 
+/**
+ * \addtogroup rpiAPi
+ * @{
+ */
+
 class Bgt60Rpi : public Bgt60
 {
     public:
@@ -31,6 +36,8 @@ class Bgt60Rpi : public Bgt60
             GPIORpi * tDetPin;
             GPIORpi * pDetPin;
 };
+
+/** @}  */
 
 #endif /**BGT60_FRAMEWORK*/
 #endif /**BGT60_RPI_HPP_*/

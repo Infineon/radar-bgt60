@@ -25,6 +25,11 @@
 
 #include <Arduino.h>
 
+/**
+ * \addtogroup platfIno
+ * @{
+ */
+
 #ifdef ARDUINO_SAMD_MKR1000                 /**< Arduino MKR1000 */
 
 #define TD  16
@@ -56,6 +61,8 @@ Please make sure you're using a platform that is officially \
 supported by the library. Have a look in the Wiki for more information."
 
 #endif
+
+/** @} */
 
 #endif /** BGT60_FRAMEWORK */
 
