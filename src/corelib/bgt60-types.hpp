@@ -13,7 +13,7 @@
 namespace bgt60
 {
     /**
-    * @addtogroup bgttypes
+    * \addtogroup bgt60api
     * @{
     */
 
@@ -21,6 +21,7 @@ namespace bgt60
     * @name   Error codes
     * @{
     */
+
     enum Error_t
     {
         OK          =  0,    /**< No error */
@@ -29,6 +30,9 @@ namespace bgt60
         READ_ERROR  = -3,    /**< Read error */
         WRITE_ERROR = -4,    /**< Write error */
     };
+
+    /** @} */
+
     /** @} */
 }
 

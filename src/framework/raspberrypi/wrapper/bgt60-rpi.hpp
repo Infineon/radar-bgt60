@@ -19,6 +19,11 @@
 #include "bgt60.hpp"
 #include "../pal/bgt60-pal-gpio-rpi.hpp"
 
+/**
+ * \addtogroup rpiAPi
+ * @{
+ */
+
 class Bgt60Rpi : public Bgt60
 {
     public:
@@ -51,6 +56,8 @@ class Bgt60Rpi : public Bgt60
 
             static void * registerCBack(StdFnCBack_t cback);
 };
+
+/** @}  */
 
 #endif /**BGT60_FRAMEWORK*/
 #endif /**BGT60_RPI_HPP_*/

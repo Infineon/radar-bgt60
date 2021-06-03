@@ -77,6 +77,8 @@ class Timer
          */
         virtual  Error_t         delay   (const uint32_t timeout) = 0;
 };
+
 /** @} */
+
 }
 #endif /** BGT60_PAL_TIMER_HPP_ **/

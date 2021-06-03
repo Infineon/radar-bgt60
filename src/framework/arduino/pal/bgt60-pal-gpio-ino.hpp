@@ -1,8 +1,8 @@
-/** 
+/**
  * @file        gpio-arduino.hpp
- * @brief       Radar BGT 60GHz GPIO Arduino PAL  
+ * @brief       Radar BGT 60GHz GPIO Arduino PAL
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -14,8 +14,9 @@
 #if (BGT60_FRAMEWORK == BGT60_FRMWK_ARDUINO)
 #include <stdint.h>
 #include "../../../pal/bgt60-pal-gpio.hpp"
+
 /**
- * @addtogroup bgtinopal
+ * \addtogroup inoPal
  * @{
  */
 

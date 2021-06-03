@@ -20,6 +20,11 @@
 namespace bgt60
 {
 
+/**
+ * \addtogroup pal
+ * @{
+ */
+
 class LoggerPAL
 {
     public:
@@ -50,6 +55,8 @@ class LoggerPAL
          */
         virtual Error_t write(const uint8_t * logData, uint32_t length) = 0;
 };
+
+/** @} */
 
 }
 
