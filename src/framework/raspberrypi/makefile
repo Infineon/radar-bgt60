@@ -47,7 +47,7 @@ LIB_DIRS := $(CORELIB_DIR) $(PAL_DIR) $(WRAPPER_DIR)
 
 .PHONY: default clean $(EXAMPLES)
 
-default: examples/bgt60-MotionDetection
+default: examples/motionDetection
 
 $(BUILD_DIR)/%.o: $(CORELIB_DIR)/%.cpp
 	@mkdir -p $(@D)

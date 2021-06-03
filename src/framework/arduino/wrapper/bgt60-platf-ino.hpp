@@ -21,6 +21,11 @@
 
 #include <Arduino.h>
 
+/**
+ * \addtogroup platfIno
+ * @{
+ */
+
 #ifdef ARDUINO_SAMD_MKR1000                 /**< Arduino MKR1000 */
 
 #define TD  16

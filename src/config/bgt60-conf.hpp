@@ -28,4 +28,6 @@
 
 #include "bgt60-conf-dfl.hpp"
 
+/** @} */
+
 #endif /** BGT60_CONF_HPP_ **/

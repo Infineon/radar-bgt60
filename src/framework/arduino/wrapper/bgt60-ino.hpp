@@ -16,6 +16,11 @@
 #include "bgt60.hpp"
 #include "bgt60-pal-gpio-ino.hpp"
 
+/**
+ * \addtogroup inoApi
+ * @{
+ */
+
 class Bgt60Ino : public Bgt60
 {
     public:

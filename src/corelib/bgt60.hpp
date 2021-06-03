@@ -16,6 +16,11 @@
 
 using namespace bgt60;
 
+/**
+ * \addtogroup bgt60api
+ * @{
+ */
+
 class Bgt60
 {
     public:
@@ -44,7 +49,7 @@ class Bgt60
         Error_t     init();
         Error_t     deinit();
         Error_t     getMotion(Motion_t &motion);
-        Error_t     getDirection(Direction_t &direction); 
+        Error_t     getDirection(Direction_t &direction);
         Error_t     enableInterrupt(void (*cback) (void));
         Error_t     disableInterrupt(void);
 
@@ -53,5 +58,7 @@ class Bgt60
         GPIO       * tDet;
         GPIO       * pDet;
 };
+
+/** @} */
 
 #endif /** BGT60_HPP_ **/

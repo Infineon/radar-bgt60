@@ -7,7 +7,7 @@
  */
 
 /**
- * @addtogroup bgt60frmw
+ * \addtogroup bgt60frmw
  * @{
  */
 

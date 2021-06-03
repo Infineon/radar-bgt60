@@ -11,11 +11,15 @@
 #define BGT60_RPI_HPP_
 
 #include <functional>
-
 #include <stdint.h>
 
 #include "bgt60.hpp"
 #include "bgt60-pal-gpio-rpi.hpp"
+
+/**
+ * \addtogroup rpiAPi
+ * @{
+ */
 
 class Bgt60Rpi : public Bgt60
 {
@@ -23,6 +27,7 @@ class Bgt60Rpi : public Bgt60
             Bgt60Rpi(uint8_t targetDet, uint8_t phaseDet);
             ~Bgt60Rpi();
 
+            using Bgt60::enableInterrupt;
             Error_t enableInterrupt(std::function<void(void)> &cback);
 
     private:

@@ -16,7 +16,7 @@
 using namespace bgt60;
 
 /**
- * @addtogroup bgtinopal
+ * \addtogroup inoPal
  * @{
  */
 

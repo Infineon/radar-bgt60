@@ -16,5 +16,6 @@
 #define BGT60_LOGGER_ENABLED    0
 #endif
 
+/** @} */
 
 #endif /** BGT60_CONF_DFL_HPP_ */

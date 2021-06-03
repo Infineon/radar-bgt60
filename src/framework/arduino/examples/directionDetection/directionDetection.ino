@@ -4,19 +4,19 @@
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the direction of motion of an object
  * \details     This example demonstrates how to detect the direction of a moving object while the
- *              BGT60LTR11AIP shield is connected to Arduino MKR form-factored boards.
+ *              BGT60LTR11AIP shield is connected to Arduino compatible boards.
  *
- *              ▶ Connection details:
+ *              Connection details:
  *              --------------------------------------------------
- *              Pin on shield   Connected to pin on Arduino MKR1000
+ *              Pin on shield   Connected to pin on Arduino
  *              --------------------------------------------------
- *              TD                  16 (A1)
- *              PD                  17 (A2)
+ *              TD                  depends on Arduino board
+ *              PD                  depends on Arduino board
  *              GND                 GND
- *              Vin                 VCC
+ *              Vin                 VCC (3.3V or 5V - depends on Arduino board)
  *              --------------------------------------------------
  *
- *              ▶ Decoding on-board LED output of BGT60LTR11AIP shield:
+ *              Decoding on-board LED output of BGT60LTR11AIP shield:
  * 
  *              - Red LED indicates the output of direction of motion once target is detected (PD)
  *              ---------------------------------------------
@@ -43,9 +43,17 @@
 /* Include Arduino platform header */
 #include <bgt60-platf-ino.hpp>
 
-//  Define GPIO pins that will be connected to shield
-#define TD  16
-#define PD  17
+/*
+* In case no supported platform is defined, the
+* PD and TD pin are set to the values below.
+*/
+#ifndef TD
+#define TD  15
+#endif
+
+#ifndef PD
+#define PD  16
+#endif
 
 /* Create radar object with following arguments:
  *  TD : Target Detect Pin

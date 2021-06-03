@@ -1,12 +1,12 @@
-/** 
+/**
  * @file        bgt60-pal-gpio.hpp
  * @brief       Radar BGT 60GHz GPIO RaspberryPi PAL
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef BGT60_PAL_GPIO_RPI_HPP_ 
+#ifndef BGT60_PAL_GPIO_RPI_HPP_
 #define BGT60_PAL_GPIO_RPI_HPP_
 
 #include "bgt60-pal-gpio.hpp"
@@ -15,11 +15,11 @@
 using namespace bgt60;
 
 /**
- * @addtogroup bgt60rpipal
+ * \addtogroup rpiPal
  * @{
  */
 
-class GPIORpi : virtual public GPIO 
+class GPIORpi : virtual public GPIO
 {
     private:
         #define     UNUSED_PIN    0xFF  /**< Unused pin */
