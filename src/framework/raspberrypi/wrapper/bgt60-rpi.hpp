@@ -17,7 +17,7 @@
 #include "bgt60-pal-gpio-rpi.hpp"
 
 /**
- * \addtogroup rpiAPi
+ * \addtogroup rpiApi
  * @{
  */
 
