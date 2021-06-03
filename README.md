@@ -1,4 +1,4 @@
-# 60 GHz Radar Library
+# BGT60 Radar Library
 
 <!-- ![arduino build]() -->
 
@@ -11,7 +11,7 @@ C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AIP.
         <td><img src="docs/img/bgt60-without-background.png" width=300></td>
     </tr>
     <tr>
-        <td style="text-align: center"><a href="">BGT60LTR11AIP Shield for Arduino</a></td> <!-- TODO: Add link to the wiki and maybe change the picture -->
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Hardware-Platforms#section">BGT60LTR11AIP Shield for Arduino</a></td>
     </tr>
 </table>
 
@@ -24,20 +24,20 @@ C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AIP.
         <td><img src="docs/img/cross-platform.png" width=200></td>
     </tr>
     <tr>
-        <td style="text-align: center"><a href="">Arduino API</a></td>
-        <td style="text-align: center"><a href="">RPi API<br>RPi Python API</a></td>
-        <td style="text-align: center"><a href="">BGT60 API</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Arduino-API">Arduino API</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Py-API">RPi API<br>RPi Python API</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/BGT60-API">BGT60 API</a></td>
     </tr>
     <tr>
-        <td style="text-align: center"><a href="">Getting Started</a></td>
-        <td style="text-align: center"><a href="">Getting Started C++</a><br><a href="">Getting Started Python</a></td>
-        <td style="text-align: center"><a href="">Porting Guide</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Ino-Getting-Started">Getting Started</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/RPi-Getting-Started">Getting Started C++</a><br><a href="">Getting Started Python</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Py-Getting-Started">Porting Guide</a></td>
     </tr>
 </table> <!-- TODO: Add all the missing links -->
 
 ## More Information
 
-The complete library and project documentation can be found in the [Wiki](). <!-- TODO: Add missing Wiki link -->
+The complete library and project documentation can be found in the [Wiki](https://github.com/Infineon/radar-bgt60/wiki).
 
 ## License
 
