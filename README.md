@@ -11,7 +11,7 @@ C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AIP.
         <td><img src="docs/img/bgt60-without-background.png" width=300></td>
     </tr>
     <tr>
-        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Hardware-Platforms#section">BGT60LTR11AIP Shield for Arduino</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Hardware-Platforms#radar-bgt60-pinout">BGT60LTR11AIP Shield for Arduino</a></td>
     </tr>
 </table>
 
@@ -30,7 +30,7 @@ C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AIP.
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Ino-Getting-Started">Getting Started</a></td>
-        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/RPi-Getting-Started">Getting Started C++</a><br><a href="https://github.com/Infineon/radar-bgt60/wiki/py-Getting-Started">Getting Started Python</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/RPi-Getting-Started">Getting Started C++</a><br><a href="https://github.com/Infineon/radar-bgt60/wiki/Py-Getting-Started">Getting Started Python</a></td>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Porting-Guide">Porting Guide</a></td>
     </tr>
 </table> <!-- TODO: Add all the missing links -->
