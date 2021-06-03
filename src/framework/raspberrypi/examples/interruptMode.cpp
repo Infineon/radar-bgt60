@@ -51,11 +51,6 @@
 #include <stdio.h>
 #include <stdint.h>
 
-
-/**
- * TODO: This example needs rework to adapt to new API. Not compiling!!!!
- */
-
 //  Define GPIO pins that will be connected to shield
 #define TD  15
 #define PD  16

@@ -26,11 +26,30 @@ class Bgt60Rpi : public Bgt60
             ~Bgt60Rpi();
 
             using Bgt60::enableInterrupt;
-            Error_t enableInterrupt(std::function<void(void)> &cback);
+            Error_t enableInterrupt(std::function<void(void)> & cback);
 
     private:
             GPIORpi * tDetPin;
             GPIORpi * pDetPin;
+        
+            /**
+             * Adapter of lambda functions to C pointers
+             */
+
+            typedef std::function<void(void)> StdFnCBack_t;
+            
+            static           uint8_t        idxNext;                   /**< Callback array allocation index*/
+            static constexpr uint8_t        maxCBacks = 5;             /**< Maximum number of callbacks (thus class instances) that can register an interrupt */
+            static           StdFnCBack_t   lambdaFnVector[maxCBacks]; /**< Lambda function vector */
+            static           void         * fnPtrVector [maxCBacks];   /**< Callbacks function handlers vector */
+
+            static void   wrappedCBackLambda0();
+            static void   wrappedCBackLambda1();
+            static void   wrappedCBackLambda2();
+            static void   wrappedCBackLambda3();
+            static void   wrappedCBackLambda4();
+
+            static void * registerCBack(StdFnCBack_t cback);
 };
 
 #endif /**BGT60_FRAMEWORK*/
