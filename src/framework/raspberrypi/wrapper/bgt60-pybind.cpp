@@ -52,6 +52,5 @@ PYBIND11_MODULE(bgt60_py, m) {
         bgt60rpi
         .def(py::init<uint8_t, uint8_t>())
         .def("enableInterrupt", static_cast< Error_t (Bgt60Rpi::*)(std::function<void(void)> &cback)>(&Bgt60Rpi::enableInterrupt), "Enable Interrupt");
-
-
+        
 }
