@@ -131,5 +131,3 @@ void * Bgt60Rpi::registerCBack(StdFnCBack_t   cback)
 
     return fPtr;
 }
-
-#endif /** BGT60_FRAMEWORK */
