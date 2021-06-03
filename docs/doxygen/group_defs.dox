@@ -1,0 +1,34 @@
+/**
+ * @defgroup bgt60corelib       Core Library
+ * @{
+ */
+
+/** @defgroup bgt60api          BGT60 API */
+/** @defgroup pal               Platform Abstraction Layer Interface */
+/** @} */
+
+/**
+ * @defgroup bgt60frmw          SW Frameworks
+ * @{
+ */
+
+    /**
+     * @defgroup bgt60ino       Arduino
+     * @{
+     */
+        /** @defgroup inoApi    BGT60 API */
+        /** @defgroup inoPal    PAL */
+        /** @defgroup platfIno  Arduino HW Platforms */
+    /** @} */
+
+    /**
+     * @defgroup bgt60rpi       RaspberryPi
+     * @{
+     */
+        /** @defgroup rpiApi    BGT60 API */
+        /** @defgroup rpiPal    PAL */
+        /** @defgroup platfRpi  RPi HW Platforms */
+    /** @} */
+
+/** @} */
+

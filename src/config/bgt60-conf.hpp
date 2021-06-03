@@ -12,6 +12,11 @@
 
 #include "bgt60-conf-opts.hpp"
 
+/**
+ * \addtogroup bgt60frmw
+ * @{
+ */
+
 #ifndef BGT60_FRAMEWORK
 #define BGT60_FRAMEWORK         BGT60_FRMWK_ARDUINO
 #endif
@@ -31,5 +36,7 @@
 #endif
 
 #include "bgt60-conf-dfl.hpp"
+
+/** @} */
 
 #endif /** BGT60_CONF_HPP_ **/

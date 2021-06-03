@@ -19,6 +19,7 @@ namespace bgt60
  * @addtogroup pal
  * @{
  */
+
 class GPIO
 {
 	public:
