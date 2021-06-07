@@ -1,7 +1,7 @@
 /**
  * @file        bgt60-rpi.hpp
  * @author      Infineon Technologies AG
- * @brief       Radar BGT60 RaspberryPi API
+ * @brief       Radar BGT60 Raspberry Pi API
  * @copyright   Copyright (c) 2021 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
