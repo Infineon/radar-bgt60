@@ -43,38 +43,38 @@ from time import sleep
 TD = 15
 PD = 16
 
-# Create radar object with following arguments:
+# Create radarShield object with following arguments:
 # TD : Target Detect Pin
 # PD : Phase Detect Pin
-radar = bgt60.Bgt60Rpi(TD, PD)
+radarShield = bgt60.Bgt60Rpi(TD, PD)
 
 # Configures the GPIO pins to input mode
-init_status = radar.init()
+init_status = radarShield.init()
 
 # Check if the initialization was successful
-if radar.OK != init_status:
+if radarShield.OK != init_status:
     print("Initialization failed!")
 else:
     print("Intialization successful!")
 
-# Initialize the variable to radar.NO_MOTION to be able to record new events
-motion = radar.NO_MOTION
+# Initialize the variable to radarShield.NO_MOTION to be able to record new events
+motion = radarShield.NO_MOTION
 
 while True:
     # The getMotion() API does two things:
     ## 1. Returns the success or failure to detect moving object as a message of type Error_t.
     ## Any value other than OK indicates failure
-    ## 2. Sets recent event in "motion" variable. Events can be: NO_MOTION or MOTION */
-    err = radar.getMotion(motion)
+    ## 2. Sets recent event in "motion" variable. Events can be: NO_MOTION or MOTION
+    err = radarShield.getMotion(motion)
     
     # Check if API execution is successful
-    if err == radar.OK:
-        # Variable "motion" is set to radar.MOTION when moving target is detected
-        if motion == radar.MOTION:
+    if err == radarShield.OK:
+        # Variable "motion" is set to radarShield.MOTION when moving target is detected
+        if motion == radarShield.MOTION:
             print("Target in motion detected!")
 
-        # Variable "motion" is set to radar.NO_MOTION when moving target is not present
-        elif motion == radar.NO_MOTION:
+        # Variable "motion" is set to radarShield.NO_MOTION when moving target is not present
+        elif motion == radarShield.NO_MOTION:
             print("No target in motion detected.")
                 
     # API execution returned error
