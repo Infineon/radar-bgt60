@@ -6,6 +6,7 @@
  * \details     This example demonstrates how to detect the direction of a moving object while the
  *              BGT60LTR11AIP shield is connected to a Raspberry Pi using polling method.
  *              The code is programmed to first detect a moving object followed by its direction of motion.
+ *              Press CTRL+C to end this example.
  *
  *              Connection details:
  *              -----------------------------------------------------
