@@ -49,7 +49,7 @@
 
 /* Create radar object with following arguments:
  *  TD : Target Detect Pin
- *  PD : Phase Detect Pin
+ *  PD : Phase Detect Pi
  *  Mode  : Set mode of acquiring sensor data as MODE_INTERRUPT */
 Bgt60Rpi radarShield(TD, PD);
 
@@ -67,8 +67,7 @@ void cBackFunct(void)
         Bgt60::Motion_t motion = Bgt60::NO_MOTION;
         Bgt60::Direction_t direction = Bgt60::NO_DIR;
 
-        /* Now check what happend, first check if a motion was detected or is
-        not detected anymore */
+        /* Now check what happend, first check if a motion was detected */
         Error_t err = radarShield.getMotion(motion);
 
         /* Check if API execution is successful */
@@ -101,7 +100,7 @@ void cBackFunct(void)
                 printf("No target in motion detected!\n");
             }
         }
-        /* API execution returned errord */
+        /* API execution returned error */
         else{
             printf("Error has occurred during the determination of the direction!\n");
         }
