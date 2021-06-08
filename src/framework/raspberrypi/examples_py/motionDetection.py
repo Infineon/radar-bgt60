@@ -1,49 +1,85 @@
-import bgt60_py as b
-Pin_1 = 15
-Pin_2 = 16
+'''
+ Name:        motionDetection
+ Author:      Infineon Technologies AG
+ Copyright:   2021 Infineon Technologies AG
+ Description: This example demonstrates how to detect a moving object while the shield is
+              connected to Raspberry Pi using polling method. Press CTRL+C to end this example.
+ 
+              Connection details:
+              -----------------------------------------------------
+              Pin on shield   Connected to pin on Raspberry Pi 4B
+              -----------------------------------------------------
+              TD                      WiringPi 15 (header 8)
+              PD                      WiringPi 16 (header 10)
+              GND                     GND         (e.g. header 6)
+              Vin                     3.3V        (e.g. header 1)
+              -----------------------------------------------------
 
-StartMotionSensing = 1
+              Decoding on-board LED output of BGT60LTR11AIP shield:
+ 
+              - Red LED indicates the output of direction of motion once target is detected (PD)
+              ---------------------------------------------
+              LED    State    Output explanation
+              ---------------------------------------------
+              Red     ON       Departing target
+                      OFF      Approaching target
+              ---------------------------------------------
 
-# Create Radar object
-radar = b.Bgt60Rpi(Pin_1,Pin_2)
+              - Green LED indicates the output of target in motion detection (TD)
+              ---------------------------------------------
+              LED    State    Output explanation
+              ---------------------------------------------
+              Green    ON       Moving target detected
+                       OFF      No target detected
+              ---------------------------------------------
 
-def Detect_motion(MotionDetectStatus,StartMotionSensing):
-    err = radar.getMotion(MotionDetectStatus)
-    #Check if API execution is successful
-    if err == radar.OK:
-        # Variable "MotionDetectStatus" is set to MOTION when moving target is detected
-        if radar.MOTION == MotionDetectStatus:
-            print(" Target in motion Detected! \n")
-            #Stop sensing. If you want to continuously track the moving target set this value to 1
-            StartMotionSensing = 0
-            return StartMotionSensing
-                
-        # Variable "MotionDetectStatus" is set to NO_MOTION when moving target is not sensed
-        elif MotionDetectStatus == radar.NO_MOTION:
-            print(" No one's there!\n")
-            #Check until moving target is detected
-            StartMotionSensing = 1
+ SPDX-License-Identifier: MIT
+'''
 
-        else:
-            print(" Sorry! Data unavailable. Check configuration \n")
-            StartMotionSensing = 0
+import bgt60_py as bgt60
+from time import sleep
+
+# Define GPIO pins that will be connected to the shield
+TD = 15
+PD = 16
+
+# Create radarShield object with following arguments:
+# TD : Target Detect Pin
+# PD : Phase Detect Pin
+radarShield = bgt60.Bgt60Rpi(TD, PD)
+
+# Configures the GPIO pins to input mode
+init_status = radarShield.init()
+
+# Check if the initialization was successful
+if radarShield.OK != init_status:
+    print("Initialization failed!")
+else:
+    print("Intialization successful!")
+
+# Initialize the variable to radarShield.NO_MOTION to be able to record new events
+motion = radarShield.NO_MOTION
+
+while True:
+    # The getMotion() API does two things:
+    ## 1. Returns the success or failure to detect moving object as a message of type Error_t.
+    ## Any value other than OK indicates failure
+    ## 2. Sets recent event in "motion" variable. Events can be: NO_MOTION or MOTION
+    err = radarShield.getMotion(motion)
+    
+    # Check if API execution is successful
+    if err == radarShield.OK:
+        # Variable "motion" is set to radarShield.MOTION when moving target is detected
+        if motion == radarShield.MOTION:
+            print("Target in motion detected!")
+
+        # Variable "motion" is set to radarShield.NO_MOTION when moving target is not present
+        elif motion == radarShield.NO_MOTION:
+            print("No target in motion detected.")
                 
     # API execution returned error
     else:
-        print(" Error occured!")
-        StartMotionSensing = 0
-    return
+        print("Error occured!")
 
-print(" ***** Begin Motion Detection Example ***** \n")
-
-# Initialize the sensor
-init_status = radar.init()
-if radar.OK != init_status:
-    print(" Initialization failed! \n")
-else:
-    print(" Intialization successful! \n")
-    MotionDetectStatus = radar.NO_MOTION
-    while StartMotionSensing!=0:
-        StartMotionSensing = Detect_motion(MotionDetectStatus,StartMotionSensing)
-  
-    print(" ***** Example execution completed ***** \n")
+    # Wait 0.5 second
+    sleep(0.5)

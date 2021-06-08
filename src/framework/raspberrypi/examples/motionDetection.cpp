@@ -4,8 +4,7 @@
  * \copyright   2021 Infineon Technologies AG
  * \brief       This example detects the motion of an object using polling mode
  * \details     This example demonstrates how to detect a moving object while the shield is
- *              connected to Raspberry Pi using polling method. As soon as a moving target is
- *              detected, the code execution ends.
+ *              connected to Raspberry Pi using polling method. Press CTRL+C to end this example.
  * 
  *              Connection details:
  *              -----------------------------------------------------
@@ -43,7 +42,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-//  Define GPIO pins that will be connected to shield
+//  Define GPIO pins that will be connected to the shield
 #define TD  15
 #define PD  16
 

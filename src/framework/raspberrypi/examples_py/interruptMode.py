@@ -1,71 +1,123 @@
-import bgt60_py as b
-import time, sys 
-Td = 15
-Pd = 16
+'''
+ Name:        interruptMode
+ Author:      Infineon Technologies AG
+ Copyright:   2021 Infineon Technologies AG
+ Description: This example demonstrates how to detect motion and the direction
+              of a moving object with the help of interrupts while the BGT60LTR11AIP
+              shield is connected to a Raspberry Pi board using interrupts.
+              Press CTRL+C to end this example.
+ 
+              Connection details:
+              -----------------------------------------------------
+              Pin on shield   Connected to pin on Raspberry Pi 4B
+              -----------------------------------------------------
+              TD                      WiringPi 15 (header 8)
+              PD                      WiringPi 16 (header 10)
+              GND                     GND         (e.g. header 6)
+              Vin                     3.3V        (e.g. header 1)
+              -----------------------------------------------------
 
-interruptFlag = 0
-# Create Radar object
-radarShield = b.Bgt60Rpi(Td,Pd)
+              Decoding on-board LED output of BGT60LTR11AIP shield:
+ 
+              - Red LED indicates the output of direction of motion once target is detected (PD)
+              ---------------------------------------------
+              LED    State    Output explanation
+              ---------------------------------------------
+              Red     ON       Departing target
+                      OFF      Approaching target
+              ---------------------------------------------
 
-def bgt60_assert(err):
-    """ 
-    Assert return codes from BGT60 API functions
+              - Green LED indicates the output of target in motion detection (TD)
+              ---------------------------------------------
+              LED    State    Output explanation
+              ---------------------------------------------
+              Green    ON       Moving target detected
+                       OFF      No target detected
+              ---------------------------------------------
 
-    args:
-    - err : Return code from bgt60_py module lib
-    """
-    if radarShield.OK != err :
-        print("Exiting with error", err)
-        sys.exit(0)
+ SPDX-License-Identifier: MIT
+'''
 
-def cback():
-    """
-    Callback for bgt60_py interrupt
-    """
-    global interruptFlag
-    interruptFlag = 1
+import bgt60_py as bgt60
+from time import sleep
+import sys 
 
-# Main
-print(" ***** Begin Motion Detection Example ***** \n")
+# Define GPIO pins that will be connected to the shield
+TD = 15
+PD = 16
 
-err = radarShield.init()
-bgt60_assert(err)
+# Create radarShield object with following arguments:
+# TD : Target Detect Pin
+# PD : Phase Detect Pin
+radarShield = bgt60.Bgt60Rpi(TD, PD)
+
+# Configures the GPIO pins to input mode
+init_status = radarShield.init()
+
+# Check if the initialization was successful
+if radarShield.OK != init_status:
+    print("Init failed.")
+else:
+    print("Init successful.")
+
+# Definition and initialization of the interrupt active flag
+intActive = False
+
+def cbackFunct():
+    global intActive
+
+    if not intActive:
+
+        # Set the interrupt active flag to avoid parallel execution of this function multiple times.
+        intActive = True
+
+        # Create variables to store the state of the motion as well as the direction.
+        motion = radarShield.NO_MOTION
+        direction = radarShield.NO_DIR
+
+        # Now check what happend, first check if a motion was detected.
+        err = radarShield.getMotion(motion)
+
+        # Check if API execution is successful.
+        if err == radarShield.OK:
+            # In case motion is detected.
+            if motion == radarShield.MOTION:
+                print("Target in motion was detected!")
+
+                # Check the direction of the detected motion.
+                err = radarShield.getDirection(direction)
+
+                if err == radarShield.OK:
+                    # In case the target is approaching
+                    if direction == radarShield.APPROACHING:
+                        print("The target is approaching!")
+
+                    # In case the target is departing
+                    else:
+                        print("The target is departing!")
+                # API execution returned error
+                else:
+                    print("Error has occurred during the determination of the direction!")
+            # No motion is detected
+            else:
+                print("No target in motion detected!")
+        # API execution returned error
+        else:
+            print("Error has occurred during the determination of the direction!")
+
+        print("\n--------------------------------------\n")
+
+        # Release the interrupt active flag to allow a new call of this callback function.
+        intActive = False
 
 print("Initialization successful")
-err = radarShield.enableInterrupt(cback)
-bgt60_assert(err)
+int_status = radarShield.enableInterrupt(cbackFunct)
 
-print("Interrupt enable")
+if radarShield.OK != int_status:
+    print("Interrupt init failed.")
+else:
+    print("Interrupt init successful.")
 
-motion = radarShield.NO_MOTION
-direction = radarShield.NO_DIR
-
-# Super-loop
 while True:
-
-    # Wait for hardware interrupt
-    while interruptFlag == 0:
-        pass
-    
-    # Clear interrupt flag
-    interruptFlag = 0
-
-    err = radarShield.getMotion(motion)
-    bgt60_assert(err)
-
-    if radarShield.MOTION == motion:
-        print(" Target in motion Detected! \n")
-        err = radarShield.getDirection(direction)
-        bgt60_assert(err)
-
-        if radarShield.APPROACHING == direction:
-            print("The target is approaching! \n")
-        if radarShield.DEPARTING == direction:
-            print("The target is departing! \n")
-            
-    elif radarShield.NO_MOTION == motion:
-        print(" No one's there!\n")      
-    else:
-        print(" Sorry! Data unavailable. Check configuration \n")
-
-print(" ***** Example execution completed ***** \n")
+    # Here you can do something else in parallel while waiting for an interrupt.
+    sleep(1000)
