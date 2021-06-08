@@ -1,5 +1,5 @@
 '''
- Name:        directionDetection
+ Name:        interruptMode
  Author:      Infineon Technologies AG
  Copyright:   2021 Infineon Technologies AG
  Description: This example demonstrates how to detect motion and the direction

@@ -49,7 +49,7 @@
 
 /* Create radar object with following arguments:
  *  TD : Target Detect Pin
- *  PD : Phase Detect Pi
+ *  PD : Phase Detect Pin
  *  Mode  : Set mode of acquiring sensor data as MODE_INTERRUPT */
 Bgt60Rpi radarShield(TD, PD);
 

@@ -44,7 +44,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-//  Define GPIO pins that will be connected to shield
+//  Define GPIO pins that will be connected to the shield
 #define TD  15
 #define PD  16
 
