@@ -136,6 +136,7 @@ pipeline {
 							def result = sh(
 								script: '''
 									cd ./
+									export DOCS_SOURCE=${WORKSPACE}/docs/doxygen/build
 									export PATH=/opt/doxygen/1.8.14/bin:/opt/python/anaconda/4.2.0/py3.5.2:$PATH
 									rm -rf infineondoxygenerator
 									git clone https://bitbucket.vih.infineon.com/scm/ghmm/infineondoxygenerator.git;
