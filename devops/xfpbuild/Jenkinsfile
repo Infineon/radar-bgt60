@@ -1,0 +1,226 @@
+/*
+ * ##################################################################################
+ *
+ * XFP internal build pipeline
+ * should run fast (<10min) with following parts
+ * - unit test and report
+ * - SonarQube report
+ * - compilation (if for more than one framework, than in parallel)
+ * - doxygen build and deploy on internal server
+ *
+ */
+
+
+pipeline {
+	/**
+	 * node where to run on (try itec nodes on the TCP Jenkins)
+	 */
+	agent {
+		node {
+			label 'epe'
+		}
+	}
+
+	/**
+	 * Parameter choice settings for manual start 
+	 */
+	parameters {
+		choice(name: 'TIER',          choices:['development','staging','production'], description: 'tier setting')
+		choice(name: 'SERVER',        choices:['vihlarazweb3','vihlarazweb2'],        description: 'server')
+		choice(name: 'SONARINSTANCE', choices:['Sonar','Sonar-Test','Sonar-Prod'],    description: 'SonarQube instance')
+		string(name: 'TESTBRANCH',    defaultValue: 'develop',                        description: 'e.g. DESMAKERS-990')
+	}
+
+	/**
+	 * Environment settings for shell calls
+	 */
+	environment {
+		TIER           = "${params.TIER}"
+		WEB_ROOT       = "/home/razweb/htdocs-${params.SERVER}"
+		DOCS_SOURCE    = "${WORKSPACE}/docs/doxygen/build"
+		DOCS_TARGET    = "${env.WEB_ROOT}/itec/xfp/${env.BRANCH_NAME}"
+		ROOT_URL       = "https://${params.SERVER}.vih.infineon.com"
+		scannerHome    = tool 'sonar-scanner-cli-4.2.0.1873-linux'
+		SONARINSTANCE  = "${params.SONARINSTANCE}"
+	}
+
+	/**
+	 * Keep only the last 2 artifacts on the server to prevent from
+	 * locking massive amount of disk space. The number should <= 5.
+	 */
+	options {
+		buildDiscarder(
+			logRotator(
+				numToKeepStr: '2',
+				artifactNumToKeepStr: '2'
+			)
+		)
+		disableConcurrentBuilds()
+	}
+
+	/**
+	 * Set up cron triggers for constant pipeline builds if this is needed
+	 */
+	/*
+	triggers {
+		cron('H H(0-1) * * *')
+	}
+	*/
+
+	stages {
+
+		// *
+		// * ************************************************************DevCI TRIGGER
+		// *
+		stage('Vars') {
+			steps {
+				echo "TIER:          ${params.TIER}"
+				echo "WEB_ROOT:      ${env.WEB_ROOT}"
+				echo "ROOT_URL:      ${env.ROOT_URL}"
+				echo "BRANCH_NAME:   ${env.BRANCH_NAME}"
+				echo "BUILD_NUMBER:  ${env.BUILD_NUMBER}"
+				echo "WORKSPACE:     ${WORKSPACE}"
+				echo "SONARINSTANCE: ${env.SONARINSTANCE}"
+				echo "SERVER:        ${env.SERVER}/${params.SERVER}"
+				echo "DOCS_SOURCE:   ${env.DOCS_SOURCE}"
+				echo "DOCS_TARGET:   ${env.DOCS_TARGET}"
+			} // end steps
+		} // end DevCI Trigger
+
+		/*-----------------------------------------------------------------------------
+		 * unit test
+		 *-----------------------------------------------------------------------------
+		 */
+		stage('unit test') {
+			steps {
+				echo "unit test"
+				//sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make html")
+			}
+		}
+
+		stage('build') {
+			parallel {
+				/*-----------------------------------------------------------------------------
+				 * html
+				 *-----------------------------------------------------------------------------
+				 */
+				stage('ARD') {
+					steps {
+						echo "Arduino"
+						//sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make html")
+					}
+				}
+				/*-----------------------------------------------------------------------------
+				 * PlatformIO build
+				 *-----------------------------------------------------------------------------
+				 */
+				stage('PIO') {
+					steps {
+						echo "PlatformIO"
+						// sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make pdf"))
+					}
+				}
+				/*-----------------------------------------------------------------------------
+				 * doxygen
+				 *-----------------------------------------------------------------------------
+				 */
+				stage('DOXY') {
+					agent {
+						node {
+							label 'epelinux'
+						}
+					}
+					steps {
+						echo "doxygen"
+						script {
+							def result = sh(
+								script: '''
+									cd ./
+									export PATH=/opt/doxygen/1.8.14/bin:/opt/python/anaconda/4.2.0/py3.5.2:$PATH
+									rm -rf infineondoxygenerator
+									git clone https://bitbucket.vih.infineon.com/scm/ghmm/infineondoxygenerator.git;
+									cd ./infineondoxygenerator;
+									python3 doxyifx.py html
+									rm -rf ${DOCS_TARGET}
+									mkdir ${DOCS_TARGET}
+									cp -R ${DOCS_SOURCE}/ ${DOCS_TARGET}/.
+								''',
+								returnStdout: true
+							).trim()
+							echo "$result"
+						}
+					}
+				} // end doxy
+			} // end parallel
+		} // end docu build
+
+		stage('Check') {
+			parallel {
+
+				/*-----------------------------------------------------------------------------
+				 * cppcheck
+				 *-----------------------------------------------------------------------------
+				 */
+				stage('CPP') {
+					steps {
+						echo "cpp"
+						//sh "cd  ${env.WORKSPACE};mkdir -p build;/usr/local/bin/cppcheck -v --enable=all --xml-version=2 -I examples src 2> build/cppcheck-report.xml"
+					} // end steps
+				} // end stage
+
+				/*-----------------------------------------------------------------------------
+				 * cppcheck
+				 *-----------------------------------------------------------------------------
+				 */
+				stage('CLI') {
+					steps {
+						echo "Compile"
+						//sh ("cd ${env.WORKSPACE};/usr/bin/make all")
+					} // end steps
+				} // end stage
+
+			} // parallel
+		} // end stage
+
+		/**
+		 * SonarQube stage runs the sonar scanner and collects all reports
+		 */
+		stage('SonarQube') {
+			steps {
+				echo "SonarQube"
+				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+					withSonarQubeEnv(
+						installationName: "${params.SONARINSTANCE}"
+					){
+						cp ./devops/xfpbuild/sonar-project.properties ./.
+						sh "${scannerHome}/bin/sonar-scanner -X"
+					}
+				} // end catch
+				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+					timeout(time: 200, unit: 'MINUTES') {
+						waitForQualityGate abortPipeline: true
+					}
+				} // end catch
+			} // end steps
+		} // end stage
+
+	} // end stages
+
+	/*-----------------------------------------------------------------------------
+	 * post
+	 *-----------------------------------------------------------------------------
+	 */
+	
+	post {
+		failure {
+			
+			mail(
+				to: 'Olaf.Filies@infineon.com',
+				subject: "[EPE JENKINS] pipeline: ${env.BRANCH_NAME}",
+				body: "Something during Jenkins pipeline run went wrong."
+			)
+			
+		}
+	}
+
+}
