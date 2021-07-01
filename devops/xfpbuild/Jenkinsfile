@@ -192,8 +192,7 @@ pipeline {
 					withSonarQubeEnv(
 						installationName: "${params.SONARINSTANCE}"
 					){
-						cp ./devops/xfpbuild/sonar-project.properties ./.
-						sh "${scannerHome}/bin/sonar-scanner -X"
+						sh "cp ./devops/xfpbuild/sonar-project.properties ./.; ${scannerHome}/bin/sonar-scanner -X"
 					}
 				} // end catch
 				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
