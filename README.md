@@ -16,24 +16,36 @@ C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AIP.
 </table>
 
 ## Supported Frameworks
-
+<!-- TODO: Add missing links for PSoC -->
 <table>
     <tr>
         <td><img src="docs/img/arduino-logo.png" width=200></td>
         <td><img src="docs/img/rpi-logo.png" width=200></td>
-        <td><img src="docs/img/cross-platform.png" width=200></td>
+        <td><img src="docs/img/mtb-logo.png" width=200></td>
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/arduino-radar-bgt60">Arduino Library</a><br><a href="https://github.com/Infineon/radar-bgt60/wiki/Arduino-API">Arduino API</a></td>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/RPi-API">RPi API</a><br><a href="https://github.com/Infineon/radar-bgt60/wiki/Py-API">RPi Python API</a></td>
-        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/BGT60-API">BGT60 API</a></td>
+        <td style="text-align: center"><a href="">PSoC API</a></td>
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Ino-Getting-Started">Getting Started</a></td>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/RPi-Getting-Started">Getting Started C++</a><br><a href="https://github.com/Infineon/radar-bgt60/wiki/Py-Getting-Started">Getting Started Python</a></td>
+        <td style="text-align: center"><a href="">Getting Started</a></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td><img src="docs/img/cross-platform.png" width=200></td>
+    </tr>
+    <tr>
+        <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/BGT60-API">BGT60 API</a></td>
+    </tr>
+    <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Porting-Guide">Porting Guide</a></td>
     </tr>
-</table> <!-- TODO: Add all the missing links -->
+</table>
 
 ## More Information
 
