@@ -1,0 +1,9 @@
+<map id="bgt60.hpp" name="bgt60.hpp">
+<area shape="rect" id="node1" title="Radar BGT60 API." alt="" coords="250,5,337,32"/>
+<area shape="rect" id="node2" href="$d6/d14/bgt60-conf_8hpp.html" title="Radar BGT60 Library Configuration." alt="" coords="77,80,195,107"/>
+<area shape="rect" id="node5" href="$dd/d98/bgt60-pal-gpio_8hpp.html" title="Radar BGT60 GPIO Platform Abstraction Layer." alt="" coords="221,80,366,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="390,80,461,107"/>
+<area shape="rect" id="node3" href="$d1/d16/bgt60-conf-opts_8hpp.html" title="Radar BGT60 Library Configuration Options." alt="" coords="5,229,157,256"/>
+<area shape="rect" id="node4" href="$d6/ddb/bgt60-conf-dfl_8hpp.html" title="Radar BGT60 default configuration." alt="" coords="66,155,206,181"/>
+<area shape="rect" id="node6" href="$dc/d6a/bgt60-types_8hpp.html" title="Radar BGT60 Types." alt="" coords="231,155,359,181"/>
+</map>

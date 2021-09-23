@@ -1,0 +1,4 @@
+<map id="Bgt60::getMotion" name="Bgt60::getMotion">
+<area shape="rect" id="node1" title="Read out target&#45;detect&#45;pin." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node2" href="$d3/d5d/group__pal.html#gaa39816b0719dade2faf072afd9bbee46" title="Reads the GPIO voltage level." alt="" coords="188,5,324,32"/>
+</map>

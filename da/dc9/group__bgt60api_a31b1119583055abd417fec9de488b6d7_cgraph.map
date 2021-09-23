@@ -1,0 +1,4 @@
+<map id="Bgt60::disableInterrupt" name="Bgt60::disableInterrupt">
+<area shape="rect" id="node1" title="Disables the hardware interrupt." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node2" href="$d3/d5d/group__pal.html#ga67ed64e93b6e7463fdb160113138593a" title="Disables the GPIO hardware interrupt." alt="" coords="224,5,395,32"/>
+</map>

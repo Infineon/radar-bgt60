@@ -1,0 +1,5 @@
+<map id="Bgt60Rpi::enableInterrupt" name="Bgt60Rpi::enableInterrupt">
+<area shape="rect" id="node1" title="Enable interrupt." alt="" coords="5,5,195,32"/>
+<area shape="rect" id="node2" href="$da/dc9/group__bgt60api.html#a5d8a3700683efcf060ab592d771494c7" title="Enables the hardware interrupt." alt="" coords="243,5,411,32"/>
+<area shape="rect" id="node3" href="$d3/d5d/group__pal.html#ga4f9e825c500124ee3f04759c38800a24" title="Enables the GPIO hardware interrupt." alt="" coords="459,5,627,32"/>
+</map>
