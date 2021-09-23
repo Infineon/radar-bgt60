@@ -1,5 +1,5 @@
 PROJECT_NAME           = "radar-bgt60"
-PROJECT_NUMBER         = 1.1.0
+PROJECT_NUMBER         = 1.1.1
 PROJECT_BRIEF          = "C++ library for the BGT60LTR11AIP - XENSIV™ 60 Ghz Radar from Infineon"
 OUTPUT_DIRECTORY       = ./../docs/doxygen/build
 CREATE_SUBDIRS         = YES

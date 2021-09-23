@@ -103,7 +103,7 @@ class CMakeBuild(build_ext):
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
     name="radar-bgt60",
-    version="1.1.0",
+    version="1.1.1",
     author="Infineon Technologies",
     description="Python Library for Infineon's C++ library for Infineon's 60 GHz BGT60LTR11AiP Radar",
     long_description="Python Library for Infineon's C++ library for Infineon's 60 GHz BGT60LTR11AiP Radar",
