@@ -31,7 +31,7 @@ C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AIP.
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Ino-Getting-Started">Getting Started</a></td>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/RPi-Getting-Started">Getting Started C++</a><br><a href="https://github.com/Infineon/radar-bgt60/wiki/Py-Getting-Started">Getting Started Python</a></td>
-        <td style="text-align: center"><a href="">Getting Started</a></td>
+        <!-- <td style="text-align: center"><a href="">Getting Started</a></td> -->
     </tr>
 </table>
 
