@@ -21,12 +21,12 @@ C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AIP.
     <tr>
         <td><img src="docs/img/arduino-logo.png" width=200></td>
         <td><img src="docs/img/rpi-logo.png" width=200></td>
-        <td><img src="docs/img/mtb-logo.png" width=200></td>
+        <!-- <td><img src="docs/img/mtb-logo.png" width=200></td> -->
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/arduino-radar-bgt60">Arduino Library</a><br><a href="https://github.com/Infineon/radar-bgt60/wiki/Arduino-API">Arduino API</a></td>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/RPi-API">RPi API</a><br><a href="https://github.com/Infineon/radar-bgt60/wiki/Py-API">RPi Python API</a></td>
-        <td style="text-align: center"><a href="">PSoC API</a></td>
+        <!-- <td style="text-align: center"><a href="">PSoC API</a></td> -->
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/radar-bgt60/wiki/Ino-Getting-Started">Getting Started</a></td>
