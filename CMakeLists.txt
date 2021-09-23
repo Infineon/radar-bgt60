@@ -1,4 +1,20 @@
 cmake_minimum_required(VERSION 3.12.4)  
+include(FetchContent)
+
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        release-1.10.0
+)
+
+FetchContent_GetProperties(googletest)
+if(NOT googletest_POPULATED)
+  FetchContent_Populate(googletest)
+  if(MSVC)
+    add_compile_options(/MD$<$<CONFIG:Debug>:d>)
+  endif()   # MSVC
+  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+endif()     # NOT googletest_POPULATED
 
 # Arduino Library Template 
 set(bgt60core bgt60-corelib)
@@ -39,7 +55,7 @@ if (CMAKE_HOST_UNIX)
 endif()
 
 # If the googletest library is in the project folder
-if (EXISTS ${CMAKE_SOURCE_DIR}/googletest)
+#if (EXISTS ${CMAKE_SOURCE_DIR}/googletest)
     # Coverage Flags
     set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -DBGT60_LOGGER_ENABLED=0")
     set(CMAKE_C_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
@@ -48,7 +64,7 @@ if (EXISTS ${CMAKE_SOURCE_DIR}/googletest)
     enable_testing()
 
     # Add GoogleTest 
-    add_subdirectory(googletest)
+#    add_subdirectory(googletest)
     # Add Tests Folder
     add_subdirectory(test/unit)
-endif()
+#endif()

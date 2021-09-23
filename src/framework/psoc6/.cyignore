@@ -1,0 +1,11 @@
+# Files and Folder which should be excluded
+
+../raspberrypi
+../arduino
+../../../test/unit
+../../../CMakeLists.txt
+../../../build
+../../../.vscode
+../../../.settings
+../../../.pio
+../../../devops
