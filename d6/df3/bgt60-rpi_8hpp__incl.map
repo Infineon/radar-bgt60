@@ -1,0 +1,13 @@
+<map id="bgt60&#45;rpi.hpp" name="bgt60&#45;rpi.hpp">
+<area shape="rect" id="node1" title="Radar BGT60 Raspberry Pi API." alt="" coords="115,5,225,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,92,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="57,155,128,181"/>
+<area shape="rect" id="node4" href="$df/d8d/bgt60_8hpp.html" title="Radar BGT60 API." alt="" coords="168,80,255,107"/>
+<area shape="rect" id="node10" href="$d9/d93/bgt60-pal-gpio-rpi_8hpp.html" title="Radar BGT60 Raspberry Pi PAL Implementation." alt="" coords="281,80,448,107"/>
+<area shape="rect" id="node5" href="$d6/d14/bgt60-conf_8hpp.html" title="Radar BGT60 Library Configuration." alt="" coords="152,155,271,181"/>
+<area shape="rect" id="node8" href="$dd/d98/bgt60-pal-gpio_8hpp.html" title="Radar BGT60 GPIO Platform Abstraction Layer." alt="" coords="295,155,440,181"/>
+<area shape="rect" id="node6" href="$d1/d16/bgt60-conf-opts_8hpp.html" title="Radar BGT60 Library Configuration Options." alt="" coords="81,304,233,331"/>
+<area shape="rect" id="node7" href="$d6/ddb/bgt60-conf-dfl_8hpp.html" title="Radar BGT60 default configuration." alt="" coords="141,229,281,256"/>
+<area shape="rect" id="node9" href="$dc/d6a/bgt60-types_8hpp.html" title="Radar BGT60 Types." alt="" coords="306,229,434,256"/>
+<area shape="rect" id="node11" title=" " alt="" coords="464,155,551,181"/>
+</map>

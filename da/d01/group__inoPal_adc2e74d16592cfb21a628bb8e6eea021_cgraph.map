@@ -1,0 +1,4 @@
+<map id="TimerIno::elapsedMicro" name="TimerIno::elapsedMicro">
+<area shape="rect" id="node1" title="Elapsed time since the timer was started in microseconds." alt="" coords="5,5,180,32"/>
+<area shape="rect" id="node2" href="$da/d01/group__inoPal.html#aadb0713337ce16a9b94f088deb5f1546" title="Elapsed time since the timer was started." alt="" coords="228,5,367,32"/>
+</map>

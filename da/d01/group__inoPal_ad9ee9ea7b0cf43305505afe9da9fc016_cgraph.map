@@ -1,0 +1,8 @@
+<map id="TimerIno::delay" name="TimerIno::delay">
+<area shape="rect" id="node1" title="Introduces a delay during the specified time." alt="" coords="5,107,129,133"/>
+<area shape="rect" id="node2" href="$da/d01/group__inoPal.html#afa0f2496ca479989a2b993cd86a5610a" title="Deinitialiazes the Arduino timer." alt="" coords="184,5,309,32"/>
+<area shape="rect" id="node3" href="$da/d01/group__inoPal.html#aadb0713337ce16a9b94f088deb5f1546" title="Elapsed time since the timer was started." alt="" coords="177,56,316,83"/>
+<area shape="rect" id="node4" href="$da/d01/group__inoPal.html#aa2f268af44b2a64419e4efec67d5cf6d" title="Initialiazes the Arduino timer." alt="" coords="192,107,301,133"/>
+<area shape="rect" id="node5" href="$da/d01/group__inoPal.html#ab82bc689784d4f238a22623f46f17e76" title="Starts the Arduino timer." alt="" coords="187,157,306,184"/>
+<area shape="rect" id="node6" href="$da/d01/group__inoPal.html#a1bff9833f7d4f0aa919b379e642893c4" title="Stops the Arduino timer." alt="" coords="189,208,305,235"/>
+</map>

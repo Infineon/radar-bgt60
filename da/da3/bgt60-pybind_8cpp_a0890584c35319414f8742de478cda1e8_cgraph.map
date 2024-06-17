@@ -1,0 +1,12 @@
+<map id="PYBIND11_MODULE" name="PYBIND11_MODULE">
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,156,159"/>
+<area shape="rect" id="node2" href="$da/dc9/group__bgt60api.html#a57dc5e0ab6df272e420510cd4dad22d5" title="De&#45;Initialize the Bgt60 class object." alt="" coords="246,5,351,32"/>
+<area shape="rect" id="node4" href="$da/dc9/group__bgt60api.html#a31b1119583055abd417fec9de488b6d7" title="Disables the hardware interrupt." alt="" coords="213,56,384,83"/>
+<area shape="rect" id="node6" href="$d2/d1d/group__rpiApi.html#a5d8a3700683efcf060ab592d771494c7" title="Enables the hardware interrupt." alt="" coords="204,107,393,133"/>
+<area shape="rect" id="node7" href="$da/dc9/group__bgt60api.html#a544450df36982ffcb5c2f48943bd223e" title="Read out phase&#45;detect&#45;pin." alt="" coords="225,208,373,235"/>
+<area shape="rect" id="node8" href="$da/dc9/group__bgt60api.html#a2bc2f8534b23ac6527114ca9ad37f71b" title="Read out target&#45;detect&#45;pin." alt="" coords="459,157,594,184"/>
+<area shape="rect" id="node10" href="$da/dc9/group__bgt60api.html#aeb588fa2a57af9d3621572a19cf953d6" title="Initialize the Bgt60 class object." alt="" coords="254,259,343,285"/>
+<area shape="rect" id="node3" href="$d3/d5d/group__pal.html#ga8dfc606265544fce07541f85de3bd388" title="Deinitializes the GPIO." alt="" coords="455,5,599,32"/>
+<area shape="rect" id="node5" href="$d3/d5d/group__pal.html#ga67ed64e93b6e7463fdb160113138593a" title="Disables the GPIO hardware interrupt." alt="" coords="441,56,612,83"/>
+<area shape="rect" id="node9" href="$d3/d5d/group__pal.html#gaa39816b0719dade2faf072afd9bbee46" title="Reads the GPIO voltage level." alt="" coords="660,183,796,209"/>
+</map>

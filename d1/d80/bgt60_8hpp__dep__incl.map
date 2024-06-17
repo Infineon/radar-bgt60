@@ -1,0 +1,9 @@
+<map id="bgt60.hpp" name="bgt60.hpp">
+<area shape="rect" id="node1" title="Radar BGT60 API." alt="" coords="176,5,263,32"/>
+<area shape="rect" id="node2" href="$d2/d97/bgt60_8cpp.html" title="Radar BGT60 API." alt="" coords="5,80,92,107"/>
+<area shape="rect" id="node3" href="$d3/d18/bgt60-ino_8hpp.html" title="Radar BGT60 Arduino API." alt="" coords="117,80,229,107"/>
+<area shape="rect" id="node5" href="$da/da3/bgt60-pybind_8cpp.html" title="Radar BGT60 Raspberry Pi Python Wrapper API." alt="" coords="225,155,360,181"/>
+<area shape="rect" id="node6" href="$df/d0e/bgt60-rpi_8hpp.html" title="Radar BGT60 Raspberry Pi API." alt="" coords="303,80,413,107"/>
+<area shape="rect" id="node4" href="$dd/d66/bgt60-ino_8cpp.html" title="Radar BGT60 Arduino API." alt="" coords="91,155,201,181"/>
+<area shape="rect" id="node7" href="$d1/d7f/bgt60-rpi_8cpp.html" title="Radar BGT60 Raspberry Pi API." alt="" coords="384,155,492,181"/>
+</map>
