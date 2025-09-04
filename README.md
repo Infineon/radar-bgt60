@@ -1,3 +1,5 @@
+[![Check links](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml/badge.svg)](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml)
+
 # BGT60 Radar Library
 
 <!-- ![arduino build]() -->
@@ -53,4 +55,4 @@ The complete library and project documentation can be found in the [Wiki](https:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
