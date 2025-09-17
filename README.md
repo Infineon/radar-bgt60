@@ -1,6 +1,6 @@
-[![Check links](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml/badge.svg)](https://github.com/Infineon/XMC-for-Arduino/actions/workflows/check_links.yml)
-
 # BGT60 Radar Library
+
+[![Check links](https://github.com/Infineon/radar-bgt60/actions/workflows/check_links.yml/badge.svg)](https://github.com/Infineon/radar-bgt60/actions/workflows/check_links.yml)
 
 <!-- ![arduino build]() -->
 
