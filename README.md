@@ -1,5 +1,7 @@
 # BGT60 Radar Library
 
+[![Check links](https://github.com/Infineon/radar-bgt60/actions/workflows/check_links.yml/badge.svg)](https://github.com/Infineon/radar-bgt60/actions/workflows/check_links.yml)
+
 <!-- ![arduino build]() -->
 
 C++ library for Infineon's 60 GHz Radar shield, the BGT60LTR11AIP.
@@ -53,4 +55,4 @@ The complete library and project documentation can be found in the [Wiki](https:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
