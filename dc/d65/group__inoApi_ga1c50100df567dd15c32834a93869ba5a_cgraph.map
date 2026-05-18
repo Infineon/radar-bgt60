@@ -1,0 +1,7 @@
+<map id="Bgt60Ino::end" name="Bgt60Ino::end">
+<area shape="rect" id="Node000001" title="Ends the radar board." alt="" coords="5,5,117,31"/>
+<area shape="rect" id="Node000002" href="$da/dc9/group__bgt60api.html#a57dc5e0ab6df272e420510cd4dad22d5" title="De&#45;Initialize the Bgt60 class object." alt="" coords="165,5,271,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,15,152,15,152,21,117,21"/>
+<area shape="rect" id="Node000003" href="$d3/d5d/group__pal.html#ga8dfc606265544fce07541f85de3bd388" title="Deinitializes the GPIO." alt="" coords="319,5,463,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="271,15,305,15,305,21,271,21"/>
+</map>

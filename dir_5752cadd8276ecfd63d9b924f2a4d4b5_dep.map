@@ -1,0 +1,16 @@
+<map id="framework" name="framework">
+<area shape="rect" id="node1" href="dir_939c8b190bd538da7127929d9efbf093.html" title="pal" alt="" coords="71,136,113,161"/>
+<area shape="rect" id="node2" href="dir_b85deeec3e940e8ec5637c145ef17ca4.html" title="corelib" alt="" coords="152,136,219,161"/>
+<area shape="rect" id="node4" href="dir_cd07787cd715514b4f8f94ee4f39b60a.html" title="arduino" alt="" coords="158,63,229,88"/>
+<area shape="poly" id="edge1" href="dir_000000_000008.html" alt="" coords="179,90,121,130,118,126,176,86"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000000_000008.html" title="2" alt="" coords="124,125,133,140"/>
+<area shape="poly" id="edge2" href="dir_000000_000002.html" alt="" coords="195,89,191,123,185,122,189,88"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000000_000002.html" title="1" alt="" coords="192,111,202,126"/>
+<area shape="rect" id="node5" href="dir_be3f31021d7a476c4d215be6a0e7785a.html" title="raspberrypi" alt="" coords="37,63,133,88"/>
+<area shape="poly" id="edge3" href="dir_000009_000008.html" alt="" coords="89,88,92,122,87,123,84,89"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000009_000008.html" title="1" alt="" coords="93,110,102,124"/>
+<area shape="poly" id="edge4" href="dir_000009_000002.html" alt="" coords="103,86,159,126,156,130,100,90"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000009_000002.html" title="2" alt="" coords="154,111,164,126"/>
+<area shape="rect" id="clust2" href="dir_5752cadd8276ecfd63d9b924f2a4d4b5.html" alt="" coords="27,52,357,99"/>
+<area shape="rect" id="clust1" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html" title="src" alt="" coords="16,16,368,172"/>
+</map>

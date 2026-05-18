@@ -1,0 +1,36 @@
+<map id="bgt60&#45;pybind.cpp" name="bgt60&#45;pybind.cpp">
+<area shape="rect" id="Node000001" title="Radar BGT60 Raspberry Pi Python Wrapper API." alt="" coords="518,5,653,31"/>
+<area shape="rect" id="Node000002" href="$df/d8d/bgt60_8hpp.html" title="Radar BGT60 API." alt="" coords="231,152,318,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="518,30,440,48,399,62,360,81,322,110,293,142,289,139,319,106,357,76,397,57,438,43,517,25"/>
+<area shape="rect" id="Node000009" href="$df/d0e/bgt60-rpi_8hpp.html" title="Radar BGT60 Raspberry Pi API." alt="" coords="371,79,480,104"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="561,33,465,75,463,71,559,28"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="504,79,667,104"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="588,31,588,65,583,65,583,31"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="691,79,850,104"/>
+<area shape="poly" id="edge18_Node000001_Node000014" title=" " alt="" coords="616,28,729,71,727,76,614,33"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="875,79,989,104"/>
+<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="642,28,863,73,862,78,640,33"/>
+<area shape="rect" id="Node000003" href="$d6/d14/bgt60-conf_8hpp.html" title="Radar BGT60 Library Configuration." alt="" coords="77,225,195,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="254,180,172,221,170,217,251,175"/>
+<area shape="rect" id="Node000006" href="$dd/d98/bgt60-pal-gpio_8hpp.html" title="Radar BGT60 GPIO Platform Abstraction Layer." alt="" coords="221,225,366,251"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="280,177,289,212,284,213,275,178"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="390,225,461,251"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="300,175,389,217,387,222,298,180"/>
+<area shape="rect" id="Node000004" href="$d1/d16/bgt60-conf-opts_8hpp.html" title="Radar BGT60 Library Configuration Options." alt="" coords="5,372,157,397"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="110,253,80,272,66,285,56,300,52,315,53,330,67,360,62,362,48,331,47,314,51,298,62,281,76,268,107,248"/>
+<area shape="rect" id="Node000005" href="$d6/ddb/bgt60-conf-dfl_8hpp.html" title="Radar BGT60 default configuration." alt="" coords="66,299,206,324"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="139,251,139,285,133,285,133,251"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="129,326,101,363,96,360,125,323"/>
+<area shape="rect" id="Node000007" href="$dc/d6a/bgt60-types_8hpp.html" title="Radar BGT60 Types." alt="" coords="231,299,359,324"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="296,251,297,285,292,285,291,251"/>
+<area shape="poly" id="edge12_Node000009_Node000002" title=" " alt="" coords="402,106,313,148,311,144,400,102"/>
+<area shape="poly" id="edge11_Node000009_Node000008" title=" " alt="" coords="459,102,486,115,511,132,526,153,528,166,524,179,501,204,473,222,471,218,498,200,519,176,523,165,521,155,508,136,484,119,457,107"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="585,152,671,177"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="459,102,583,145,582,150,457,107"/>
+<area shape="rect" id="Node000011" href="$d9/d93/bgt60-pal-gpio-rpi_8hpp.html" title="Radar BGT60 Raspberry Pi PAL Implementation." alt="" coords="342,152,509,177"/>
+<area shape="poly" id="edge13_Node000009_Node000011" title=" " alt="" coords="428,104,428,138,423,138,423,104"/>
+<area shape="poly" id="edge14_Node000011_Node000006" title=" " alt="" coords="405,180,328,221,326,216,403,175"/>
+<area shape="poly" id="edge16_Node000011_Node000008" title=" " alt="" coords="428,178,428,212,423,212,423,178"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="485,225,571,251"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="443,175,501,215,498,219,440,180"/>
+</map>

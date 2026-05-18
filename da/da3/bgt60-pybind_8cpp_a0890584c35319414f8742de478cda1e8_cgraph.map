@@ -1,0 +1,28 @@
+<map id="PYBIND11_MODULE" name="PYBIND11_MODULE">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,129,156,155"/>
+<area shape="rect" id="Node000002" href="$da/dc9/group__bgt60api.html#a57dc5e0ab6df272e420510cd4dad22d5" title="De&#45;Initialize the Bgt60 class object." alt="" coords="246,5,351,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,127,138,84,169,60,203,40,232,28,234,33,205,44,172,65,141,88,96,131"/>
+<area shape="rect" id="Node000004" href="$da/dc9/group__bgt60api.html#a31b1119583055abd417fec9de488b6d7" title="Disables the hardware interrupt." alt="" coords="213,55,384,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="109,127,203,89,229,81,230,86,205,94,111,132"/>
+<area shape="rect" id="Node000006" href="$d2/d1d/group__rpiApi.html#gafd78583715bddf3fc7936823d8513ab5" title="Enable interrupt." alt="" coords="204,104,393,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="156,131,190,127,191,132,156,136"/>
+<area shape="rect" id="Node000009" href="$da/dc9/group__bgt60api.html#aeb588fa2a57af9d3621572a19cf953d6" title="Initialize the Bgt60 class object." alt="" coords="482,155,571,180"/>
+<area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="156,144,468,161,468,167,156,149"/>
+<area shape="rect" id="Node000010" href="$da/dc9/group__bgt60api.html#a544450df36982ffcb5c2f48943bd223e" title="Read out phase&#45;detect&#45;pin." alt="" coords="225,256,373,281"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="97,153,143,192,205,234,239,249,237,254,203,239,140,196,93,157"/>
+<area shape="rect" id="Node000011" href="$da/dc9/group__bgt60api.html#a2bc2f8534b23ac6527114ca9ad37f71b" title="Read out target&#45;detect&#45;pin." alt="" coords="459,205,594,231"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="150,152,204,162,446,203,445,208,204,167,149,157"/>
+<area shape="rect" id="Node000003" href="$d3/d5d/group__pal.html#ga8dfc606265544fce07541f85de3bd388" title="Deinitializes the GPIO." alt="" coords="455,5,599,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="352,15,441,15,441,21,352,21"/>
+<area shape="rect" id="Node000005" href="$d3/d5d/group__pal.html#ga67ed64e93b6e7463fdb160113138593a" title="Disables the GPIO hardware interrupt." alt="" coords="441,55,612,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="385,65,427,65,427,70,385,70"/>
+<area shape="rect" id="Node000007" href="$da/dc9/group__bgt60api.html#a5d8a3700683efcf060ab592d771494c7" title="Enables the hardware interrupt." alt="" coords="443,104,611,129"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="394,114,429,114,429,119,394,119"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="357,127,469,152,468,157,356,132"/>
+<area shape="rect" id="Node000008" href="$d3/d5d/group__pal.html#ga4f9e825c500124ee3f04759c38800a24" title="Enables the GPIO hardware interrupt." alt="" coords="660,104,828,129"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="611,114,646,114,646,119,611,119"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="356,253,455,231,456,236,357,258"/>
+<area shape="rect" id="Node000012" href="$d3/d5d/group__pal.html#gaa39816b0719dade2faf072afd9bbee46" title="Reads the GPIO voltage level." alt="" coords="676,231,812,256"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="373,262,663,245,663,251,373,267"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="594,223,663,231,662,236,594,228"/>
+</map>

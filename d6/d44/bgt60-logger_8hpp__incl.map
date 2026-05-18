@@ -1,0 +1,10 @@
+<map id="bgt60&#45;logger.hpp" name="bgt60&#45;logger.hpp">
+<area shape="rect" id="Node000001" title="Radar BGT60 Logger." alt="" coords="15,5,147,31"/>
+<area shape="rect" id="Node000002" href="$d6/d14/bgt60-conf_8hpp.html" title="Radar BGT60 Library Configuration." alt="" coords="22,79,141,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,31,84,65,79,65,79,31"/>
+<area shape="rect" id="Node000003" href="$d1/d16/bgt60-conf-opts_8hpp.html" title="Radar BGT60 Library Configuration Options." alt="" coords="5,225,157,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="76,106,65,127,56,153,55,168,57,183,69,212,64,214,52,185,49,168,51,151,60,125,72,103"/>
+<area shape="rect" id="Node000004" href="$d6/ddb/bgt60-conf-dfl_8hpp.html" title="Radar BGT60 default configuration." alt="" coords="66,152,206,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="92,103,121,140,117,143,88,106"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="129,179,101,216,96,213,125,176"/>
+</map>

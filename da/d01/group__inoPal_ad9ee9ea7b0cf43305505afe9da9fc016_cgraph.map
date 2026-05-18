@@ -1,0 +1,14 @@
+<map id="TimerIno::delay" name="TimerIno::delay">
+<area shape="rect" id="Node000001" title="Introduces a delay during the specified time." alt="" coords="5,128,129,153"/>
+<area shape="rect" id="Node000002" href="$da/d01/group__inoPal.html#afa0f2496ca479989a2b993cd86a5610a" title="Deinitialiazes the Arduino timer." alt="" coords="184,5,309,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,125,119,84,146,60,176,40,187,34,190,38,179,44,149,65,122,88,82,129"/>
+<area shape="rect" id="Node000003" href="$da/d01/group__inoPal.html#aadb0713337ce16a9b94f088deb5f1546" title="Elapsed time since the timer was started." alt="" coords="177,79,316,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="113,125,185,105,187,110,115,131"/>
+<area shape="rect" id="Node000004" href="$da/d01/group__inoPal.html#aa2f268af44b2a64419e4efec67d5cf6d" title="Initialiazes the Arduino timer." alt="" coords="192,128,301,153"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="129,138,178,138,178,143,129,143"/>
+<area shape="rect" id="Node000005" href="$da/d01/group__inoPal.html#ab82bc689784d4f238a22623f46f17e76" title="Starts the Arduino timer." alt="" coords="187,177,306,203"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="115,151,187,171,185,176,113,156"/>
+<area shape="rect" id="Node000006" href="$da/d01/group__inoPal.html#a1bff9833f7d4f0aa919b379e642893c4" title="Stops the Arduino timer." alt="" coords="189,227,305,252"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="86,151,127,181,179,212,194,219,192,224,176,216,124,185,83,156"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="217,80,211,70,214,61,226,54,247,52,271,56,282,64,278,68,269,60,247,57,228,59,218,64,216,70,221,77"/>
+</map>

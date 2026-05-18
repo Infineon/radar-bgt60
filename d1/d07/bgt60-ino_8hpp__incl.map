@@ -1,0 +1,25 @@
+<map id="bgt60&#45;ino.hpp" name="bgt60&#45;ino.hpp">
+<area shape="rect" id="Node000001" title="Radar BGT60 Arduino API." alt="" coords="231,5,343,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="59,79,143,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,33,145,76,143,71,256,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="390,152,461,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="343,19,375,25,408,36,439,53,464,77,470,94,467,111,448,143,444,140,462,110,464,94,459,80,436,57,406,41,374,30,342,25"/>
+<area shape="rect" id="Node000004" href="$df/d8d/bgt60_8hpp.html" title="Radar BGT60 API." alt="" coords="167,79,254,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="276,33,235,71,231,67,273,29"/>
+<area shape="rect" id="Node000010" href="$d2/d28/bgt60-pal-gpio-ino_8hpp.html" title=" " alt="" coords="279,79,449,104"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="301,29,343,67,339,71,297,33"/>
+<area shape="poly" id="edge10_Node000004_Node000003" title=" " alt="" coords="246,101,378,145,377,150,244,107"/>
+<area shape="rect" id="Node000005" href="$d6/d14/bgt60-conf_8hpp.html" title="Radar BGT60 Library Configuration." alt="" coords="77,152,195,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="201,106,160,144,156,141,197,102"/>
+<area shape="rect" id="Node000008" href="$dd/d98/bgt60-pal-gpio_8hpp.html" title="Radar BGT60 GPIO Platform Abstraction Layer." alt="" coords="221,152,366,177"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="226,102,271,141,268,145,222,106"/>
+<area shape="rect" id="Node000006" href="$d1/d16/bgt60-conf-opts_8hpp.html" title="Radar BGT60 Library Configuration Options." alt="" coords="5,299,157,324"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="110,180,80,199,66,211,56,226,52,241,53,257,67,286,62,288,48,258,47,241,51,224,62,208,76,194,107,175"/>
+<area shape="rect" id="Node000007" href="$d6/ddb/bgt60-conf-dfl_8hpp.html" title="Radar BGT60 default configuration." alt="" coords="66,225,206,251"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="139,178,139,212,133,212,133,178"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="129,253,101,289,96,286,125,249"/>
+<area shape="rect" id="Node000009" href="$dc/d6a/bgt60-types_8hpp.html" title="Radar BGT60 Types." alt="" coords="231,225,359,251"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="296,178,297,212,292,212,291,178"/>
+<area shape="poly" id="edge12_Node000010_Node000003" title=" " alt="" coords="376,103,408,140,404,143,372,106"/>
+<area shape="poly" id="edge13_Node000010_Node000008" title=" " alt="" coords="354,106,316,144,312,140,350,102"/>
+</map>

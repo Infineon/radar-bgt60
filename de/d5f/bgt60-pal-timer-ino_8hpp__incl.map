@@ -1,0 +1,11 @@
+<map id="bgt60&#45;pal&#45;timer&#45;ino.hpp" name="bgt60&#45;pal&#45;timer&#45;ino.hpp">
+<area shape="rect" id="Node000001" title="Radar BGT60 Timer Arduino PAL Implementation." alt="" coords="29,5,207,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,89,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,33,70,71,66,67,104,29"/>
+<area shape="rect" id="Node000003" href="$d9/dc6/bgt60-pal-timer_8hpp.html" title="RADAR BGT60 Timer Platform Abstraction Layer." alt="" coords="113,79,264,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,29,170,67,166,71,128,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="91,152,161,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="180,106,147,143,143,140,176,103"/>
+<area shape="rect" id="Node000005" href="$dc/d6a/bgt60-types_8hpp.html" title="Radar BGT60 Types." alt="" coords="186,152,314,177"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="201,103,233,140,229,143,197,106"/>
+</map>

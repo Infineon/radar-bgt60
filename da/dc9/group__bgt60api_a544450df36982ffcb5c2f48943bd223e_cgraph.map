@@ -1,0 +1,8 @@
+<map id="Bgt60::getDirection" name="Bgt60::getDirection">
+<area shape="rect" id="Node000001" title="Read out phase&#45;detect&#45;pin." alt="" coords="5,31,153,56"/>
+<area shape="rect" id="Node000002" href="$da/dc9/group__bgt60api.html#a2bc2f8534b23ac6527114ca9ad37f71b" title="Read out target&#45;detect&#45;pin." alt="" coords="201,5,336,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,31,188,26,188,31,154,36"/>
+<area shape="rect" id="Node000003" href="$d3/d5d/group__pal.html#gaa39816b0719dade2faf072afd9bbee46" title="Reads the GPIO voltage level." alt="" coords="384,31,520,56"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="154,41,371,41,371,46,154,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="337,25,371,29,370,35,336,30"/>
+</map>

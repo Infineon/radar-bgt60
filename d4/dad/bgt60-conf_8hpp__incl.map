@@ -1,0 +1,8 @@
+<map id="bgt60&#45;conf.hpp" name="bgt60&#45;conf.hpp">
+<area shape="rect" id="Node000001" title="Radar BGT60 Library Configuration." alt="" coords="22,5,141,31"/>
+<area shape="rect" id="Node000002" href="$d1/d16/bgt60-conf-opts_8hpp.html" title="Radar BGT60 Library Configuration Options." alt="" coords="5,152,157,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,32,65,54,56,79,55,95,57,110,69,139,64,141,52,111,49,95,51,78,60,52,72,30"/>
+<area shape="rect" id="Node000003" href="$d6/ddb/bgt60-conf-dfl_8hpp.html" title="Radar BGT60 default configuration." alt="" coords="66,79,206,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="92,29,121,66,117,69,88,33"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="129,106,101,143,96,140,125,103"/>
+</map>

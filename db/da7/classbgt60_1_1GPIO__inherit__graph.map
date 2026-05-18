@@ -1,0 +1,7 @@
+<map id="bgt60::GPIO" name="bgt60::GPIO">
+<area shape="rect" id="Node000001" title=" " alt="" coords="43,5,141,31"/>
+<area shape="rect" id="Node000002" href="$da/d01/group__inoPal.html#d6/dfc/classGPIOIno" title=" " alt="" coords="5,79,80,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,44,53,80,48,77,74,41"/>
+<area shape="rect" id="Node000003" href="$d4/d89/group__rpiPal.html#d9/d95/classGPIORpi" title=" " alt="" coords="104,79,179,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="110,41,136,77,131,80,106,44"/>
+</map>

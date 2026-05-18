@@ -1,0 +1,27 @@
+<map id="bgt60&#45;conf&#45;dfl.hpp" name="bgt60&#45;conf&#45;dfl.hpp">
+<area shape="rect" id="Node000001" title="Radar BGT60 default configuration." alt="" coords="187,5,327,31"/>
+<area shape="rect" id="Node000002" href="$d6/d14/bgt60-conf_8hpp.html" title="Radar BGT60 Library Configuration." alt="" coords="198,79,317,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,44,260,79,255,79,255,44"/>
+<area shape="rect" id="Node000003" href="$d3/d57/bgt60-logger_8hpp.html" title="Radar BGT60 Logger." alt="" coords="22,152,154,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="219,112,117,154,115,149,216,107"/>
+<area shape="rect" id="Node000006" href="$db/dd3/bgt60-pal-logger_8hpp.html" title="Radar BGT60 Logger Platform Abstraction Layer." alt="" coords="179,152,336,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="260,118,260,152,255,152,255,118"/>
+<area shape="rect" id="Node000007" href="$df/d8d/bgt60_8hpp.html" title="Radar BGT60 API." alt="" coords="361,152,447,177"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="294,107,381,149,379,154,292,112"/>
+<area shape="rect" id="Node000004" href="$d8/d14/bgt60-logger_8cpp.html" title="Radar BGT60 Logger." alt="" coords="5,225,136,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="85,191,76,226,71,225,79,190"/>
+<area shape="rect" id="Node000005" href="$d2/d97/bgt60_8cpp.html" title="Radar BGT60 API." alt="" coords="161,225,247,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="120,182,186,223,184,227,117,187"/>
+<area shape="poly" id="edge13_Node000007_Node000005" title=" " alt="" coords="360,184,238,228,236,223,358,179"/>
+<area shape="rect" id="Node000008" href="$d3/d18/bgt60-ino_8hpp.html" title="Radar BGT60 Arduino API." alt="" coords="272,225,384,251"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="384,189,342,227,339,223,380,185"/>
+<area shape="rect" id="Node000010" href="$da/da3/bgt60-pybind_8cpp.html" title="Radar BGT60 Raspberry Pi Python Wrapper API." alt="" coords="381,299,515,324"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="414,190,447,298,442,299,409,192"/>
+<area shape="rect" id="Node000011" href="$df/d0e/bgt60-rpi_8hpp.html" title="Radar BGT60 Raspberry Pi API." alt="" coords="459,225,568,251"/>
+<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="434,183,497,223,494,227,432,187"/>
+<area shape="rect" id="Node000009" href="$dd/d66/bgt60-ino_8cpp.html" title="Radar BGT60 Arduino API." alt="" coords="246,299,357,324"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="321,265,308,299,303,298,316,263"/>
+<area shape="poly" id="edge11_Node000011_Node000010" title=" " alt="" coords="495,263,461,300,457,297,491,259"/>
+<area shape="rect" id="Node000012" href="$d1/d7f/bgt60-rpi_8cpp.html" title="Radar BGT60 Raspberry Pi API." alt="" coords="539,299,647,324"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="538,258,582,296,578,300,534,262"/>
+</map>

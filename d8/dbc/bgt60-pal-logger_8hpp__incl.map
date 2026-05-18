@@ -1,0 +1,10 @@
+<map id="bgt60&#45;pal&#45;logger.hpp" name="bgt60&#45;pal&#45;logger.hpp">
+<area shape="rect" id="Node000001" title="Radar BGT60 Logger Platform Abstraction Layer." alt="" coords="5,5,163,31"/>
+<area shape="rect" id="Node000002" href="$d6/d14/bgt60-conf_8hpp.html" title="Radar BGT60 Library Configuration." alt="" coords="25,79,143,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,31,87,65,81,65,81,31"/>
+<area shape="rect" id="Node000003" href="$d1/d16/bgt60-conf-opts_8hpp.html" title="Radar BGT60 Library Configuration Options." alt="" coords="8,225,160,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,106,68,127,59,153,57,168,60,183,71,212,66,214,55,185,52,168,53,151,63,125,74,103"/>
+<area shape="rect" id="Node000004" href="$d6/ddb/bgt60-conf-dfl_8hpp.html" title="Radar BGT60 default configuration." alt="" coords="69,152,209,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="95,103,124,140,119,143,91,106"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="132,179,103,216,99,213,128,176"/>
+</map>
